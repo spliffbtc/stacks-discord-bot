@@ -1,4 +1,6 @@
 const { MessageEmbed } = require('discord.js');
+const getCollection = require('../../model/collection.js');
+const collection = getCollection();
 
 // Link to collection on Byzantion
 module.exports = {
@@ -11,14 +13,14 @@ module.exports = {
 			.addFields(
 				{
 					name: 'STXNFT',
-					value: 'View at stxnft.com: \n https://stxnft.com/collections/free-punks',
+					value: `View at stxnft.com: \n https://stxnft.com/collections/${collection.contractNameAlt}`,
 				},
 				{
 					name: 'BYZANTION',
-					value: 'View at byzantion.xyz: \n https://byzantion.xyz/collection/free-punks-v0',
+					value: `View at byzantion.xyz: \n https://byzantion.xyz/collection/${collection.contractName}`,
 				},
 			)
-			.setImage('https://freepunks.xyz/assets/unknownxx.png')
+			.setImage(`${collection.collectionWebsite}/assets/unknownxx.png`)
 			.setTimestamp();
 		message.channel.send({ embeds: [embed] });
 

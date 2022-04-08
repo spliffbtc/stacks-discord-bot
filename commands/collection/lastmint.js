@@ -4,8 +4,8 @@ const { MessageEmbed } = require('discord.js');
 const getBNS = require('../../util/stacksAPI/getBNS.js');
 let stacksAPI = require('../../util/stacksAPI.js');
 stacksAPI = stacksAPI();
-let collection = require('../../model/collection.js');
-collection = collection();
+const getCollection = require('../../model/collection.js');
+const collection = getCollection();
 
 // Get the last minted NFT and who it was minted by
 module.exports = {
@@ -46,7 +46,7 @@ module.exports = {
 				},
 				{
 					name: 'Link',
-					value: `https://freepunks.xyz/details/${nftID}`,
+					value: `${collection.collectionWebsite}/details/${nftID}`,
 				},
 			);
 		message.channel.send({ embeds: [embed] });

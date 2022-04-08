@@ -1,5 +1,7 @@
 const axios = require('axios');
 const { MessageEmbed } = require('discord.js');
+const getCollection = require('../../model/collection.js');
+const collection = getCollection();
 
 // Get current collection floor price in STX
 module.exports = {
@@ -8,11 +10,11 @@ module.exports = {
 		// Get Floor Price
 		const floorPrice = await axios
 			.get(
-				'https://api.stacksdata.info/nft/contracts/SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ.free-punks-v0/floor',
+				`https://api.stacksdata.info/nft/contracts/${collection.contractID}.${collection.contractName}/floor`,
 			)
 			.then(async function(response) {
-				const floorPrice = response.data[0].floor;
-				return floorPrice;
+				const currentFloor = response.data[0].floor;
+				return currentFloor;
 			});
 		// Send Message
 		const embed = new MessageEmbed()

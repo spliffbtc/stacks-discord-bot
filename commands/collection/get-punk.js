@@ -1,5 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const getCollection = require('../../model/collection.js');
+const collection = getCollection();
 
 // Look up NFT and provide links to collection
 module.exports = {
@@ -8,21 +9,19 @@ module.exports = {
 
 	execute(message, args) {
 		if (args[0] > 0 && args[0] < 9999) {
-			// Get Collection
-			const collection = getCollection();
 			const nftID = args;
 			// Create MessageEmbed
 			const embed = new MessageEmbed()
 				.setColor('#0099ff')
 				.setTitle('FreePunk #' + nftID)
-				.setURL(`https://byzantion.xyz/marketplace/${collection.contractName}`)
+				.setURL(`${collection.collectionWebsite}/details/${nftID}`)
 				.setImage(
 					`https://punks.fra1.cdn.digitaloceanspaces.com/assets/punks/punk${nftID}.png`,
 				)
 				.addFields(
 					{
 						name: 'FreePunks Website',
-						value: `View at freepunks.xyz: \n https://freepunks.xyz/details/${nftID}`,
+						value: `View at freepunks.xyz: \n ${collection.collectionWebsite}/details/${nftID}`,
 					},
 
 					{
@@ -41,8 +40,6 @@ module.exports = {
 			return { embed };
 		}
 		else {
-			// Get Collection
-			const collection = getCollection();
 			// Send Message
 			message.channel.send(`Please enter a valid ${collection.collectionName} ID`);
 		}

@@ -9,6 +9,7 @@ module.exports = () => {
 		},
 		contractAddress: 'SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ',
 		contractName: 'free-punks-v0',
+		contractNameAlt: 'free-punks',
 		contractID: 'SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ',
 		asset_identifier:
 			'SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ.free-punks-v0::free-punks',

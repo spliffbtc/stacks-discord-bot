@@ -1,8 +1,7 @@
 const { MessageEmbed } = require('discord.js');
-let collection = require('../../model/collection.js');
-collection = collection();
+const getCollection = require('../../model/collection.js');
+const collection = getCollection();
 
-// Link to collection website
 module.exports = {
 	name: 'website',
 	execute(message) {
