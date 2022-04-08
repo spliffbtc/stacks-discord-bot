@@ -2,30 +2,30 @@
 
 ## Introduction
 
-I'm building a bot. It'll be free and open source.
-And have features. Feature-rich. Robust, even.
-Definitely choc-full-o-synergy.
+An open souce disord bot for the STX ecosystem.
 
 ## Features
 
 ### **Commands**
 
-Commands, we have a few...
-Many more, will come anew...
+#### **Slash Commands**
 
-### **Feature #2**
+`/help`
 
-### **Feature #3**
+#### **Trigger Commands**
 
-## ToDo
-
-### Wallet Verification
-
-### Stacks Events (New Block, MicroBlock, Mempool Txs)
-
-### Discord Administration
+`!floor`
+`!last`
+`!website`
 
 ## Install
+
+1. Follow the instructions here to create a new Bot on Discord: <https://discordjs.guide/preparations/>
+2. Clone the repository
+3. Rename `.env.sample` to `.env`
+4. Fill out `.env` with environment variables (token, etc)
+5. Run `npm install` in the command line
+6. Run `npm run dev` or `npm run start` to start the bot.
 
 ## Configuration
 
@@ -37,12 +37,9 @@ TBD
 
 ## Support & Documentation
 
-You're reading it.
+This is the documentation.
 
 ## Contributors
 
-Pretty sure GitHub does this automatically, friendo.
-
-## Support
-
-Unlikely. But maybe on Discord.
+- aazei
+- hz
