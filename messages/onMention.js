@@ -1,4 +1,4 @@
-const config = require('../config.json');
+const config = require('../botConfig.json');
 
 module.exports = {
 	async execute(message) {

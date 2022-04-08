@@ -1,7 +1,7 @@
 const stacks = require('@stacks/blockchain-api-client');
 
 
-const config = require('../config.json');
+const config = require('../botConfig.json');
 const guildID = config.guildID;
 const botChannel = config.channels.stacks.microblock;
 
