@@ -2,12 +2,12 @@ const { MessageEmbed } = require('discord.js');
 
 // Look up NFT and provide links to collection
 module.exports = {
-	name: 'get',
-	aliases: ['lookup', 'search', 'find'],
+	name: 'getpunk',
+	aliases: ['get', 'lookup', 'search', 'find'],
 
 	execute(message, args) {
 		if (args[0] > 0 && args[0] < 9999) {
-			punkID = args;
+			const punkID = args;
 			const embed = new MessageEmbed()
 				.setColor('#0099ff')
 				.setTitle('FreePunk #' + punkID)
