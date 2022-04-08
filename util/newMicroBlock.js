@@ -6,9 +6,12 @@ const socket = io(socketUrl, {
 });
 let stacksAPI = require('./stacksAPI.js');
 stacksAPI = stacksAPI();
-let collection = require('../model/collection.js');
+const getCollection = require('../model/collection.js');
 const { Client, TextChannel, MessageEmbed } = require('discord.js');
-collection = collection();
+const collection = getCollection();
+const guild_id = process.env.guild_id;
+
+const bot_channel = process.env.bot_channel;
 // Hmm
 // you could pass the discord client here
 /**
@@ -19,12 +22,12 @@ module.exports = async function(client) {
 	const sc = await stacks.connectWebSocketClient();
 	console.log('listening for new microblocks...');
 	sc.subscribeMicroblocks(async (microblock) => {
-		const freePunksGuild = '947501281734451210';
+		const freePunksGuild = guild_id;
 		const guild = await client.guilds.fetch(freePunksGuild);
 
 		if (guild) {
 			// for now this is the data analytics channel
-			const blockChannel = '954316109018955777';
+			const blockChannel = bot_channel;
 			/**
 			 * @type {TextChannel}
 			 */
