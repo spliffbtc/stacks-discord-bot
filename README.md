@@ -16,14 +16,14 @@ An open souce disord bot for the STX ecosystem.
 
 ##### **Collection**
 
-`!get-punk` || `get` || `!lookup` || `!search` || `!find`
-`!lastmint`
+`!get-punk` || `get` || `!lookup` || `!search` || `!find`  
+`!lastmint`  
 `!website`
 
 ##### **Market**
 
-`!floor`
-`!marketplace` || `!market` || `byz` || `byzantion` || `stxnft`
+`!floor`  
+`!marketplace` || `!market` || `byz` || `byzantion` || `stxnft`  
 `!stxprice`
 
 ##### **Misc**
