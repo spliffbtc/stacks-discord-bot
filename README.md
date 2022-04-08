@@ -12,16 +12,32 @@ An open souce disord bot for the STX ecosystem.
 
 `/help`
 
-#### **Trigger Commands**
+#### **Basic Commands**
 
-`!floor`, `!get`, `!lastmint`, `!website`, `!byzantion`, `!stxnft`, `!help`, `!ping`, `!reload`, `!stxprice`
+##### **Collection**
+
+`!get-punk` || `get` || `!lookup` || `!search` || `!find`
+`!lastmint`
+`!website`
+
+##### **Market**
+
+`!floor`
+`!marketplace` || `!market` || `byz` || `byzantion` || `stxnft`
+`!stxprice`
+
+##### **Misc**
+
+`!help`  
+`!ping`  
+`!reload`
 
 ## Install
 
 1. Follow the instructions here to create a new Bot on Discord: <https://discordjs.guide/preparations/>
 2. Clone the repository
 3. Rename `.env.sample` to `.env`
-4. Fill out `.env` with environment variables (token`, `!etc)
+4. Fill out `.env` with environment variables (token!etc)
 5. Run `npm install` in the command line
 6. Run `npm run dev` or `npm run start` to start the bot.
 
