@@ -6,7 +6,7 @@ const collection = getCollection();
 module.exports = {
 	name: 'marketplace',
 	aliases: ['market', 'byz', 'byznation', 'stxnft'],
-	execute(message, args) {
+	execute(message) {
 		const embed = new MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle('Marketplace')

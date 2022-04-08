@@ -1,5 +1,5 @@
-const env = require('dotenv');
-const prefix = process.env.prefix;
+const config = require('../../config.json');
+const prefix = config.prefix;
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {

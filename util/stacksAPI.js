@@ -1,8 +1,3 @@
-let collection = require('../model/collection.js');
-collection = collection();
-const contractID = collection.contractID;
-
-// https://docs.hiro.so/api
 module.exports = (contractID) => {
 	const stacksAPI = {
 		blockchain: 'stacks',

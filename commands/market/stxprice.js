@@ -10,7 +10,7 @@ axios
 	})
 	.then((response) => {
 		let _a, _b;
-		stxPrice =
+		const stxPrice =
 			(_b =
 				(_a =
 					response === null || response === void 0 ? void 0 : response.data) ===

@@ -1,15 +1,7 @@
-const { io } = require('socket.io-client');
 const stacks = require('@stacks/blockchain-api-client');
-const socketUrl = 'https://stacks-node-api.mainnet.stacks.co/';
-const socket = io(socketUrl, {
-	transports: ['websocket'],
-});
-
-const { Client, TextChannel, MessageEmbed } = require('discord.js');
-const getDiscordServer = require('../model/discordServer.js');
-const discordServer = getDiscordServer();
-const guildID = discordServer.guildID;
-const botChannel = discordServer.channels.stacks.mempool;
+const config = require('../config.json');
+const guildID = config.guildID;
+const botChannel = config.channels.stacks.mempool;
 const getCollection = require('../model/collection.js');
 const collection = getCollection();
 

@@ -2,8 +2,6 @@ const axios = require('axios').default;
 exports.axios = axios;
 let stacksAPI = require('../stacksAPI.js');
 stacksAPI = stacksAPI();
-let collection = require('../../model/collection.js');
-collection = collection();
 
 module.exports = async (address) => {
 	try {
