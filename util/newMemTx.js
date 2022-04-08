@@ -4,14 +4,14 @@ const socketUrl = 'https://stacks-node-api.mainnet.stacks.co/';
 const socket = io(socketUrl, {
 	transports: ['websocket'],
 });
-let stacksAPI = require('./stacksAPI.js');
-stacksAPI = stacksAPI();
-const getCollection = require('../model/collection.js');
-const { Client, TextChannel, MessageEmbed } = require('discord.js');
-const collection = getCollection();
-const guild_id = process.env.guild_id;
 
-const bot_channel = process.env.bot_channel;
+const { Client, TextChannel, MessageEmbed } = require('discord.js');
+const getCollection = require('../model/collection.js');
+const collection = getCollection();
+const getStacksAPI = require('./stacksAPI.js');
+const stacksAPI = getStacksAPI();
+const guild_id = process.env.GUILD_ID;
+const bot_channel = process.env.BOT_CHANNEL;
 
 // you could pass the discord client here
 /**

@@ -1,7 +1,7 @@
 const { Collection } = require('discord.js');
 const env = require('dotenv');
 const prefix = process.env.prefix;
-const owner = process.env.owner;
+const owner = process.env.OWNER;
 const escapeRegex = (string) => {
 	return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 };
