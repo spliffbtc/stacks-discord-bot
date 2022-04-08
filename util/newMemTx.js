@@ -9,7 +9,7 @@ const { Client, TextChannel, MessageEmbed } = require('discord.js');
 const getDiscordServer = require('../model/discordServer.js');
 const discordServer = getDiscordServer();
 const guildID = discordServer.guildID;
-const botChannel = discordServer.channels.stacks.microblock;
+const botChannel = discordServer.channels.stacks.mempool;
 const getCollection = require('../model/collection.js');
 const collection = getCollection();
 
@@ -21,10 +21,11 @@ module.exports = async function(client) {
 
 		if (guild) {
 			const channel = await guild.channels.fetch(botChannel);
+
 			if (
 				tx.contract_call &&
 				tx.contract_call.contract_id ===
-					collection.contract_id + collection.contract_name
+					`${collection.contractID}.${collection.contractName}`
 			) {
 				channel.send(
 					`A new mint attempt has been submitted by ${tx.sender_address}!`,
