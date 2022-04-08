@@ -4,7 +4,10 @@ const { Client, Collection } = require('discord.js');
 const { REST } = require('@discordjs/rest');
 const Routes = require('discord-api-types/v9');
 const token = process.env.TOKEN;
-const guild_id = process.env.GUILD_ID;
+const getDiscordServer = require('./model/discordServer.js');
+const discordServer = getDiscordServer();
+const guildID = discordServer.guildID;
+const botChannel = discordServer.channels.stacks.microblock;
 
 const client = new Client({
 	intents: [32767],
@@ -75,7 +78,7 @@ const commandJsonData = [
 		if (process.env.NODE_ENV === 'PROD') {
 			await rest.put(
 				//	Deploy Globally: Routes.applicationCommands(client_id)
-				Routes.applicationGuildCommands(guild_id),
+				Routes.applicationGuildCommands(guildID),
 				{
 					body: commandJsonData,
 				},
@@ -84,7 +87,7 @@ const commandJsonData = [
 		else {
 			await rest.put(
 				//	Deploy Globally: Routes.applicationCommands(client_id)
-				Routes.applicationGuildCommands(guild_id),
+				Routes.applicationGuildCommands(guildID),
 				{
 					body: commandJsonData,
 				},

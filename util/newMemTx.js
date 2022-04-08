@@ -6,48 +6,36 @@ const socket = io(socketUrl, {
 });
 
 const { Client, TextChannel, MessageEmbed } = require('discord.js');
+const getDiscordServer = require('../model/discordServer.js');
+const discordServer = getDiscordServer();
+const guildID = discordServer.guildID;
+const botChannel = discordServer.channels.stacks.microblock;
 const getCollection = require('../model/collection.js');
 const collection = getCollection();
-const getStacksAPI = require('./stacksAPI.js');
-const stacksAPI = getStacksAPI();
-const guild_id = process.env.GUILD_ID;
-const bot_channel = process.env.BOT_CHANNEL;
 
-// you could pass the discord client here
-/**
- *
- * @param {Client} client
- */
 module.exports = async function(client) {
 	const sc = await stacks.connectWebSocketClient();
 	console.log('listening for new mempool transactions...');
 	sc.subscribeMempool(async (tx) => {
-		const freePunksGuild = guild_id;
-		const guild = await client.guilds.fetch(freePunksGuild);
+		const guild = await client.guilds.fetch(guildID);
 
 		if (guild) {
-			// for now this is the data analytics channel
-			const blockChannel = bot_channel;
-			/**
-			 * @type {TextChannel}
-			 */
-			const channel = await guild.channels.fetch(blockChannel);
+			const channel = await guild.channels.fetch(botChannel);
 			if (
 				tx.contract_call &&
 				tx.contract_call.contract_id ===
-					'SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ.free-punks-v0'
+					collection.contract_id + collection.contract_name
 			) {
-				// channel.send(
-				// 	`A new mint attempt has been submitted by ${tx.sender_address}!`
-				// );
+				channel.send(
+					`A new mint attempt has been submitted by ${tx.sender_address}!`,
+				);
 				return;
 			}
 			else {
-				// console.log("Not a free-punks tx");
+				// console.log('Not a collection tx');
 				return;
 			}
 		}
 		return tx;
-		// do things with the client
 	});
 };

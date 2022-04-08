@@ -6,35 +6,22 @@ const socket = io(socketUrl, {
 });
 
 const { Client, TextChannel, MessageEmbed } = require('discord.js');
-const getCollection = require('../model/collection.js');
-const collection = getCollection();
-const getStacksAPI = require('./stacksAPI.js');
-const stacksAPI = getStacksAPI();
-const guild_id = process.env.GUILD_ID;
-const bot_channel = process.env.BOT_CHANNEL;
-// Hmm
-// you could pass the discord client here
-/**
- *
- * @param {Client} client
- */
+
+const getDiscordServer = require('../model/discordServer.js');
+const discordServer = getDiscordServer();
+const guildID = discordServer.guildID;
+const botChannel = discordServer.channels.stacks.microblock;
+
 module.exports = async function(client) {
 	const sc = await stacks.connectWebSocketClient();
 	console.log('listening for new microblocks...');
 	sc.subscribeMicroblocks(async (microblock) => {
-		const freePunksGuild = guild_id;
-		const guild = await client.guilds.fetch(freePunksGuild);
+		const guild = await client.guilds.fetch(guildID);
 
 		if (guild) {
-			// for now this is the data analytics channel
-			const blockChannel = bot_channel;
-			/**
-			 * @type {TextChannel}
-			 */
-			const channel = await guild.channels.fetch(blockChannel);
-			// channel.send(`A new microblock has appeared!`);
+			const channel = await guild.channels.fetch(botChannel);
+			channel.send('A new microblock has appeared!');
 		}
 		return microblock;
-		// do things with the client
 	});
 };
