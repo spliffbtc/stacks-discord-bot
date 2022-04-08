@@ -3,8 +3,8 @@ const fs = require('fs');
 const { Client, Collection } = require('discord.js');
 const { REST } = require('@discordjs/rest');
 const Routes = require('discord-api-types/v9');
-const token = process.env.token;
-const guild_id = process.env.guild_id;
+const token = process.env.TOKEN;
+const guild_id = process.env.GUILD_ID;
 
 const client = new Client({
 	intents: [32767],
