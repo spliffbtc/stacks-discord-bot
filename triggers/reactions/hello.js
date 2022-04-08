@@ -1,8 +1,8 @@
 module.exports = {
-	name: ['hi frens'],
+	name: ['hello'],
 	execute(message, args) {
 		message.channel.send({
-			content: 'What\'s up, punk?',
+			content: 'Hello there!',
 		});
 	},
 };
