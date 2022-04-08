@@ -16,7 +16,7 @@ An open souce disord bot for the STX ecosystem.
 
 ##### **Collection**
 
-`!get-punk` || `get` || `!lookup` || `!search` || `!find`  
+`get` || `!lookup` || `!search` || `!find`  
 `!lastmint`  
 `!website`
 
