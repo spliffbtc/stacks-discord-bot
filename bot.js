@@ -1,13 +1,12 @@
+// eslint-disable-next-line no-unused-vars
 const env = require('dotenv').config();
 const fs = require('fs');
 const { Client, Collection } = require('discord.js');
 const { REST } = require('@discordjs/rest');
 const Routes = require('discord-api-types/v9');
 const token = process.env.TOKEN;
-const getDiscordServer = require('./model/discordServer.js');
-const discordServer = getDiscordServer();
-const guildID = discordServer.guildID;
-const botChannel = discordServer.channels.stacks.microblock;
+const config = require('./botConfig.json');
+const guildID = config.guildID;
 
 const client = new Client({
 	intents: [32767],

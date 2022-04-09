@@ -1,4 +1,4 @@
-const { MessageEmbed, Collection } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
