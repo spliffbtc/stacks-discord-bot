@@ -74,25 +74,12 @@ const commandJsonData = [
 (async function() {
 	try {
 		console.log('Started refreshing application (/) commands.');
-		if (process.env.NODE_ENV === 'PROD') {
-			await rest.put(
-				//	Deploy Globally: Routes.applicationCommands(client_id)
-				Routes.applicationGuildCommands(guildID),
-				{
-					body: commandJsonData,
-				},
-			);
-		}
-		else {
-			await rest.put(
-				//	Deploy Globally: Routes.applicationCommands(client_id)
-				Routes.applicationGuildCommands(guildID),
-				{
-					body: commandJsonData,
-				},
-			);
-		}
-
+		await rest.put(
+			Routes.applicationGuildCommands(guildID),
+			{
+				body: commandJsonData,
+			},
+		);
 		console.log('Successfully reloaded application (/) commands.');
 	}
 	catch (error) {

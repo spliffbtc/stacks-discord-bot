@@ -1,5 +1,4 @@
 module.exports = (message) => {
-// Collect reactions
 	const filter = (reaction, user) => {
 		return reaction.emoji.name === '👀' && user.id === message.author.id;
 	};
