@@ -2,7 +2,6 @@ const { MessageEmbed } = require('discord.js');
 const config = require('../../botConfig.json');
 const collection = config.collection;
 
-
 module.exports = {
 	name: 'marketplace',
 	aliases: ['market', 'byz', 'byznation', 'stxnft'],

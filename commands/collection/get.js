@@ -2,7 +2,6 @@ const { MessageEmbed } = require('discord.js');
 const config = require('../../botConfig.json');
 const collection = config.collection;
 
-
 module.exports = {
 	name: 'get',
 	aliases: ['lookup', 'search', 'find'],

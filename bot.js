@@ -114,6 +114,5 @@ for (const folder of triggerFolders) {
 
 // Bug: Stacks Event Based Chat Triggers
 
-
 // Log In Bot
 client.login(token);

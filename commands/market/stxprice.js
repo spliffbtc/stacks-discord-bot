@@ -1,7 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const getSTXUSD = require('../../util/coingeckoAPI/getSTXUSD');
 
-
 module.exports = {
 	name: 'stxprice',
 	aliases: ['stxprice', 'stx-price'],

@@ -1,6 +1,5 @@
 const fs = require('fs');
 
-
 module.exports = {
 	name: 'reload',
 	alises: ['reload'],

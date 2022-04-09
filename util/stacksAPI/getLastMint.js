@@ -3,7 +3,6 @@ const getBNS = require('./getBNS.js');
 const config = require('../../botConfig.json');
 const collection = config.collection;
 
-
 module.exports = async () => {
 	const { data } = await axios.get('https://stacks-node-api.mainnet.stacks.co/extended/v1/tokens/nft/mints',
 		{
