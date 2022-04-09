@@ -13,7 +13,7 @@ module.exports = {
 			.setColor('#0099ff')
 			.setTitle('Last Minted: #' + lastMinted.nftID)
 			.setImage(
-				`https://punks.fra1.cdn.digitaloceanspaces.com/assets/punks/punk${lastMinted.nftID}.png`,
+				`${collection.image.prefix}${lastMinted.nftID}${collection.image.imageType}`,
 			)
 			.setURL(`${collection.collectionWebsite}/details/${lastMinted.nftID}`)
 			.addFields(

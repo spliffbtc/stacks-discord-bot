@@ -14,7 +14,7 @@ module.exports = {
 				.setTitle(`${collection.nftPrefix} # ${nftID}`)
 				.setURL(`${collection.collectionWebsite}/details/${nftID}`)
 				.setImage(
-					`https://punks.fra1.cdn.digitaloceanspaces.com/assets/punks/punk${nftID}.png`,
+					`${collection.image.prefix}${nftID}${collection.image.imageType}`,
 				)
 				.addFields(
 					{

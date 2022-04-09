@@ -37,6 +37,9 @@
 		},
 		"asset_identifier": "SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ.free-punks-v0::free-punks",
 		"nftPrefix": "FreePunk",
-		"imageURL": ""
+		"image": {
+			"prefix": "https://punks.fra1.cdn.digitaloceanspaces.com/assets/punks/punk",
+			"imageType": "png"
+		}
 	}
 }
