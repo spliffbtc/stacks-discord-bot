@@ -1,5 +1,5 @@
 const stacks = require('@stacks/blockchain-api-client');
-const config = require('../../botConfig.json');
+const config = require('../../../botConfig.json');
 const collection = config.collection;
 const guildID = config.guildID;
 const botChannel = config.channels.stacks.mempool;
