@@ -22,7 +22,5 @@ module.exports = {
 			.setImage(`${collection.collectionWebsite}/assets/unknownxx.png`)
 			.setTimestamp();
 		message.channel.send({ embeds: [embed] });
-
-		return { embed };
 	},
 };
