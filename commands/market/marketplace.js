@@ -10,7 +10,6 @@ module.exports = {
 	category: 'market',
 	permissions: 'SEND_MESSAGES',
 	clientPerms: 'SEND_MESSAGES',
-	guildOnly: false,
 	args: false,
 	cooldown: 5,
 	execute(message) {

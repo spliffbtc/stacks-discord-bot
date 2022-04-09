@@ -8,7 +8,6 @@ module.exports = {
 	category: 'admin',
 	permissions: 'SEND_MESSAGES',
 	clientPerms: 'SEND_MESSAGES',
-	guildOnly: false,
 	args: true,
 	adminOnly: true,
 	cooldown: 5,

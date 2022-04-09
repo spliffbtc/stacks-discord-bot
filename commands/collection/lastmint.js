@@ -11,7 +11,6 @@ module.exports = {
 	category: 'collection',
 	permissions: 'SEND_MESSAGES',
 	clientPerms: 'SEND_MESSAGES',
-	guildOnly: false,
 	args: false,
 	cooldown: 5,
 	async execute(message) {
