@@ -1,5 +1,5 @@
 const axios = require('axios').default;
-const getCollection = require('../model/collection.js');
+const getCollection = require('../../model/collection.js');
 const collection = getCollection();
 
 module.exports = async () => {

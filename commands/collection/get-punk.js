@@ -4,8 +4,8 @@ const collection = getCollection();
 
 module.exports = {
 	name: 'get',
+	description: 'Get a random NFT from the collection',
 	aliases: ['lookup', 'search', 'find'],
-
 	async execute(message, args) {
 		const nftID = args[0];
 		if (args[0] > 0 && args[0] < 9999) {
@@ -21,20 +21,16 @@ module.exports = {
 						name: 'FreePunks Website',
 						value: `View at freepunks.xyz: \n ${collection.collectionWebsite}/details/${nftID}`,
 					},
-
 					{
 						name: 'STXNFT',
 						value: `View at stxnft.com: \n https://stxnft.com/collections/${collection.contractNameAlt}/${nftID}`,
 					},
-
 					{
 						name: 'BYZANTION',
 						value: `View at byzantion.xyz: \n https://byzantion.xyz/collection/${collection.contractName}/${nftID}`,
 					},
 				);
 			message.channel.send({ embeds: [embed] });
-
-			return { embed };
 		}
 		else {
 			message.channel.send(`Please enter a valid ${collection.collectionName} ID`);

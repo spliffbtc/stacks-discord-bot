@@ -113,35 +113,8 @@ for (const folder of triggerFolders) {
 	}
 }
 
-const getNewBlock = require('./util/newBlock.js');
-(async function() {
-	try {
-		await getNewBlock(client);
-	}
-	catch (error) {
-		console.error(error);
-	}
-})();
+// Bug: Stacks Event Based Chat Triggers
 
-const getMemTx = require('./util/newMemTx.js');
-(async function() {
-	try {
-		await getMemTx(client);
-	}
-	catch (error) {
-		console.error(error);
-	}
-})();
-
-const getMicroblock = require('./util/newMicroBlock.js');
-(async function() {
-	try {
-		await getMicroblock(client);
-	}
-	catch (error) {
-		console.error(error);
-	}
-})();
 
 // Log In Bot
 client.login(token);
