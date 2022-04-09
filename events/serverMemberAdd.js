@@ -12,7 +12,7 @@ module.exports = {
 	clientPerms: 'SEND_MESSAGES',
 	args: false,
 	cooldown: 5,
-	async execute(client, message) {
+	async execute(client) {
 		await client.on('guildMemberAdd', member => {
 			member.roles.add(welcomeChannel);
 			const welcomeEmbed = new MessageEmbed();
@@ -21,7 +21,6 @@ module.exports = {
 			welcomeEmbed.setColor('#0099ff');
 			welcomeEmbed.setThumbnail(member.user.displayAvatarURL());
 			welcomeEmbed.setTimestamp();
-			welcomeEmbed.setFooter(`${member.user.tag}`, member.user.displayAvatarURL());
 			welcomeChannel.send({ embeds: [welcomeEmbed] });
 		});
 	},
