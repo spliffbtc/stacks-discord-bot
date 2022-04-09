@@ -25,7 +25,6 @@ module.exports = async function(client) {
 				return;
 			}
 			else {
-				// console.log('Not a collection tx');
 				return;
 			}
 		}

@@ -7,12 +7,10 @@ stacksAPI = stacksAPI();
 const getCollection = require('../../model/collection.js');
 const collection = getCollection();
 
-// Get the last minted NFT and who it was minted by
 module.exports = {
 	name: 'lastmint',
 	aliases: ['lastminted', 'last'],
 
-	// Get last minted
 	async execute(message) {
 		const resp = await axios.get(stacksAPI.nft.mints, {
 			params: {
@@ -26,7 +24,6 @@ module.exports = {
 		const address = lastMinted.recipient;
 		const BNS = await getBNS(address);
 
-		// Create Message Embed
 		const embed = new MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle('Last Minted: #' + nftID)

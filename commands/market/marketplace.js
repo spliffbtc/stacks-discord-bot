@@ -2,7 +2,6 @@ const { MessageEmbed } = require('discord.js');
 const getCollection = require('../../model/collection.js');
 const collection = getCollection();
 
-// Link to collection on Byzantion
 module.exports = {
 	name: 'marketplace',
 	aliases: ['market', 'byz', 'byznation', 'stxnft'],

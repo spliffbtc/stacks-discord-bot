@@ -9,7 +9,7 @@ const escapeRegex = (string) => {
 module.exports = {
 	name: 'messageCreate',
 	async execute(message) {
-		const { client, guild, channel, content, author } = message;
+		const { client, content } = message;
 		if (
 			message.content == `<@${client.user.id}>` ||
 			message.content == `<@!${client.user.id}>`
