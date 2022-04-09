@@ -14,7 +14,7 @@ module.exports = {
 				.setTitle(`${collection.nftPrefix} # ${nftID}`)
 				.setURL(`${collection.collectionWebsite}/details/${nftID}`)
 				.setImage(
-					`${collection.image.prefix}${nftID}${collection.image.imageType}`,
+					`${collection.image.prefix}${nftID}.${collection.image.imageType}`,
 				)
 				.addFields(
 					{

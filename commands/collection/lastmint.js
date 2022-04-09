@@ -13,7 +13,7 @@ module.exports = {
 			.setColor('#0099ff')
 			.setTitle('Last Minted: #' + lastMinted.nftID)
 			.setImage(
-				`${collection.image.prefix}${lastMinted.nftID}${collection.image.imageType}`,
+				`${collection.image.prefix}${lastMinted.nftID}.${collection.image.imageType}`,
 			)
 			.setURL(`${collection.collectionWebsite}/details/${lastMinted.nftID}`)
 			.addFields(

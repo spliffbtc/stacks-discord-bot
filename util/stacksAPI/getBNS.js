@@ -24,7 +24,7 @@ module.exports = async (address) => {
 			return response;
 		}
 	}
-	catch (err) {
-		console.log(err);
+	catch (error) {
+		console.log(error);
 	}
 };

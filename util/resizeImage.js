@@ -13,7 +13,6 @@ module.exports = async (url) => {
 		await src.toFormat('png');
 		await src.toFile('temp.png');
 		const resizedImage = await fs.realpathSync('temp.png');
-		console.log(resizedImage);
 		return resizedImage;
 	}
 	catch (error) {

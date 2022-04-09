@@ -19,7 +19,7 @@ module.exports = {
 					value: `View at byzantion.xyz: \n ${collection.marketplaceWebsite.byzantion}`,
 				},
 			)
-			.setImage(`${collection.collectionWebsite}/assets/unknownxx.png`)
+			.setImage(`${collection.collectionBanner}`)
 			.setTimestamp();
 		message.channel.send({ embeds: [embed] });
 	},
