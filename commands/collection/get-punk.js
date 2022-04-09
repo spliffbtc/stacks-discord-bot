@@ -1,15 +1,16 @@
 const { MessageEmbed } = require('discord.js');
 const getCollection = require('../../model/collection.js');
 const collection = getCollection();
+// const resizeImage = require('../../util/resizeImage.js');
 
 // Look up NFT and provide links to collection
 module.exports = {
 	name: 'get',
 	aliases: ['lookup', 'search', 'find'],
 
-	execute(message, args) {
+	async execute(message, args) {
+		const nftID = args[0];
 		if (args[0] > 0 && args[0] < 9999) {
-			const nftID = args;
 			// Create MessageEmbed
 			const embed = new MessageEmbed()
 				.setColor('#0099ff')
