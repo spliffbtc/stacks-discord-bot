@@ -27,10 +27,14 @@
 			"STXNFT": "https://stxnft.com/collections/free-punks",
 			"byzantion": "https://byzantion.xyz/collection/free-punks-v0"
 		},
-		"contractAddress": "SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ",
-		"contractName": "free-punks-v0",
-		"contractNameAlt": "free-punks",
-		"contractID": "SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ",
+		"contract": {
+			"contractName": "SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ.free-punks-v0",
+			"contractAddress": "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2",
+			"tx_id": "0xc68d03331af54894214e06e47e30e28d549a90dfbec6ed1d71773910d1dd5090",
+			"deployedBy": "SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ",
+			"blockHash": "0x1b29bbddbf4f6ebd1640fac7118a4e553c312aa1a7a86c87bad0be404e6f6502",
+			"blockHeight": "26320"
+		},
 		"asset_identifier": "SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ.free-punks-v0::free-punks",
 		"nftPrefix": "FreePunk",
 		"imageURL": ""

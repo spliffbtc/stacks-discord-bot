@@ -12,11 +12,11 @@ module.exports = {
 			.addFields(
 				{
 					name: 'STXNFT',
-					value: `View at stxnft.com: \n https://stxnft.com/collections/${collection.contractNameAlt}`,
+					value: `View at stxnft.com: \n ${collection.marketplaceWebsite.STXNFT}`,
 				},
 				{
 					name: 'BYZANTION',
-					value: `View at byzantion.xyz: \n https://byzantion.xyz/collection/${collection.contractName}`,
+					value: `View at byzantion.xyz: \n ${collection.marketplaceWebsite.byzantion}`,
 				},
 			)
 			.setImage(`${collection.collectionWebsite}/assets/unknownxx.png`)

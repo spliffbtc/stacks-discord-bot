@@ -11,7 +11,7 @@ module.exports = {
 			.setTitle('Twitter')
 			.setURL(collection.collectionTwitter)
 			.setDescription(
-				`Check out the ${collection.collectionName} twitter!! ${collection.collectionTwitter}`,
+				`Check out the ${collection.collectionName} twitter! ${collection.collectionTwitter}`,
 			)
 			.setImage(collection.collectionBanner)
 			.setTimestamp();

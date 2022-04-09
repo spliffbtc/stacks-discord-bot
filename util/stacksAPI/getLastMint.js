@@ -1,7 +1,7 @@
 const axios = require('axios').default;
 const getBNS = require('./getBNS.js');
-const getCollection = require('../../model/collection');
-const collection = getCollection();
+const config = require('../../botConfig.json');
+const collection = config.collection;
 
 
 module.exports = async () => {
