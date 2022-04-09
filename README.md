@@ -22,7 +22,7 @@ A simple open source discord bot for the Stacks community and ecosystem.
 - category: collection
 - args: true
 
-`!lastmint`
+`lastmint`
 
 - name: lastmint
 - aliases: [lastmint]
@@ -31,7 +31,7 @@ A simple open source discord bot for the Stacks community and ecosystem.
 - category: collection
 - args: false
 
-`!twitter`
+`twitter`
 
 - name: twitter
 - aliases: [twitter]
@@ -40,7 +40,7 @@ A simple open source discord bot for the Stacks community and ecosystem.
 - category: collection
 - args: false
 
-`!website`
+`website`
 
 - name: website
 - aliases: [website]
@@ -51,7 +51,7 @@ A simple open source discord bot for the Stacks community and ecosystem.
 
 ##### **Market**
 
-`!floor`
+`floor`
 
 - name: floor
 - aliases: [floor, floor-price]
@@ -60,7 +60,7 @@ A simple open source discord bot for the Stacks community and ecosystem.
 - category: market
 - args: false
 
-`!marketplace`
+`marketplace`
 
 - name: marketplace
 - aliases: [market, byz, byznation, stxnft]
@@ -69,7 +69,7 @@ A simple open source discord bot for the Stacks community and ecosystem.
 - category: market
 - args: false
 
-`!stxprice`
+`stxprice`
 
 - aliases: [stxprice, stx-price]
 - description: Get the current price of STX in USD
@@ -79,7 +79,7 @@ A simple open source discord bot for the Stacks community and ecosystem.
 
 ##### **Misc**
 
-`!help`
+`help`
 
 - name: help
 - aliases: [commands]
@@ -88,17 +88,16 @@ A simple open source discord bot for the Stacks community and ecosystem.
 - category: general
 - args: false
 
-`!ping`
+`ping`
 
 - name: ping
 - aliases: [ping]
 - description: Ping the bot
 - usage: ping
 - category: misc
-
 - args: false
 
-`!reload`
+`reload`
 
 - name: reload
 - alises: [reload]
