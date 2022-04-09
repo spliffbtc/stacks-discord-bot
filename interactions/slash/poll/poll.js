@@ -5,6 +5,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('poll')
 		.setDescription('Create a poll.')
+		.setDefaultPermission(true)
 		.addStringOption((option) =>
 
 			option

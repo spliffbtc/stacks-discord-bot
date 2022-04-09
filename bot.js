@@ -67,11 +67,12 @@ for (const module of slashCommands) {
 const rest = new REST({
 	version: '9',
 }).setToken(token);
+console.log('fetching commands...');
 const commandJsonData = [
 	...Array.from(client.slashCommands.values()).map((c) => c.data.toJSON()),
 	...Array.from(client.contextCommands.values()).map((c) => c.data),
 ];
-(async function() {
+(async () => {
 	try {
 		console.log('Started refreshing application (/) commands.');
 		await rest.put(

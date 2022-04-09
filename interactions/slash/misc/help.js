@@ -4,6 +4,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('help')
+		.setDefaultPermission(true)
 		.setDescription(
 			'List all commands of bot or info about a specific command.',
 		)
