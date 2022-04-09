@@ -1,29 +1,27 @@
-const axios = require('axios');
 const { MessageEmbed } = require('discord.js');
-const getCollection = require('../../model/collection.js');
-const collection = getCollection();
+const getFloor = require('../../util/getFloor.js');
 
 module.exports = {
 	name: 'floor',
+	aliases: ['floor', 'floor-price'],
+	category: 'market',
+	description: 'Get the current floor price of the collection',
+	usage: 'floor',
+	permissions: 'SEND_MESSAGES',
+	clientPerms: 'SEND_MESSAGES',
+	guildOnly: false,
+	args: false,
 	async execute(message) {
-		const floorPrice = await axios
-			.get(
-				`https://api.stacksdata.info/nft/contracts/${collection.contractID}.${collection.contractName}/floor`,
-			)
-			.then(async function(response) {
-				const currentFloor = response.data[0].floor;
-				return currentFloor;
-			});
+		const floor = await getFloor();
 		const embed = new MessageEmbed()
 			.setColor('#0099ff')
-			.setTitle(`Floor Price: ${floorPrice} STX`)
-			.setDescription(`The current floor price is ${floorPrice} STX`)
+			.setTitle(`Floor Price: ${floor} STX`)
+			.setDescription(`The current floor price is ${floor} STX`)
 			.setThumbnail(
 				'https://assets.coingecko.com/coins/images/2069/small/Stacks_logo_full.png',
 			)
 			.setURL('')
 			.setTimestamp();
 		message.channel.send({ embeds: [embed] });
-		return { embed };
 	},
 };
