@@ -1,11 +1,12 @@
 const { MessageEmbed } = require('discord.js');
+const config = require('../../botConfig.json');
+const collection = config.collection;
 const getLastMint = require('../../util/stacksAPI/getLastMint.js');
-const getCollection = require('../../model/collection.js');
-const collection = getCollection();
+
 
 module.exports = {
 	name: 'lastmint',
-	aliases: ['lastminted', 'last'],
+	aliases: ['lastminted'],
 	async execute(message) {
 		const lastMinted = await getLastMint();
 		const embed = new MessageEmbed()

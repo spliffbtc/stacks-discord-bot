@@ -1,9 +1,8 @@
 const stacks = require('@stacks/blockchain-api-client');
 const config = require('../botConfig.json');
+const collection = config.collection;
 const guildID = config.guildID;
 const botChannel = config.channels.stacks.mempool;
-const getCollection = require('../model/collection.js');
-const collection = getCollection();
 
 module.exports = async function(client) {
 	const sc = await stacks.connectWebSocketClient();

@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
-const getCollection = require('../../model/collection.js');
-const collection = getCollection();
+const config = require('../../botConfig.json');
+const collection = config.collection;
 
 module.exports = {
 	name: 'marketplace',
