@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const config = require('../botConfig.json');
+const config = require('../../botConfig.json');
 const welcomeChannel = config.channels.welcome;
 
 module.exports = {

@@ -1,5 +1,5 @@
 const { Collection } = require('discord.js');
-const config = require('../botConfig.json');
+const config = require('../../botConfig.json');
 const prefix = config.prefix;
 const owner = config.ownerID;
 const escapeRegex = (string) => {
@@ -14,7 +14,7 @@ module.exports = {
 			message.content == `<@${client.user.id}>` ||
 			message.content == `<@!${client.user.id}>`
 		) {
-			require('../messages/onMention').execute(message);
+			require('../../messages/onMention').execute(message);
 			return;
 		}
 		const checkPrefix = prefix.toLowerCase();
