@@ -1,10 +1,18 @@
 const fs = require('fs');
 
+
 module.exports = {
 	name: 'reload',
+	alises: ['reload'],
 	description: 'Reloads a command',
+	usage: 'reload <command name>',
+	category: 'owner',
+	permissions: 'SEND_MESSAGES',
+	clientPerms: 'SEND_MESSAGES',
+	guildOnly: false,
 	args: true,
 	ownerOnly: true,
+	cooldown: 5,
 	execute(message, args) {
 		const commandName = args[0].toLowerCase();
 		const command =

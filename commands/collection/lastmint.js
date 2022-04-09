@@ -3,10 +3,17 @@ const config = require('../../botConfig.json');
 const collection = config.collection;
 const getLastMint = require('../../util/stacksAPI/getLastMint.js');
 
-
 module.exports = {
 	name: 'lastmint',
-	aliases: ['lastminted'],
+	aliases: ['lastmint'],
+	description: 'Get the last minted NFT in the collection',
+	usage: 'lastmint',
+	category: 'collection',
+	permissions: 'SEND_MESSAGES',
+	clientPerms: 'SEND_MESSAGES',
+	guildOnly: false,
+	args: false,
+	cooldown: 5,
 	async execute(message) {
 		const lastMinted = await getLastMint();
 		const embed = new MessageEmbed()

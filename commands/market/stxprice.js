@@ -1,16 +1,18 @@
 const { MessageEmbed } = require('discord.js');
 const getSTXUSD = require('../../util/coingeckoAPI/getSTXUSD');
 
+
 module.exports = {
 	name: 'stxprice',
 	aliases: ['stxprice', 'stx-price'],
-	category: 'market',
 	description: 'Get the current price of STX in USD',
 	usage: 'stxprice',
+	category: 'market',
 	permissions: 'SEND_MESSAGES',
 	clientPerms: 'SEND_MESSAGES',
 	guildOnly: false,
 	args: false,
+	cooldown: 5,
 	async execute(message) {
 		const STXUSD = await getSTXUSD();
 		const embed = new MessageEmbed()

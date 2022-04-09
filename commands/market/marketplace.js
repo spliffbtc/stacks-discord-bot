@@ -2,9 +2,18 @@ const { MessageEmbed } = require('discord.js');
 const config = require('../../botConfig.json');
 const collection = config.collection;
 
+
 module.exports = {
 	name: 'marketplace',
 	aliases: ['market', 'byz', 'byznation', 'stxnft'],
+	description: 'Get the current floor price of the collection',
+	usage: 'marketplace',
+	category: 'market',
+	permissions: 'SEND_MESSAGES',
+	clientPerms: 'SEND_MESSAGES',
+	guildOnly: false,
+	args: false,
+	cooldown: 5,
 	execute(message) {
 		const embed = new MessageEmbed()
 			.setColor('#0099ff')

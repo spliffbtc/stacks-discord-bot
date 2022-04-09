@@ -1,16 +1,18 @@
 const { MessageEmbed } = require('discord.js');
 const getFloor = require('../../util/stacksonchainAPI/getFloor.js');
 
+
 module.exports = {
 	name: 'floor',
 	aliases: ['floor', 'floor-price'],
-	category: 'market',
 	description: 'Get the current floor price of the collection',
 	usage: 'floor',
+	category: 'market',
 	permissions: 'SEND_MESSAGES',
 	clientPerms: 'SEND_MESSAGES',
 	guildOnly: false,
 	args: false,
+	cooldown: 5,
 	async execute(message) {
 		const floor = await getFloor();
 		const embed = new MessageEmbed()

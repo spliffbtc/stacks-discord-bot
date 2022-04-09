@@ -2,10 +2,18 @@ const { MessageEmbed } = require('discord.js');
 const config = require('../../botConfig.json');
 const collection = config.collection;
 
+
 module.exports = {
 	name: 'get',
-	description: 'Get a specific NFT from the collection',
 	aliases: ['lookup', 'search', 'find'],
+	description: 'Get a specific NFT from the collection',
+	usage: 'get <nftID>',
+	category: 'collection',
+	permissions: 'SEND_MESSAGES',
+	clientPerms: 'SEND_MESSAGES',
+	guildOnly: false,
+	args: true,
+	cooldown: 5,
 	async execute(message, args) {
 		const nftID = args[0];
 		if (args[0] > 0 && args[0] < 9999) {
@@ -23,7 +31,7 @@ module.exports = {
 					},
 					{
 						name: 'STXNFT',
-						value: `View at stxnft.com: \n /${collection.marketplaceWebsite.STXNFT}/${nftID}`,
+						value: `View at stxnft.com: \n ${collection.marketplaceWebsite.STXNFT}/${nftID}`,
 					},
 					{
 						name: 'BYZANTION',

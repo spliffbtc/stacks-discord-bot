@@ -2,11 +2,17 @@ const config = require('../../botConfig.json');
 const prefix = config.prefix;
 const { MessageEmbed } = require('discord.js');
 
+
 module.exports = {
 	name: 'help',
-	description: 'List all commands of bot or info about a specific command.',
 	aliases: ['commands'],
+	description: 'List all commands of bot or info about a specific command.',
 	usage: '[command name]',
+	category: 'general',
+	permissions: 'SEND_MESSAGES',
+	clientPerms: 'SEND_MESSAGES',
+	guildOnly: false,
+	args: false,
 	cooldown: 5,
 	execute(message, args) {
 		const { commands } = message.client;
