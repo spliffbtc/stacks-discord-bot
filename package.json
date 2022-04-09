@@ -1,7 +1,7 @@
 {
 	"name": "freepunks-bot",
 	"version": "0.1.0",
-	"description": "A simple open source discord bot for the Stacks community",
+	"description": "A simple open source discord bot for the Stacks community and ecosystem.",
 	"main": "bot.js",
 	"scripts": {
 		"start": "node bot.js",
