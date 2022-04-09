@@ -32,7 +32,7 @@ module.exports = {
 				(cmd) => cmd.aliases && cmd.aliases.includes(commandName),
 			);
 		if (!command) return;
-		if (command.ownerOnly && message.author.id !== owner) {
+		if (command.adminOnly && message.author.id !== owner) {
 			return message.reply({ content: 'This is a owner only command!' });
 		}
 		if (command.guildOnly && message.channel.type === 'dm') {

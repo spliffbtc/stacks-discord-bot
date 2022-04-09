@@ -5,12 +5,12 @@ module.exports = {
 	alises: ['reload'],
 	description: 'Reloads a command',
 	usage: 'reload <command name>',
-	category: 'owner',
+	category: 'admin',
 	permissions: 'SEND_MESSAGES',
 	clientPerms: 'SEND_MESSAGES',
 	guildOnly: false,
 	args: true,
-	ownerOnly: true,
+	adminOnly: true,
 	cooldown: 5,
 	execute(message, args) {
 		const commandName = args[0].toLowerCase();
