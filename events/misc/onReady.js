@@ -2,6 +2,10 @@ module.exports = {
 	name: 'ready',
 	once: true,
 	execute(client) {
-		console.log(`Ready! Bot logged in as ${client.user.tag}`);
+		// Set username and presence
+		client.user.setUsername('StacksBot');
+		client.user.setPresence({ activities: [{ type: 'PLAYING', name: 'with stacks.js' }], status: 'online' });
+		// Log Response
+		console.log(`Bot is ${client.user.presence.status} as ${client.user.tag}!`);
 	},
 };
