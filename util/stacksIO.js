@@ -6,13 +6,14 @@ const contractID = config.collection.contract.contractAddress;
 module.exports = async () => {
 	const socketUrl = 'https://stacks-node-api.mainnet.stacks.co/';
 	const socket = io(socketUrl, { transports: ['websocket'] });
-	console.log('connected to socket');
 	const sc = new stacks.StacksApiSocketClient(socket);
-	console.log('created stacks client');
+	console.log('Socket connected to Stacks API');
+	// Subscriptions
 	sc.subscribeBlocks();
-	console.log('subscribed to new blocks');
 	sc.subscribeAddressTransactions(contractID);
-	console.log('subscribed to address transactions');
-	sc.logEvents();
-
+	sc.subscribeMempool();
+	// Handle Subscription Events
+	sc.handleSubscription(async (event) => {
+		console.log(event);
+	});
 };

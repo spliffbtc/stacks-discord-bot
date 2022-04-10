@@ -1,6 +1,8 @@
 module.exports = (contractID) => {
 	const stacksAPI = {
 		blockchain: 'stacks',
+		smartContracts: {
+			getContractInfo: 'https://stacks-node-api.stacks.io/v1/contract/' },
 		bns: { address: 'https://stacks-node-api.mainnet.stacks.co/v1/addresses' },
 		nft: {
 			mints:

@@ -1,18 +1,35 @@
 // eslint-disable-next-line no-unused-vars
 const env = require('dotenv').config();
 const fs = require('fs');
+// discord.js
 const { Client, Collection, Intents } = require('discord.js');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
+// Import: Token
 const token = process.env.TOKEN;
+// Import: Config
 const config = require('./botConfig.json');
 const guildID = config.guildID;
 const clientID = config.clientID;
+// Import: Utilities
 const stacksIO = require('./util/stacksIO.js');
+const getContractDetails = require('./util/getContractDetails.js');
 
+// Create Client
 const client = new Client({
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
+
+// Get Contract Details
+getContractDetails()
+	.then((results) => {
+		console.log(`Contract Loaded: ${results.results.contract_id}`);
+		return results;
+	})
+	.catch((err) => {
+		console.log(err);
+	});
+
 
 // Event Handler
 const eventFolders = fs.readdirSync('./events');
@@ -72,21 +89,21 @@ for (const module of slashCommands) {
 const rest = new REST({
 	version: '9',
 }).setToken(token);
-console.log('fetching commands...');
+console.log('Fetching commands...');
 const commandJsonData = [
 	...Array.from(client.slashCommands.values()).map((c) => c.data.toJSON()),
 	...Array.from(client.contextCommands.values()).map((c) => c.data),
 ];
 (async () => {
 	try {
-		console.log('Started refreshing application (/) commands.');
+		console.log('Refreshing application (/) commands');
 		await rest.put(
 			Routes.applicationGuildCommands(clientID, guildID),
 			{
 				body: commandJsonData,
 			},
 		);
-		console.log('Successfully reloaded application (/) commands.');
+		console.log('Successfully refreshed application (/) commands');
 	}
 	catch (error) {
 		console.error(error);
