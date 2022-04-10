@@ -3,13 +3,14 @@ const env = require('dotenv').config();
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { REST } = require('@discordjs/rest');
-const Routes = require('discord-api-types/v9');
+const { Routes } = require('discord-api-types/v9');
 const token = process.env.TOKEN;
 const config = require('./botConfig.json');
 const guildID = config.guildID;
+const clientID = config.clientID;
 
 const client = new Client({
-	intents: [32767, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
 
 // Event Handler
@@ -79,7 +80,7 @@ const commandJsonData = [
 	try {
 		console.log('Started refreshing application (/) commands.');
 		await rest.put(
-			Routes.applicationGuildCommands(guildID),
+			Routes.applicationGuildCommands(clientID, guildID),
 			{
 				body: commandJsonData,
 			},
@@ -89,7 +90,7 @@ const commandJsonData = [
 	catch (error) {
 		console.error(error);
 	}
-});
+})();
 
 // Registration of Message Based Chat Triggers
 const triggerFolders = fs.readdirSync('./triggers');
@@ -103,7 +104,7 @@ for (const folder of triggerFolders) {
 	}
 }
 
-// Bug: Stacks Event Based Chat Triggers
+// Listen for new blocks, microblocks, and transactions
 
 // Log In Bot
 client.login(token);
