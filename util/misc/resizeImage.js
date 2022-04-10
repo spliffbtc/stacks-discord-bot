@@ -16,6 +16,6 @@ module.exports = async (url) => {
 		return resizedImage;
 	}
 	catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 };

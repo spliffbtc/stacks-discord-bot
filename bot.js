@@ -15,13 +15,11 @@ const clientID = config.discord.clientID;
 const stacksIO = require('./util/stacksIO.js');
 const getContractDetails = require('./util/stacksAPI/smartContracts/getContractInfo.js');
 
-// Declare Intents
-const botIntents = new Intents();
-botIntents.add(Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGE_TYPING, Intents.FLAGS.DIRECT_MESSAGES);
 
 // Create Client
 const client = new Client({
-	intents: botIntents });
+	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_PRESENCES],
+});
 
 // Get Contract Details
 getContractDetails()

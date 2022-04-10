@@ -1,7 +1,7 @@
 module.exports = {
 	name: 'onError',
 	async execute(error, message) {
-		console.log(error);
+		console.error(error);
 		message.channel.send(`Error: ${error}`);
 	},
 };
