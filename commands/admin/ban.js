@@ -1,8 +1,8 @@
 module.exports = {
-	name: 'dev',
-	aliases: ['dev', 'inDev'],
-	description: 'Template for commands that are in development',
-	usage: 'dev',
+	name: 'ban',
+	aliases: ['ban'],
+	description: 'Bans a user from the server',
+	usage: 'ban <user> <reason>',
 	category: 'admin',
 	permissions: 'SEND_MESSAGES',
 	clientPerms: 'SEND_MESSAGES',

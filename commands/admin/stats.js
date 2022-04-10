@@ -14,17 +14,16 @@ module.exports = {
 	cooldown: 5,
 	execute(client, message) {
 		const duration = durationFormatter.format(client.uptime);
-		const guildID = config.discord.guildID;
-		const guild = client.guild;
-		const users = guild.members.cache.filter(member => !member.user.bot).size;
-		const channels = guild.channels.cache.size;
+		// const guild = client.guild;
+		// const users = guild.members.cache.filter(member => !member.user.bot).size;
+		// const channels = guild.channels.cache.size;
 
 		const stats = codeBlock('asciidoc',
 			`= STATISTICS =
 			• Mem Usage  :: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB
 			• Uptime     :: ${duration}
-			• Users      :: ${users}
-			• Channels   :: ${channels}
+			• Users      :: in dev
+			• Channels   :: in dev
 			• Discord.js :: ${version}
 			• Node       :: ${process.version}`);
 		message.channel.send({

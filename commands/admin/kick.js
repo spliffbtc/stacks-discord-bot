@@ -9,6 +9,6 @@ module.exports = {
 	args: false,
 	cooldown: 5,
 	execute(message) {
-		message.channel.send({ content: 'In Development!' });
+		message.channel.send({ content: 'in dev' });
 	},
 };
