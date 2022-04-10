@@ -8,6 +8,7 @@ const token = process.env.TOKEN;
 const config = require('./botConfig.json');
 const guildID = config.guildID;
 const clientID = config.clientID;
+const stacksIO = require('./util/stacksIO.js');
 
 const client = new Client({
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
@@ -105,6 +106,7 @@ for (const folder of triggerFolders) {
 }
 
 // Listen for new blocks, microblocks, and transactions
+stacksIO();
 
 // Log In Bot
 client.login(token);
