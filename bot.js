@@ -15,10 +15,13 @@ const clientID = config.discord.clientID;
 const stacksIO = require('./util/stacksIO.js');
 const getContractDetails = require('./util/stacksAPI/smartContracts/getContractInfo.js');
 
+// Declare Intents
+const botIntents = new Intents();
+botIntents.add(Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGE_TYPING, Intents.FLAGS.DIRECT_MESSAGES);
+
 // Create Client
 const client = new Client({
-	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
-});
+	intents: botIntents });
 
 // Get Contract Details
 getContractDetails()
@@ -96,7 +99,7 @@ const commandJsonData = [
 ];
 (async () => {
 	try {
-		console.log('Refreshing application (/) commands');
+		console.log('Refreshing appl`ication (/) commands');
 		await rest.put(
 			Routes.applicationGuildCommands(clientID, guildID),
 			{
