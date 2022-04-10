@@ -1,46 +1,46 @@
 {
-	"prefix": "!",
-	"clientID": "962001551638003722",
-	"ownerID": "816589297473683477",
-	"guildID": "957174749128196146",
-	"defaultChannel": "962003807414403164",
-	"channels": {
-		"general": "957174749564379177",
-		"welcome": "961870163819524126",
-		"misc": "962003807414403164",
-		"marketplace": {
-			"listed": "957174771802574898",
-			"sold": "957175835838799903"
-		},
-		"stacks": {
-			"mempool": "961868868110913586",
-			"minted": "962003807414403164",
-			"newblock": "961870023444553778",
-			"microblock": "961870023444553778"
+	"discord": {
+		"prefix": "!",
+		"clientID": "962001551638003722",
+		"ownerID": "816589297473683477",
+		"guildID": "957174749128196146",
+		"defaultChannel": "962003807414403164",
+		"channels": {
+			"welcome": "961870163819524126",
+			"general": "957174749564379177",
+			"misc": "962003807414403164",
+			"marketplace": {
+				"listed": "957174771802574898",
+				"sold": "957175835838799903"
+			},
+			"stacks": {
+				"mempool": "961868868110913586",
+				"minted": "962003807414403164",
+				"newblock": "961870023444553778",
+				"microblock": "961870023444553778"
+			}
 		}
 	},
 	"collection": {
 		"collectionName": "FreePunks",
-		"collectionWebsite": "https://freepunks.xyz",
-		"collectionTwitter": "https://twitter.com/free_punks",
 		"collectionBanner": "https://freepunks.xyz/assets/unknownxx.png",
-		"marketplaceWebsite": {
-			"STXNFT": "https://stxnft.com/collections/free-punks",
-			"byzantion": "https://byzantion.xyz/collection/free-punks-v0"
+		"collectionPrefix": "FreePunk #",
+		"nftImage": {
+			"prefix": "https://punks.fra1.cdn.digitaloceanspaces.com/assets/punks/punk",
+			"imageType": "png"
+		},
+		"links": {
+			"website": "https://freepunks.xyz",
+			"twitter": "https://twitter.com/free_punks",
+			"marketplace": {
+				"stxnft": "https://stxnft.com/collections/free-punks",
+				"byzantion": "https://byzantion.xyz/collection/free-punks-v0"
+			}
 		},
 		"contract": {
 			"contractName": "free-punks-v0",
 			"contractAddress": "SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ",
-			"tx_id": "0xc68d03331af54894214e06e47e30e28d549a90dfbec6ed1d71773910d1dd5090",
-			"deployedBy": "SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ",
-			"blockHash": "0x1b29bbddbf4f6ebd1640fac7118a4e553c312aa1a7a86c87bad0be404e6f6502",
-			"blockHeight": "26320"
-		},
-		"asset_identifier": "SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ.free-punks-v0::free-punks",
-		"nftPrefix": "FreePunk",
-		"image": {
-			"prefix": "https://punks.fra1.cdn.digitaloceanspaces.com/assets/punks/punk",
-			"imageType": "png"
+			"assets": { "assetName": "free-punks" }
 		}
 	}
 }

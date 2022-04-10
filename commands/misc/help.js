@@ -1,5 +1,5 @@
 const config = require('../../botConfig.json');
-const prefix = config.prefix;
+const prefix = config.discord.prefix;
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {

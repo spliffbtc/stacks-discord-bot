@@ -9,11 +9,11 @@ const { Routes } = require('discord-api-types/v9');
 const token = process.env.TOKEN;
 // Import: Config
 const config = require('./botConfig.json');
-const guildID = config.guildID;
-const clientID = config.clientID;
+const guildID = config.discord.guildID;
+const clientID = config.discord.clientID;
 // Import: Utilities
 const stacksIO = require('./util/stacksIO.js');
-const getContractDetails = require('./util//stacksAPI/smartContracts/getContractDetails.js');
+const getContractDetails = require('./util/stacksAPI/smartContracts/getContractInfo.js');
 
 // Create Client
 const client = new Client({

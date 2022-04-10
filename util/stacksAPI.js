@@ -1,3 +1,7 @@
+/*
+https://docs.hiro.so/api
+*/
+
 module.exports = (contractID) => {
 	const stacksAPI = {
 		blockchain: 'stacks',

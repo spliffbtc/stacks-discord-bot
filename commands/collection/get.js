@@ -17,23 +17,23 @@ module.exports = {
 		if (args[0] > 0 && args[0] < 9999) {
 			const embed = new MessageEmbed()
 				.setColor('#0099ff')
-				.setTitle(`${collection.nftPrefix} # ${nftID}`)
-				.setURL(`${collection.collectionWebsite}/details/${nftID}`)
+				.setTitle(`${collection.collectionPrefix}${nftID}`)
+				.setURL(`${collection.links.website}/details/${nftID}`)
 				.setImage(
-					`${collection.image.prefix}${nftID}.${collection.image.imageType}`,
+					`${collection.nftImage.prefix}${nftID}.${collection.nftImage.imageType}`,
 				)
 				.addFields(
 					{
 						name: 'Official Website',
-						value: `View at the official website: \n ${collection.collectionWebsite}/details/${nftID}`,
+						value: `View at the official website: \n ${collection.links.website}/details/${nftID}`,
 					},
 					{
 						name: 'STXNFT',
-						value: `View at stxnft.com: \n ${collection.marketplaceWebsite.STXNFT}/${nftID}`,
+						value: `View at stxnft.com: \n ${collection.links.marketplace.STXNFT}/${nftID}`,
 					},
 					{
 						name: 'BYZANTION',
-						value: `View at byzantion.xyz: \n ${collection.marketplaceWebsite.byzantion}/${nftID}`,
+						value: `View at byzantion.xyz: \n ${collection.links.marketplace.byzantion}/${nftID}`,
 					},
 				);
 			message.channel.send({ embeds: [embed] });

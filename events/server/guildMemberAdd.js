@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const config = require('../../botConfig.json');
-const welcomeChannel = config.channels.welcome;
+const welcomeChannel = config.discord.channels.welcome;
 
 module.exports = {
 	name: 'guildMemberAdd',
