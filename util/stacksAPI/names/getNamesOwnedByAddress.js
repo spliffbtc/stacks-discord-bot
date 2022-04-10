@@ -1,6 +1,6 @@
 const axios = require('axios').default;
 exports.axios = axios;
-let stacksAPI = require('../stacksAPI.js');
+let stacksAPI = require('../../stacksAPI.js');
 stacksAPI = stacksAPI();
 
 module.exports = async (address) => {

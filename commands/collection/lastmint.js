@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const config = require('../../botConfig.json');
 const collection = config.collection;
-const getLastMint = require('../../util/stacksAPI/getLastMint.js');
+const getLastMint = require('../../util/stacksAPI/nonFungibleTokens/getMint.js');
 
 module.exports = {
 	name: 'lastmint',

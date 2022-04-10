@@ -1,6 +1,6 @@
 const axios = require('axios').default;
-const getBNS = require('./getBNS.js');
-const config = require('../../botConfig.json');
+const getBNS = require('../names/getNamesOwnedByAddress.js');
+const config = require('../../../botConfig.json');
 const collection = config.collection;
 
 module.exports = async () => {

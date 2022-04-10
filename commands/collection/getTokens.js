@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const getTokens = require('../../util/stacksAPI/getTokens');
+const getTokens = require('../../util/stacksAPI/nonFungibleTokens/getTokens');
 
 module.exports = {
 	name: 'total',

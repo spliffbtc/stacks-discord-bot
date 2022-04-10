@@ -1,5 +1,5 @@
 const axios = require('axios').default;
-const config = require('../botConfig.json');
+const config = require('../../../botConfig.json');
 
 module.exports = async () => {
 	const contractIdentifier = `${config.collection.contract.contractAddress}.${config.collection.contract.contractName}`;
