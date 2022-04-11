@@ -1,6 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const config = require('../../botConfig.json');
-const collection = config.collection;
+const collection = require('../../collectionConfig.json');
 
 module.exports = {
 	name: 'marketplace',
@@ -17,7 +16,7 @@ module.exports = {
 			.addFields(
 				{
 					name: 'STXNFT',
-					value: `View at stxnft.com: \n ${collection.marketplaceWebsite.STXNFT}`,
+					value: `View at stxnft.com: \n ${collection.marketplaceWebsite.stxnft}`,
 				},
 				{
 					name: 'BYZANTION',

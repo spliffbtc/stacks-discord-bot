@@ -1,6 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const config = require('../../botConfig.json');
-const collection = config.collection;
+const collection = require('../../collectionConfig.json');
 
 module.exports = {
 	name: 'website',

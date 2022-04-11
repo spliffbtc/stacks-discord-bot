@@ -1,6 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const config = require('../../botConfig.json');
-const collection = config.collection;
+const collection = require('../../collectionConfig.json');
 
 module.exports = {
 	name: 'get',
@@ -27,7 +26,7 @@ module.exports = {
 					},
 					{
 						name: 'STXNFT',
-						value: `View at stxnft.com: \n ${collection.links.marketplace.STXNFT}/${nftID}`,
+						value: `View at stxnft.com: \n ${collection.links.marketplace.stxnft}/${nftID}`,
 					},
 					{
 						name: 'BYZANTION',

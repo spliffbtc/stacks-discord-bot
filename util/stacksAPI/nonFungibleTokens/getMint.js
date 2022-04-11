@@ -1,13 +1,14 @@
 const axios = require('axios').default;
 const getBNS = require('../names/getBNS.js');
-const config = require('../../../botConfig.json');
-const collection = config.collection;
+const collection = require('../../../collectionConfig.json');
+
 
 module.exports = async () => {
+	const assetIdentifier = `${collection.contract.contractAddress}.${collection.contract.contractName}`;
 	const { data } = await axios.get('https://stacks-node-api.mainnet.stacks.co/extended/v1/tokens/nft/mints',
 		{
 			params: {
-				asset_identifier: collection.asset_identifier,
+				asset_identifier: assetIdentifier,
 				limit: 1,
 				offset: 0,
 			},

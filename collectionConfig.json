@@ -1,0 +1,26 @@
+{
+	"collectionName": "FreePunks",
+	"collectionBanner": "https://freepunks.xyz/assets/unknownxx.png",
+	"collectionPrefix": "FreePunk #",
+	"nftImage": {
+		"prefix": "https://punks.fra1.cdn.digitaloceanspaces.com/assets/punks/punk",
+		"imageType": "png"
+	},
+	"links": {
+		"website": "https://freepunks.xyz",
+		"twitter": "https://twitter.com/free_punks",
+		"marketplace": {
+			"stxnft": "https://stxnft.com/collections/free-punks",
+			"byzantion": "https://byzantion.xyz/collection/free-punks-v0"
+		}
+	},
+	"contract": {
+		"contractName": "free-punks-v0",
+		"contractAddress": "SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ",
+		"txID": "0xc68d03331af54894214e06e47e30e28d549a90dfbec6ed1d71773910d1dd5090",
+		"canonical": true,
+		"blockHeight": 26320,
+		"txURL": "https://explorer.stacks.co/txid/0xc68d03331af54894214e06e47e30e28d549a90dfbec6ed1d71773910d1dd5090",
+		"assets": { "assetName": "free-punks" }
+	}
+}

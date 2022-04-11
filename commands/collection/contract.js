@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
-const config = require('../../botConfig.json');
-const collection = config.collection;
+const config = require('../../collectionConfig.json');
+const contract = config.contract;
 
 module.exports = {
 	name: 'contract',
@@ -11,32 +11,25 @@ module.exports = {
 	args: false,
 
 	async execute(message) {
-		const txID = '0xc68d03331af54894214e06e47e30e28d549a90dfbec6ed1d71773910d1dd5090';
-		const canonical = true;
-		const contractID = 'SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ.free-punks-v0';
-		const blockHeight = 26320;
-		const contractName = collection.contract.contractName;
-		const contractAddress = collection.contract.contractAddress;
-		const txURL = `https://explorer.stacks.co/txid/${txID}`;
 		const embed = new MessageEmbed()
 			.setColor('#0099ff')
-			.setTitle(`${contractName}`)
-			.setURL(txURL)
+			.setTitle(`${contract.contractName}`)
+			.setURL(contract.txURL)
 			.addFields(
 				{
 					name: 'Contract Name',
-					value: `${contractName}`,
+					value: `${contract.contractName}`,
 				},
 				{
 					name: 'Contract Address',
-					value: `${contractAddress}`,
+					value: `${contract.contractAddress}`,
 				},				{
 					name: 'Transaction ID',
-					value: `${txID}`,
+					value: `${contract.txID}`,
 				},
 				{
 					name: 'Block Height',
-					value: `${blockHeight}` },
+					value: `${contract.blockHeight}` },
 			);
 		message.channel.send({ embeds: [embed] });
 	},

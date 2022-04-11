@@ -1,6 +1,5 @@
 const stacks = require('@stacks/blockchain-api-client');
-const config = require('../../../botConfig.json');
-const collection = config.collection;
+const collection = require('../../collectionConfig.json');
 
 const botChannel = config.discord.channels.stacks.mempool;
 
