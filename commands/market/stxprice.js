@@ -7,10 +7,8 @@ module.exports = {
 	description: 'Get the current price of STX in USD',
 	usage: 'stxprice',
 	category: 'market',
-	permissions: 'SEND_MESSAGES',
-	clientPerms: 'SEND_MESSAGES',
 	args: false,
-	cooldown: 5,
+
 	async execute(message) {
 		const STXUSD = await getSTXUSD();
 		const embed = new MessageEmbed()

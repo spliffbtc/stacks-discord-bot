@@ -8,10 +8,8 @@ module.exports = {
 	description: 'List all commands of bot or info about a specific command.',
 	usage: '[command name]',
 	category: 'general',
-	permissions: 'SEND_MESSAGES',
-	clientPerms: 'SEND_MESSAGES',
 	args: false,
-	cooldown: 5,
+
 	execute(message, args) {
 		const { commands } = message.client;
 		if (!args.length) {

@@ -8,10 +8,8 @@ module.exports = {
 	description: 'Get the Twitter account for the collection',
 	usage: 'twitter',
 	category: 'collection',
-	permissions: 'SEND_MESSAGES',
-	clientPerms: 'SEND_MESSAGES',
 	args: false,
-	cooldown: 5,
+
 	execute(message) {
 		const embed = new MessageEmbed()
 			.setColor('#0099ff')

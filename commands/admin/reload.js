@@ -6,11 +6,9 @@ module.exports = {
 	description: 'Reloads a command',
 	usage: 'reload <command name>',
 	category: 'admin',
-	permissions: 'SEND_MESSAGES',
-	clientPerms: 'SEND_MESSAGES',
 	args: true,
 	adminOnly: true,
-	cooldown: 5,
+
 	execute(message, args) {
 		const commandName = args[0].toLowerCase();
 		const command =

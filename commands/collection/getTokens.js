@@ -7,10 +7,8 @@ module.exports = {
 	description: 'Get the total count of tokens for the address',
 	usage: 'address',
 	category: 'collection',
-	permissions: 'SEND_MESSAGES',
-	clientPerms: 'SEND_MESSAGES',
 	args: true,
-	cooldown: 5,
+
 	async execute(message, args) {
 		const address = args;
 		const tokenCount = await getTokens(address);

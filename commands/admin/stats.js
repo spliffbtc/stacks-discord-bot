@@ -9,9 +9,8 @@ module.exports = {
 	alises: ['stats'],
 	description: 'Gives some useful bot statistics',
 	category: 'admin',
-	permissions: 'SEND_MESSAGES',
-	clientPerms: 'SEND_MESSAGES',
-	cooldown: 5,
+
+
 	execute(client, message) {
 		const duration = durationFormatter.format(client.uptime);
 		// const guild = client.guild;

@@ -9,10 +9,8 @@ module.exports = {
 	description: 'Get the last minted NFT in the collection',
 	usage: 'lastmint',
 	category: 'collection',
-	permissions: 'SEND_MESSAGES',
-	clientPerms: 'SEND_MESSAGES',
 	args: false,
-	cooldown: 5,
+
 	async execute(message) {
 		const lastMinted = await getLastMint();
 		const embed = new MessageEmbed()

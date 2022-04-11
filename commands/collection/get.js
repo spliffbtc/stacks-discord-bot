@@ -8,10 +8,8 @@ module.exports = {
 	description: 'Get a specific NFT from the collection',
 	usage: 'get <nftID>',
 	category: 'collection',
-	permissions: 'SEND_MESSAGES',
-	clientPerms: 'SEND_MESSAGES',
 	args: true,
-	cooldown: 5,
+
 	async execute(message, args) {
 		const nftID = args[0];
 		if (args[0] > 0 && args[0] < 9999) {
