@@ -4,16 +4,17 @@ const welcomeChannel = config.discord.channels.welcome;
 
 module.exports = {
 	name: 'guildMemberAdd',
-	execute(member) {
+	execute(client) {
 		try {
+			const newMember = client.guilds.cache.get(config.discord.guild).members.cache.get(client.user.id);
 			const welcomeEmbed = new MessageEmbed();
 			welcomeEmbed.setTitle('Welcome');
-			welcomeEmbed.setDescription(`Welcome to the server, ${member}!`);
+			welcomeEmbed.setDescription(`Welcome to the server, ${newMember}!`);
 			welcomeEmbed.setColor('#0099ff');
-			welcomeEmbed.setThumbnail(member.user.displayAvatarURL());
+			welcomeEmbed.setThumbnail(newMember.displayAvatarURL());
 			welcomeEmbed.setTimestamp();
-			console.log(`${member.user.username} has joined the server.`);
-			member.guild.channels.get(welcomeChannel).send({ embeds: [welcomeEmbed] });
+			console.log(`${newMember.username} has joined the server.`);
+			client.member.guild.channels.cache.get(welcomeChannel).send({ embeds: [welcomeEmbed] });
 		}
 		catch (error) {
 			console.error(error);
