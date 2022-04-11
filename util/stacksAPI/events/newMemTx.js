@@ -1,7 +1,7 @@
 const stacks = require('@stacks/blockchain-api-client');
 const collection = require('../../collectionConfig.json');
 
-const botChannel = config.discord.channels.stacks.mempool;
+const botChannel = config.channels.stacks.mempool;
 
 module.exports = async function(client) {
 	const sc = await stacks.connectWebSocketClient();

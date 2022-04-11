@@ -1,12 +1,12 @@
 const { MessageEmbed } = require('discord.js');
 const config = require('../../botConfig.json');
-const welcomeChannel = config.discord.channels.welcome;
+const welcomeChannel = config.channels.welcome;
 
 module.exports = {
 	name: 'guildMemberAdd',
 	execute(client) {
 		try {
-			const newMember = client.guilds.cache.get(config.discord.guild).members.cache.get(client.user.id);
+			const newMember = client.guilds.cache.get(config.guild).members.cache.get(client.user.id);
 			const welcomeEmbed = new MessageEmbed();
 			welcomeEmbed.setTitle('Welcome');
 			welcomeEmbed.setDescription(`Welcome to the server, ${newMember}!`);
