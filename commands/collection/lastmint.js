@@ -4,7 +4,7 @@ const getLastMint = require('../../util/stacksAPI/nonFungibleTokens/getMint.js')
 
 module.exports = {
 	name: 'lastmint',
-	aliases: ['lastmint'],
+	aliases: ['lastmint', 'last'],
 	description: 'Get the last minted NFT in the collection',
 	usage: 'lastmint',
 	category: 'collection',
@@ -16,12 +16,12 @@ module.exports = {
 			.setColor('#0099ff')
 			.setTitle('Last Minted: #' + lastMinted.nftID)
 			.setImage(
-				`${collection.image.prefix}${lastMinted.nftID}.${collection.image.imageType}`,
+				`${collection.nftImage.prefix}${lastMinted.nftID}.${collection.nftImage.imageType}`,
 			)
-			.setURL(`${collection.collectionWebsite}/details/${lastMinted.nftID}`)
+			.setURL(`${collection.links.website}/details/${lastMinted.nftID}`)
 			.addFields(
 				{
-					name: `${collection.nftPrefix} #`,
+					name: `${collection.collectionPrefix} #`,
 					value: `${lastMinted.nftID}`,
 				},
 				{
@@ -30,7 +30,7 @@ module.exports = {
 				},
 				{
 					name: 'Link',
-					value: `${collection.collectionWebsite}/details/${lastMinted.nftID}`,
+					value: `${collection.links.website}/details/${lastMinted.nftID}`,
 				},
 			);
 		message.channel.send({ embeds: [embed] });
