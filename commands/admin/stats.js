@@ -8,8 +8,9 @@ module.exports = {
 	name: 'stats',
 	alises: ['stats'],
 	description: 'Gives some useful bot statistics',
+	usage: 'stats',
 	category: 'admin',
-
+	args: true
 
 	execute(client, message) {
 		const duration = durationFormatter.format(client.uptime);
