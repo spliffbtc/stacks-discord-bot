@@ -1,9 +1,10 @@
 const { io } = require('socket.io-client');
 const stacks = require('@stacks/blockchain-api-client');
-const config = require('../botConfig.json');
-const contractID = config.collection.contract.contractAddress + config.collection.contract.contractName;
+const collection = require('../collectionConfig.json');
+
 
 module.exports = async (client) => {
+	const contractID = `${collection.contract.contractAddress}.${collection.contract.contractName}`;
 	const socketUrl = 'https://stacks-node-api.mainnet.stacks.co/';
 	const socket = io(socketUrl, { transports: ['websocket'] });
 	const sc = new stacks.StacksApiSocketClient(socket);

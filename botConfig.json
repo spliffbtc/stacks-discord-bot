@@ -20,27 +20,5 @@
 				"microblock": "961870023444553778"
 			}
 		}
-	},
-	"collection": {
-		"collectionName": "FreePunks",
-		"collectionBanner": "https://freepunks.xyz/assets/unknownxx.png",
-		"collectionPrefix": "FreePunk #",
-		"nftImage": {
-			"prefix": "https://punks.fra1.cdn.digitaloceanspaces.com/assets/punks/punk",
-			"imageType": "png"
-		},
-		"links": {
-			"website": "https://freepunks.xyz",
-			"twitter": "https://twitter.com/free_punks",
-			"marketplace": {
-				"stxnft": "https://stxnft.com/collections/free-punks",
-				"byzantion": "https://byzantion.xyz/collection/free-punks-v0"
-			}
-		},
-		"contract": {
-			"contractName": "free-punks-v0",
-			"contractAddress": "SP32AEEF6WW5Y0NMJ1S8SBSZDAY8R5J32NBZFPKKZ",
-			"assets": { "assetName": "free-punks" }
-		}
 	}
 }
