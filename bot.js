@@ -22,6 +22,8 @@ const client = new Client({
 });
 
 // Get Contract Details
+// Currently not doing much for bot;
+// eventually should be used instead of botConfig.json;
 getContractDetails()
 	.then((results) => {
 		console.log(`Contract Loaded: ${results.results.contract_id}`);
@@ -61,7 +63,7 @@ client.contextCommands = new Collection();
 client.cooldowns = new Collection();
 client.triggers = new Collection();
 
-// Register Commands: Message Based
+// Register Commands: Standard Commands
 const commandFolders = fs.readdirSync('./commands');
 for (const folder of commandFolders) {
 	const commandFiles = fs
