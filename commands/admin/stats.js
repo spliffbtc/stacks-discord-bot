@@ -1,7 +1,6 @@
 const { version } = require('discord.js');
 const { codeBlock } = require('@discordjs/builders');
 const { DurationFormatter } = require('@sapphire/time-utilities');
-const config = require('../../botConfig.json');
 const durationFormatter = new DurationFormatter();
 
 module.exports = {
