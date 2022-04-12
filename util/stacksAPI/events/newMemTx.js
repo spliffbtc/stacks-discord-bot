@@ -1,7 +1,8 @@
 const stacks = require('@stacks/blockchain-api-client');
-const collection = require('../../collectionConfig.json');
-
-const botChannel = config.channels.stacks.mempool;
+const botConfig = require('../../../botConfig.json');
+const botChannel = botConfig.channels.stacks.mempool;
+const collectionConfig = require('../../../collectionConfig.json');
+const contract = collectionConfig.contract;
 
 module.exports = async function(client) {
 	const sc = await stacks.connectWebSocketClient();
@@ -10,7 +11,7 @@ module.exports = async function(client) {
 		if (
 			tx.contract_call &&
 				tx.contract_call.contract_id ===
-					`${collection.contract.contractAddress}.${collection.contract.contractName}`
+					`${contract.contractAddress}.${contract.contractName}`
 		) {
 			botChannel.send(
 				`A new mint attempt has been submitted by ${tx.sender_address}!`,
