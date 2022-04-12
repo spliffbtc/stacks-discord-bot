@@ -113,7 +113,7 @@ TBD
 `lastmint`
 
 - name: lastmint
-- aliases: [lastmint]
+- aliases: ['lastmint', 'last']
 - description: Get the last minted NFT in the collection
 - usage: lastmint
 - category: collection
@@ -131,7 +131,7 @@ TBD
 `twitter`
 
 - name: twitter
-- aliases: [twitter]
+- aliases: ['twitter']
 - description: Get the Twitter account for the collection
 - usage: twitter
 - category: collection
@@ -140,7 +140,7 @@ TBD
 `website`
 
 - name: website
-- aliases: [website]
+- aliases: ['website']
 - description: Get the website for the collection
 - usage: website
 - category: collection
@@ -151,7 +151,7 @@ TBD
 `floor`
 
 - name: floor
-- aliases: [floor, floor-price]
+- aliases: ['floor', 'floor-price']
 - description: Get the current floor price of the collection
 - usage: floor
 - category: market
@@ -160,7 +160,7 @@ TBD
 `marketplace`
 
 - name: marketplace
-- aliases: [market, byz, byznation, stxnft]
+- aliases: ['market', 'byz', 'byznation', 'stxnft']
 - description: Get the current floor price of the collection
 - usage: marketplace
 - category: market
@@ -168,7 +168,7 @@ TBD
 
 `stxprice`
 
-- aliases: [stxprice, stx-price]
+- aliases: ['stxprice', 'stx-price']
 - description: Get the current price of STX in USD
 - usage: stxprice
 - category: market
@@ -179,7 +179,7 @@ TBD
 `help`
 
 - name: help
-- aliases: [commands]
+- aliases: ['commands']
 - description: List all commands of bot or info about a specific command.
 - usage: [command name]
 - category: general
@@ -188,7 +188,7 @@ TBD
 `ping`
 
 - name: ping
-- aliases: [ping]
+- aliases: ['ping']
 - description: Ping the bot
 - usage: ping
 - category: misc
