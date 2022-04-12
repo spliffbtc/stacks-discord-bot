@@ -16,14 +16,14 @@ module.exports = {
 	async execute(interaction) {
 		const commands = interaction.client.slashCommands;
 		let name = interaction.options.getString('command');
-		const helpEmbed = new MessageEmbed()
+		const embed = new MessageEmbed()
 			.setColor(0x4286f4);
 		if (name) {
 			name = name.toLowerCase();
-			helpEmbed.setTitle(`Help for \`${name}\` command`);
+			embed.setTitle(`Help for \`${name}\` command`);
 			if (commands.has(name)) {
 				const command = commands.get(name).data;
-				if (command.description) helpEmbed.setDescription(command.description + '\n\n**Parameters:**');
+				if (command.description) embed.setDescription(command.description + '\n\n**Parameters:**');
 				command.options.forEach(option => {
 					let content = option.description;
 					if (option.choices) {
@@ -33,22 +33,22 @@ module.exports = {
 						content += choices;
 					}
 					if (!option.required) content += '\n*Optional*';
-					helpEmbed.addField(option.name, content.trim(), true);
+					embed.addField(option.name, content.trim(), true);
 				});
 			}
 			else {
-				helpEmbed.setDescription(`No slash command with the name \`${name}\` found.`).setColor('YELLOW');
+				embed.setDescription(`No slash command with the name \`${name}\` found.`).setColor('YELLOW');
 			}
 		}
 		else {
-			helpEmbed
+			embed
 				.setTitle('List of all my slash commands')
 				.setDescription(
 					'`' + commands.map((command) => command.data.name).join('`, `') + '`',
 				);
 		}
 		await interaction.reply({
-			embeds: [helpEmbed],
+			embeds: [embed],
 		});
 	},
 };

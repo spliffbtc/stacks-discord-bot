@@ -78,14 +78,14 @@ module.exports = {
 	async execute(interaction) {
 		const commands = interaction.client.slashCommands;
 		let name = interaction.options.getString('command');
-		const pollEmbed = new MessageEmbed()
+		const embed = new MessageEmbed()
 			.setColor(0x4286f4);
 		if (name) {
 			name = name.toLowerCase();
-			pollEmbed.setTitle(`Poll for \`${name}\` command`);
+			embed.setTitle(`Poll for \`${name}\` command`);
 			if (commands.has(name)) {
 				const command = commands.get(name).data;
-				if (command.description) pollEmbed.setDescription(command.description + '\n\n**Parameters:**');
+				if (command.description) embed.setDescription(command.description + '\n\n**Parameters:**');
 				command.options.forEach(option => {
 					let content = option.description;
 					if (option.choices) {
@@ -95,16 +95,16 @@ module.exports = {
 						content += choices;
 					}
 					if (!option.required) content += '\n*Optional*';
-					pollEmbed.addField(option.name, content.trim(), true);
+					embed.addField(option.name, content.trim(), true);
 				});
 			}
 			else {
-				pollEmbed.setDescription(`No slash command with the name \`${name}\` found.`).setColor('YELLOW');
+				embed.setDescription(`No slash command with the name \`${name}\` found.`).setColor('YELLOW');
 			}
 		}
 		else {
-			pollEmbed.setDescription('No command name provided.').setColor('YELLOW');
+			embed.setDescription('No command name provided.').setColor('YELLOW');
 		}
-		await interaction.message.channel.send({ embeds: [pollEmbed] });
+		await interaction.message.channel.send({ embeds: [embed] });
 	},
 };

@@ -47,22 +47,22 @@ module.exports = {
 		if (!command) {
 			return message.reply({ content: 'That\'s not a valid command!' });
 		}
-		const commandEmbed = new MessageEmbed()
+		const embed = new MessageEmbed()
 			.setColor(0x4286f4)
 			.setTitle('Command Help');
-		if (command.description) {commandEmbed.setDescription(`${command.description}`);}
+		if (command.description) {embed.setDescription(`${command.description}`);}
 		if (command.aliases) {
-			commandEmbed
+			embed
 				.addField('Aliases', `\`${command.aliases.join(', ')}\``, true)
 				.addField('Cooldown', `${command.cooldown || 3} second(s)`, true);
 		}
 		if (command.usage) {
-			commandEmbed.addField(
+			embed.addField(
 				'Usage',
 				`\`${prefix}${command.name} ${command.usage}\``,
 				true,
 			);
 		}
-		message.channel.send({ embeds: [commandEmbed] });
+		message.channel.send({ embeds: [embed] });
 	},
 };
