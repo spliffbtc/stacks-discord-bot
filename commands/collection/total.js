@@ -24,8 +24,7 @@ module.exports = {
 			);
 		// Send Message
 		message.channel.send({ embeds: [embed] });
-		// logging
-		
+		// Logging
 		if (module.exports.args === false) {
 			console.log(`${message.author.tag} used the ${module.name} command on ${message.guild.name}`);
 		}
