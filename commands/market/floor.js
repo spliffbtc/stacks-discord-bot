@@ -10,7 +10,8 @@ module.exports = {
 	args: false,
 
 	async execute(message) {
-		const floor = await getFloor();
+		const response = await getFloor();
+		const floor = response[0].floor;
 		const embed = new MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle(`Floor Price: ${floor} STX`)

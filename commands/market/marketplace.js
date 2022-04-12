@@ -4,7 +4,7 @@ const collection = require('../../collectionConfig.json');
 module.exports = {
 	name: 'marketplace',
 	aliases: ['market', 'byz', 'byznation', 'stxnft'],
-	description: 'Get the current floor price of the collection',
+	description: 'Get links to the collection page at top marketplaces',
 	usage: 'marketplace',
 	category: 'market',
 	args: false,
