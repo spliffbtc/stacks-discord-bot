@@ -34,18 +34,8 @@ module.exports = {
 				},
 			);
 		// Send Message
-		// Send Message
 		message.channel.send({ embeds: [embed] });
 		// Logging
-		
-		if (module.exports.args === false) {
-			console.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name}`);
-		}
-		else {
-			console.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name} with the following arguments: ${args}`);
-		}
-		// Logging
-		
 		if (module.exports.args === false) {
 			console.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name}`);
 		}
