@@ -26,10 +26,10 @@ module.exports = {
 		// Logging
 		
 		if (module.exports.args === false) {
-			console.log(`${message.author.tag} used the ${module.name} command on ${message.guild.name}`);
+			console.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name}`);
 		}
 		else {
-			console.log(`${message.author.tag} used the ${module.name} command on ${message.guild.name} with the following arguments: ${message.content.slice(message.content.indexof(' ') + 1)}`);
+			console.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name} with the following arguments: ${args}`);
 		}
 	},
 };

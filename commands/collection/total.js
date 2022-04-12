@@ -12,7 +12,8 @@ module.exports = {
 	args: true,
 
 	async execute(message, args) {
-		const address = await getAddress(args);
+		const input = args[0];
+		const address = await getAddress(input);
 		const bns = await getBNS(address);
 		const stxWallet = bns;
 		const tokenCount = await getTokens(address);
@@ -26,10 +27,10 @@ module.exports = {
 		message.channel.send({ embeds: [embed] });
 		// Logging
 		if (module.exports.args === false) {
-			console.log(`${message.author.tag} used the ${module.name} command on ${message.guild.name}`);
+			console.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name}`);
 		}
 		else {
-			console.log(`${message.author.tag} used the ${module.name} command on ${message.guild.name} with the following arguments: ${message.content.slice(message.content.indexof(' ') + 1)}`);
+			console.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name} with the following arguments: ${args}`);
 		}
 	},
 };
