@@ -1,5 +1,7 @@
 const { MessageEmbed } = require('discord.js');
-const getTokens = require('../../util/stacksAPI/nonFungibleTokens/getTokens');
+const getTokens = require('../../util/stacksAPI/nonFungibleTokens/getTokens.js');
+const getAddress = require('../../util/stacksAPI/names/getAddress.js');
+const getBNS = require('../../util/stacksAPI/names/getBNS.js');
 
 module.exports = {
 	name: 'total',
@@ -10,18 +12,20 @@ module.exports = {
 	args: true,
 
 	async execute(message, args) {
-		const address = args;
+		const address = await getAddress(args);
+		const bns = await getBNS(address);
+		const stxWallet = bns;
 		const tokenCount = await getTokens(address);
 		const embed = new MessageEmbed()
 			.setColor('#0099ff')
-			.setTitle(`${address} has ${tokenCount} tokens`)
+			.setTitle(`${stxWallet} has ${tokenCount} tokens`)
 			.setDescription(
-				`${args} has ${tokenCount} tokens.`,
+				`${stxWallet} has ${tokenCount} tokens.`,
 			);
 		// Send Message
 		message.channel.send({ embeds: [embed] });
 		// logging
-		console.log(embed);
+		
 		if (module.exports.args === false) {
 			console.log(`${message.author.tag} used the ${module.name} command on ${message.guild.name}`);
 		}

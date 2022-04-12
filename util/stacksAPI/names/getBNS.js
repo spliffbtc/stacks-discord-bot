@@ -1,26 +1,22 @@
 const axios = require('axios').default;
 exports.axios = axios;
-let stacksAPI = require('../../stacksAPI.js');
-stacksAPI = stacksAPI();
 
 module.exports = async (address) => {
 	try {
 		const resp = await axios.get(
-			`${stacksAPI.bns.address}/${stacksAPI.blockchain}/${address}`,
+			`https://stacks-node-api.mainnet.stacks.co/v1/addresses/stacks/${address}`,
 			{
-				params: { blockchain: stacksAPI.blockchain, address: address },
+				params: { blockchain: 'stacks', address: address },
 			},
 		);
 		if (resp.data.names.toString() === '' || null || undefined || NaN) {
-			const BNS = address;
-			const response = BNS;
-
+			const bns = address;
+			const response = bns ;
 			return response;
 		}
 		else {
-			const BNS = resp.data.names.toString();
-			const response = BNS;
-
+			const bns = resp.data.names.toString();
+			const response = bns ;
 			return response;
 		}
 	}

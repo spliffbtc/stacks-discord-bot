@@ -18,11 +18,11 @@ module.exports = async (client) => {
 	// Subscriptions
 	sc.subscribeBlocks();
 	sc.subscribeMicroblocks();
-	// ! Removed until I have a handle on this
-	// sc.subscribeMempool();
+	sc.subscribeMempool();
 
 	// Handle Subscriptions
-	sc.handleSubscription();
-	sc.logEvents();
-
+	sc.handleSubscription(async (message) => {
+		console.log(message);
+		return message;
+	});
 };
