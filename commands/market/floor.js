@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const getFloor = require('../../util/stacksonchainAPI/getFloor.js');
+const getFloor = require('../../util/stacksonchainAPI/get-floor.js');
 
 module.exports = {
 	name: 'floor',

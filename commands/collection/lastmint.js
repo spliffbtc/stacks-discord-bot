@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const collection = require('../../collectionConfig.json');
-const getLastMint = require('../../util/stacksAPI/nonFungibleTokens/getMint.js');
+const getLastMint = require('../../util/stacksAPI/nonFungibleTokens/get-mint.js');
 
 module.exports = {
 	name: 'lastmint',

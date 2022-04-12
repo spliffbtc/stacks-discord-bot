@@ -1,5 +1,5 @@
 const axios = require('axios').default;
-const getBNS = require('../names/getBNS.js');
+const getBNS = require('../names/get-bns.js');
 const collection = require('../../../collectionConfig.json');
 
 

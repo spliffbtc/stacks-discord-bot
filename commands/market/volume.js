@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const getVolume = require('../../util/stacksonchainAPI/getvolume.js');
+const getVolume = require('../../util/stacksonchainAPI/get-volume.js');
 
 module.exports = {
 	name: 'volume',

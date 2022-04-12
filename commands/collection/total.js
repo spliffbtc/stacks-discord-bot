@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js');
-const getTokens = require('../../util/stacksAPI/nonFungibleTokens/getTokens.js');
-const getAddress = require('../../util/stacksAPI/names/getAddress.js');
-const getBNS = require('../../util/stacksAPI/names/getBNS.js');
+const getTokens = require('../../util/stacksAPI/nonFungibleTokens/get-tokens.js');
+const getAddress = require('../../util/stacksAPI/names/get-address.js');
+const getBNS = require('../../util/stacksAPI/names/get-bns.js');
 
 module.exports = {
 	name: 'total',

@@ -13,7 +13,7 @@ const guildID = config.guildID;
 const clientID = config.clientID;
 // Import: Utilities
 const stacksIO = require('./util/stacksIO.js');
-const getContractDetails = require('./util/stacksAPI/smartContracts/getContractInfo.js');
+const getContractDetails = require('./util/stacksAPI/smartContracts/get-contract-info.js');
 
 
 // Create Client

@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-const getTransactions = require('../../util/stacksonchainAPI/getTransactions.js');
+const getTransactions = require('../../util/stacksonchainAPI/get-transactions.js');
 
 module.exports = {
 	name: 'transactions',
