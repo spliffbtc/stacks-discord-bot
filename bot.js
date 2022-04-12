@@ -126,8 +126,8 @@ for (const folder of triggerFolders) {
 }
 
 
-// Log In Bot
-client.login(token);
-
 // Listen for new blocks, microblocks, and transactions
 stacksIO(client);
+
+// Log In Bot
+client.login(token);
