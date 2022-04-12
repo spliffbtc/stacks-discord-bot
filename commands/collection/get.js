@@ -33,7 +33,16 @@ module.exports = {
 						value: `View at byzantion.xyz: \n ${collection.links.marketplace.byzantion}/${nftID}`,
 					},
 				);
+			// Send Message
 			message.channel.send({ embeds: [embed] });
+			// logging
+			console.log(embed);
+			if (module.exports.args === false) {
+				console.log(`${message.author.tag} used the ${module.name} command on ${message.guild.name}`);
+			}
+			else {
+				console.log(`${message.author.tag} used the ${module.name} command on ${message.guild.name} with the following arguments: ${message.content.slice(message.content.indexof(' ') + 1)}`);
+			}
 		}
 		else {
 			message.channel.send(`Please enter a valid ${collection.collectionName} ID`);

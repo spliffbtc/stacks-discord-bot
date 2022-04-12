@@ -75,7 +75,7 @@ module.exports = {
 				.setName('option10')
 				.setDescription('The tenth option of the poll.'),
 		),
-	async execute(interaction) {
+	async execute(interaction, message) {
 		const commands = interaction.client.slashCommands;
 		let name = interaction.options.getString('command');
 		const embed = new MessageEmbed()
@@ -105,6 +105,15 @@ module.exports = {
 		else {
 			embed.setDescription('No command name provided.').setColor('YELLOW');
 		}
+		// Send Message
 		await interaction.message.channel.send({ embeds: [embed] });
+		// Logging
+		console.log(embed);
+		if (module.exports.args === false) {
+			console.log(`${message.author.tag} used the ${module.name} command on ${message.guild.name}`);
+		}
+		else {
+			console.log(`${message.author.tag} used the ${module.name} command on ${message.guild.name} with the following arguments: ${message.content.slice(message.content.indexof(' ') + 1)}`);
+		}
 	},
 };
