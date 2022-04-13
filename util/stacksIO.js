@@ -46,11 +46,11 @@ module.exports = async (client) => {
 			if (!channel) return;
 			const embed = new MessageEmbed()
 				.setTitle('Microblock Received')
-				.setDescription(
-					`Microblock ${microblock.block_height} has been received by the Stacks network.`,
-				)
 				.setColor('#0099ff')
-				.setTimestamp();
+				.setURL(`https://explorer.stacks.co/microblock/${microblock.microblock_hash}`)
+				.setDescription(
+					`Microblock ${microblock.block_height} has been received by the Stacks network containing ${microblock.txs.length} transactions.`,
+				);
 			channel.send({ embeds: [embed] });
 		});
 	});
@@ -68,7 +68,6 @@ module.exports = async (client) => {
 				const fee = mempool.fee_rate / (10 ** 6);
 				const nonce = mempool.nonce;
 				const BNS = await getBNS(address);
-				console.log(`New transaction: ${mempool.tx_id}`);
 				const embed = new MessageEmbed()
 					.setTitle('New Transaction')
 					.setColor('#0099ff')
