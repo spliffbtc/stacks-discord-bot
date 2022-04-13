@@ -2,31 +2,30 @@ const { MessageEmbed } = require('discord.js');
 const collection = require('../collectionConfig.json');
 const config = require('../botConfig.json');
 const { connectWebSocketClient } = require('@stacks/blockchain-api-client');
-// const collection = require('../collectionConfig.json');
+const getBNS = require('../util/stacksAPI/names/get-bns.js');
+const getTx = require('../util/stacksAPI/transactions/get-transaction.js');
 
-/**
- *
- * @param {Client} client
- */
+
 module.exports = async (client) => {
 	const socketUrl = 'https://stacks-node-api.mainnet.stacks.co/';
-	// const socket = io(socketUrl, { transports: ['websocket'] });
 	const sc = await connectWebSocketClient(socketUrl);
-
 	console.log('Socket connected to Stacks API');
 
 	// Build Contract ID
 	const contractID = `${collection.contract.contractAddress}.${collection.contract.contractName}`;
 	const channels = config.channels.stacks;
 
-	// Subscriptions
-	// New Blocks
+	// Subscribe: New Blocks
 	console.log('listening for blocks...');
 	sc.subscribeBlocks(async (block) => {
+
+		block.txs.forEach(async tx => {
+			const tx_details = await getTx(tx);
+			console.log(tx_details);
+		});
 		client.guilds.cache.forEach(async (guild) => {
 			const channel = await guild.channels.fetch(channels.newblock);
 			if (!channel) return;
-			console.log(`New block: ${block.height}`);
 			const embed = new MessageEmbed()
 				.setTitle('Block Received')
 				.setDescription(
@@ -37,13 +36,13 @@ module.exports = async (client) => {
 			channel.send({ embeds: [embed] });
 		});
 	});
-	// New Microblocks
+
+	// SubscribeL New Microblocks
 	console.log('listening for microblocks...');
 	sc.subscribeMicroblocks(async (microblock) => {
 		client.guilds.cache.forEach(async (guild) => {
 			const channel = await guild.channels.fetch(channels.microblock);
 			if (!channel) return;
-			console.log(`New microblock: ${microblock.block_height}`);
 			const embed = new MessageEmbed()
 				.setTitle('Microblock Received')
 				.setDescription(
@@ -54,10 +53,33 @@ module.exports = async (client) => {
 			channel.send({ embeds: [embed] });
 		});
 	});
-	// New Mempool Transactions (just logging for now to test event handler)
+
+	// Subscribe: Mempool Transactions
 	console.log('listening for transactions...');
-	sc.subscribeMempool((mempool) => {
-		console.log(`New transaction: ${mempool.tx_id}`);
-		return;
+	sc.subscribeMempool(async (mempool) => {
+		if (mempool.tx_type === 'contract_Call' && mempool.contract_call.contract_id === contractID) {
+			client.guilds.cache.forEach(async (guild) => {
+				const channel = await guild.channels.fetch(channels.mempool);
+				if (!channel) return;
+				const tx_id = mempool.tx_id;
+				const address = mempool.sender_address;
+				const functionName = mempool.contract_call.function_name;
+				const fee = mempool.fee_rate * 10 ^ 6;
+				const BNS = await getBNS(address);
+				console.log(`New transaction: ${mempool.tx_id}`);
+				const embed = new MessageEmbed()
+					.setTitle('New Transaction')
+					.setColor('#0099ff')
+					.setFields(
+						{ name: 'Transaction ID', value: tx_id },
+						{ name: 'Sender', value: BNS },
+						{ name: 'Function', value: functionName },
+						{ name: 'Fee', value: fee },
+					)
+					.setTimestamp();
+				channel.send({ embeds: [embed] });
+			});
+		}
+		else {return;}
 	});
 };

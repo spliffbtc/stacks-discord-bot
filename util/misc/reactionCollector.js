@@ -7,7 +7,7 @@ module.exports = (message) => {
 		console.log(`Collected ${reaction.emoji.name} from ${user.username}`);
 	});
 	collector.on('end', collected => {
-		console.log(`Collected ${collected.size} items`);
+		console.log(`Collected ${collected.size} reqactions`);
 		return collected;
 	});
 };

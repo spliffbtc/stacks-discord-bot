@@ -6,5 +6,5 @@ module.exports = async () => {
 	const principal = collection.contract.contractAddress;
 	const data = await axios.get(`https://stacks-node-api.mainnet.stacks.co/extended/v1/address/${principal}/transactions`);
 	const results = data;
-	console.log(results);
+	return results;
 };

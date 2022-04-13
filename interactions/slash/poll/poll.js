@@ -75,7 +75,7 @@ module.exports = {
 				.setName('option10')
 				.setDescription('The tenth option of the poll.'),
 		),
-	async execute(interaction, message) {
+	async execute(interaction, message, args) {
 		const commands = interaction.client.slashCommands;
 		let name = interaction.options.getString('command');
 		const embed = new MessageEmbed()
@@ -108,7 +108,7 @@ module.exports = {
 		// Send Message
 		await interaction.message.channel.send({ embeds: [embed] });
 		// Logging
-		
+
 		if (module.exports.args === false) {
 			console.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name}`);
 		}
