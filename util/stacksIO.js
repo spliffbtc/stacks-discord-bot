@@ -56,8 +56,6 @@ module.exports = async (client) => {
 	console.log('listening for transactions...');
 	sc.subscribeMempool(async (mempool) => {
 		if (mempool.tx_type === 'contract_call') {
-			console.log(mempool.contract_call.contract_id);
-
 			// Collection Contract Call
 			if (mempool.tx_type === 'contract_call' && mempool.contract_call.contract_id === contractID) {
 				client.guilds.cache.forEach(async (guild) => {
@@ -96,10 +94,21 @@ module.exports = async (client) => {
 					const fee = mempool.fee_rate / (10 ** 6);
 					const nonce = mempool.nonce;
 					const BNS = await getBNS(address);
-
 					switch (functionName) {
 					case 'list-asset':
 						channel = await guild.channels.fetch(channels.marketplace.listed);
+						break;
+					case 'unlist-asset':
+						channel = await guild.channels.fetch(channels.marketplace.listed);
+						break;
+					case 'list-item':
+						channel = await guild.channels.fetch(channels.marketplace.listed);
+						break;
+					case 'unlist-item':
+						channel = await guild.channels.fetch(channels.marketplace.listed);
+						break;
+					case 'buy-item':
+						channel = await guild.channels.fetch(channels.marketplace.sold);
 						break;
 					case 'purchase-asset':
 						channel = await guild.channels.fetch(channels.marketplace.sold);
@@ -108,7 +117,6 @@ module.exports = async (client) => {
 						channel = await guild.channels.fetch(channels.misc);
 						break;
 					}
-
 					const embed = new MessageEmbed()
 						.setTitle('Mempool: Marketplace Transaction')
 						.setColor('#0099ff')
@@ -126,7 +134,6 @@ module.exports = async (client) => {
 				});
 			}
 		}
-
 		else {return;}
 	});
 };
