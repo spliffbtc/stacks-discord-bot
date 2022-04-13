@@ -94,29 +94,6 @@ module.exports = async (client) => {
 					const fee = mempool.fee_rate / (10 ** 6);
 					const nonce = mempool.nonce;
 					const BNS = await getBNS(address);
-					switch (functionName) {
-					case 'list-asset':
-						channel = await guild.channels.fetch(channels.marketplace.listed);
-						break;
-					case 'unlist-asset':
-						channel = await guild.channels.fetch(channels.marketplace.listed);
-						break;
-					case 'list-item':
-						channel = await guild.channels.fetch(channels.marketplace.listed);
-						break;
-					case 'unlist-item':
-						channel = await guild.channels.fetch(channels.marketplace.listed);
-						break;
-					case 'buy-item':
-						channel = await guild.channels.fetch(channels.marketplace.sold);
-						break;
-					case 'purchase-asset':
-						channel = await guild.channels.fetch(channels.marketplace.sold);
-						break;
-					default:
-						channel = await guild.channels.fetch(channels.misc);
-						break;
-					}
 					const embed = new MessageEmbed()
 						.setTitle('Mempool: Marketplace Transaction')
 						.setColor('#0099ff')
@@ -130,7 +107,34 @@ module.exports = async (client) => {
 							{ name: 'Nonce', value: nonce.toString() },
 						)
 						.setTimestamp();
-					channel.send({ embeds: [embed] });
+					switch (functionName) {
+					case 'list-asset':
+						channel = await guild.channels.fetch(channels.marketplace.listed);
+						channel.send({ embeds: [embed] });
+						break;
+					case 'unlist-asset':
+						channel = await guild.channels.fetch(channels.marketplace.listed);
+						channel.send({ embeds: [embed] });
+						break;
+					case 'list-item':
+						channel = await guild.channels.fetch(channels.marketplace.listed);
+						channel.send({ embeds: [embed] });
+						break;
+					case 'unlist-item':
+						channel = await guild.channels.fetch(channels.marketplace.listed);
+						channel.send({ embeds: [embed] });
+						break;
+					case 'buy-item':
+						channel = await guild.channels.fetch(channels.marketplace.sold);
+						channel.send({ embeds: [embed] });
+						break;
+					case 'purchase-asset':
+						channel = await guild.channels.fetch(channels.marketplace.sold);
+						channel.send({ embeds: [embed] });
+						break;
+					default:
+						break;
+					}
 				});
 			}
 		}
