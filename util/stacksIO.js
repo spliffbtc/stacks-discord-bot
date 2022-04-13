@@ -18,8 +18,8 @@ module.exports = async (client) => {
 	// Subscribe: New Blocks
 	console.log('listening for blocks...');
 	sc.subscribeBlocks(async (block) => {
-
 		block.txs.forEach(async tx => {
+			console.log(block.tx_details);
 			const tx_details = await getTx(tx);
 			console.log(tx_details);
 		});
@@ -29,7 +29,7 @@ module.exports = async (client) => {
 			const embed = new MessageEmbed()
 				.setTitle('Block Received')
 				.setDescription(
-					`Block ${block.height} has been received by the Stacks network.`,
+					`Block ${block.height} has been received by the Stacks network containing ${block.tx_details.length} transactions.`,
 				)
 				.setColor('#0099ff')
 				.setTimestamp();
