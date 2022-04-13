@@ -85,7 +85,7 @@ module.exports = async (client) => {
 				});
 			}
 			// Marketplace Contract Call
-			else if (mempool.tx_type === 'contract_call') {
+			else if (mempool.tx_type === 'contract_call' && (mempool.contract_call.contract_id === marketplaceContract || mempool.contract_call.contract_id === 'SP1BX0P4MZ5A3A5JCH0E10YNS170QFR2VQ6TT4NRH.byzantion-market-v6')) {
 				client.guilds.cache.forEach(async (guild) => {
 					const tx_id = mempool.tx_id;
 					const contract = mempool.contract_call.contract_id;
