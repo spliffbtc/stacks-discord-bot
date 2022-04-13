@@ -18,7 +18,7 @@ module.exports = async (client) => {
 	// Subscribe: New Blocks
 	console.log('listening for blocks...');
 	sc.subscribeBlocks(async (block) => {
-		block.txs.forEach(async tx => {
+		block.tx_details.forEach(async tx => {
 			console.log(block.tx_details);
 			const tx_details = await getTx(tx);
 			console.log(tx_details);
@@ -57,26 +57,26 @@ module.exports = async (client) => {
 	// Subscribe: Mempool Transactions
 	console.log('listening for transactions...');
 	sc.subscribeMempool(async (mempool) => {
-		if (mempool.tx_type === 'contract_Call' && mempool.contract_call.contract_id === contractID) {
+		if (mempool.tx_type === 'contract_call' && mempool.contract_call.contract_id === contractID) {
 			client.guilds.cache.forEach(async (guild) => {
 				const channel = await guild.channels.fetch(channels.mempool);
 				if (!channel) return;
 				const tx_id = mempool.tx_id;
 				const address = mempool.sender_address;
 				const functionName = mempool.contract_call.function_name;
-				const fee = mempool.fee_rate * 10 ^ 6;
+				const fee = mempool.fee_rate / (10 ** 6);
 				const BNS = await getBNS(address);
 				console.log(`New transaction: ${mempool.tx_id}`);
 				const embed = new MessageEmbed()
 					.setTitle('New Transaction')
 					.setColor('#0099ff')
+					.setURL(`https://explorer.stacks.co/txid/${tx_id}`)
 					.setFields(
-						{ name: 'Transaction ID', value: tx_id },
-						{ name: 'Sender', value: BNS },
-						{ name: 'Function', value: functionName },
-						{ name: 'Fee', value: fee },
-					)
-					.setTimestamp();
+						{ name: 'Transaction ID', value: tx_id.toString() },
+						{ name: 'Sender', value: BNS.toString() },
+						{ name: 'Function', value: functionName.toString() },
+						{ name: 'Fee', value: fee.toString() },
+					);
 				channel.send({ embeds: [embed] });
 			});
 		}
