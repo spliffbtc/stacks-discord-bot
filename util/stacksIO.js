@@ -18,18 +18,19 @@ module.exports = async (client) => {
 	// Subscribe: New Blocks
 	console.log('listening for blocks...');
 	sc.subscribeBlocks(async (block) => {
-		block.tx_details.forEach(async tx => {
-			console.log(block.tx_details);
+		block.txs.forEach(async tx => {
 			const tx_details = await getTx(tx);
-			console.log(tx_details);
+			if (!tx_details.tx_type) {return;}
+			else {console.log(tx_details.tx_type);}
 		});
 		client.guilds.cache.forEach(async (guild) => {
 			const channel = await guild.channels.fetch(channels.newblock);
 			if (!channel) return;
 			const embed = new MessageEmbed()
 				.setTitle('Block Received')
+				.setURL(`https://explorer.stacks.co/block/${block.hash}`)
 				.setDescription(
-					`Block ${block.height} has been received by the Stacks network containing ${block.tx_details.length} transactions.`,
+					`Block ${block.height} has been received by the Stacks network containing ${block.txs.length} transactions.`,
 				)
 				.setColor('#0099ff')
 				.setTimestamp();
@@ -65,6 +66,7 @@ module.exports = async (client) => {
 				const address = mempool.sender_address;
 				const functionName = mempool.contract_call.function_name;
 				const fee = mempool.fee_rate / (10 ** 6);
+				const nonce = mempool.nonce;
 				const BNS = await getBNS(address);
 				console.log(`New transaction: ${mempool.tx_id}`);
 				const embed = new MessageEmbed()
@@ -76,6 +78,7 @@ module.exports = async (client) => {
 						{ name: 'Sender', value: BNS.toString() },
 						{ name: 'Function', value: functionName.toString() },
 						{ name: 'Fee', value: fee.toString() },
+						{ name: 'Nonce', value: nonce.toString() },
 					);
 				channel.send({ embeds: [embed] });
 			});
