@@ -13,12 +13,13 @@ const contractID = `${collection.contract.contractAddress}.${collection.contract
 
 module.exports = async (client) => {
 	const sc = connectWebSocketClient(socketUrl);
-	console.log('listening for market transactions...');
+	console.log('Listening for market transactions...');
 	(await sc).subscribeMempool(async (mempool) => {
 		if (
 			mempool.tx_type === 'contract_call' &&
 			mempool.contract_call.function_name.includes('market')
 		) {
+			console.log('New market transaction detected!');
 			client.guilds.cache.forEach(async (guild) => {
 				const tx_id = mempool.tx_id;
 				const contract = mempool.contract_call.contract_id;
@@ -65,7 +66,6 @@ module.exports = async (client) => {
 				default:
 					break;
 				}
-				console.log(functionArgs);
 			});
 		}
 		else {

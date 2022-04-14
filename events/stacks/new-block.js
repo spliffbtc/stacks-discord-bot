@@ -13,8 +13,9 @@ const contractID = `${collection.contract.contractAddress}.${collection.contract
 
 module.exports = async (client) => {
 	const sc = connectWebSocketClient(socketUrl);
-	console.log('listening for blocks...');
+	console.log('Listening for blocks...');
 	(await sc).subscribeBlocks(async (block) => {
+		console.log('New block received!');
 		client.guilds.cache.forEach(async (guild) => {
 			channel = await guild.channels.fetch(channels.stacks.newBlock);
 			if (!channel) return;
@@ -29,10 +30,6 @@ module.exports = async (client) => {
 			channel.send({ embeds: [embed] });
 		});
 		// Get Transaction Details
-		block.forEach(async (tx) => {
-			const fetchedTx = await getTx(tx);
-			console.log(fetchedTx);
-		});
 		// Filter for Collection
 		// MessageEmbed
 	});

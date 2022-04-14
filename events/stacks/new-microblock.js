@@ -14,8 +14,9 @@ const contractID = `${collection.contract.contractAddress}.${collection.contract
 
 module.exports = async (client) => {
 	const sc = connectWebSocketClient(socketUrl);
-	console.log('listening for microblocks...');
+	console.log('Listening for microblocks...');
 	(await sc).subscribeMicroblocks(async (microblock) => {
+		console.log('New microblock received!');
 		client.guilds.cache.forEach(async (guild) => {
 			channel = await guild.channels.fetch(channels.stacks.microblock);
 			if (!channel) return;
