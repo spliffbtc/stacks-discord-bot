@@ -5,6 +5,7 @@ module.exports = {
 	usage: 'dev',
 	category: 'admin',
 	args: false,
+	adminOnly: true,
 
 	execute(message) {
 		message.channel.send({ content: 'in dev' });

@@ -10,6 +10,7 @@ module.exports = {
 	usage: 'stats',
 	category: 'admin',
 	args: true,
+	adminOnly: true,
 
 	execute(client, message) {
 		const duration = durationFormatter.format(client.uptime);
