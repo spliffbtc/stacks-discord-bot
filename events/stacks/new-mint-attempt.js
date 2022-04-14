@@ -1,21 +1,21 @@
-const { MessageEmbed } = require('discord.js');	const { connectWebSocketClient } = require('@stacks/blockchain-api-client');
+const { MessageEmbed } = require('discord.js');
+const { connectWebSocketClient } = require('@stacks/blockchain-api-client');
 const socketUrl = 'https://stacks-node-api.mainnet.stacks.co/';
-const sc = connectWebSocketClient(socketUrl);
 const config = require('../../botConfig.json');
+const channels = config.channels;
+let channel = '';
 const collection = require('../../collectionConfig.json');
 const getBNS = require('../../util/stacksAPI/names/get-bns.js');
 const getTx = require('../../util/stacksAPI/transactions/get-transaction.js');
 
-
 // Build Contract ID
 const contractID = `${collection.contract.contractAddress}.${collection.contract.contractName}`;
-const marketplaceContract = 'SPNWZ5V2TPWGQGVDR6T7B6RQ4XMGZ4PXTEE0VQ0S.marketplace-v4';
-const channels = config.channels;
-let channel = '';
+
 
 module.exports = async (client) => {
+	const sc = connectWebSocketClient(socketUrl);
 	console.log('listening for new mint attempts...');
-	sc.subscribeMempool(async (mempool) => {
+	(await sc).subscribeMempool(async (mempool) => {
 		if (mempool.tx_type === 'contract_call') {
 			// Collection Contract Call
 			if (mempool.tx_type === 'contract_call' && mempool.contract_call.contract_id === contractID) {

@@ -1,17 +1,22 @@
+const { MessageEmbed } = require('discord.js');
 const { connectWebSocketClient } = require('@stacks/blockchain-api-client');
 const socketUrl = 'https://stacks-node-api.mainnet.stacks.co/';
-const sc = connectWebSocketClient(socketUrl);
-const { MessageEmbed } = require('discord.js');
 const config = require('../../botConfig.json');
 const channels = config.channels;
 let channel = '';
+const collection = require('../../collectionConfig.json');
+const getBNS = require('../../util/stacksAPI/names/get-bns.js');
 const getTx = require('../../util/stacksAPI/transactions/get-transaction.js');
 
+// Build Contract ID
+const contractID = `${collection.contract.contractAddress}.${collection.contract.contractName}`;
+
 module.exports = async (client) => {
+	const sc = connectWebSocketClient(socketUrl);
 	console.log('listening for blocks...');
-	sc.subscribeBlocks(async (block) => {
+	(await sc).subscribeBlocks(async (block) => {
 		client.guilds.cache.forEach(async (guild) => {
-			channel = await guild.channels.fetch(channels.stacks.newblock);
+			channel = await guild.channels.fetch(channels.stacks.newBlock);
 			if (!channel) return;
 			const embed = new MessageEmbed()
 				.setTitle('Block Received')
@@ -23,9 +28,12 @@ module.exports = async (client) => {
 				.setTimestamp();
 			channel.send({ embeds: [embed] });
 		});
+		// Get Transaction Details
 		block.forEach(async (tx) => {
 			const fetchedTx = await getTx(tx);
 			console.log(fetchedTx);
 		});
+		// Filter for Collection
+		// MessageEmbed
 	});
 };

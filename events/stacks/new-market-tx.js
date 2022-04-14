@@ -1,13 +1,20 @@
 const { MessageEmbed } = require('discord.js');
-const getBNS = require('../../util/stacksAPI/names/get-bns.js');
-
+const { connectWebSocketClient } = require('@stacks/blockchain-api-client');
+const socketUrl = 'https://stacks-node-api.mainnet.stacks.co/';
 const config = require('../../botConfig.json');
 const channels = config.channels;
-let channel = '';
+let channel = '';const collection = require('../../collectionConfig.json');
+const getBNS = require('../../util/stacksAPI/names/get-bns.js');
+const getTx = require('../../util/stacksAPI/transactions/get-transaction.js');
 
-module.exports = async (sc, client) => {
+// Build Contract ID
+const contractID = `${collection.contract.contractAddress}.${collection.contract.contractName}`;
+
+
+module.exports = async (client) => {
+	const sc = connectWebSocketClient(socketUrl);
 	console.log('listening for market transactions...');
-	sc.subscribeMempool(async (mempool) => {
+	(await sc).subscribeMempool(async (mempool) => {
 		if (
 			mempool.tx_type === 'contract_call' &&
 			mempool.contract_call.function_name.includes('market')
