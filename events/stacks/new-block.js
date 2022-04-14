@@ -16,21 +16,19 @@ module.exports = async (client) => {
 	console.log('Listening for blocks...');
 	(await sc).subscribeBlocks(async (block) => {
 		console.log('New block received!');
-		client.guilds.cache.forEach(async (guild) => {
-			channel = await guild.channels.fetch(channels.stacks.newBlock);
-			if (!channel) return;
-			const embed = new MessageEmbed()
-				.setTitle('Block Received')
-				.setURL(`https://explorer.stacks.co/block/${block.hash}`)
-				.setDescription(
-					`Block ${block.height} has been received by the Stacks network containing ${block.txs.length} transactions.`,
-				)
-				.setColor('#0099ff')
-				.setTimestamp();
-			channel.send({ embeds: [embed] });
-		});
-		// Get Transaction Details
-		// Filter for Collection
-		// MessageEmbed
+		if (!channel) return;
+		const embed = new MessageEmbed()
+			.setTitle('Block Received')
+			.setURL(`https://explorer.stacks.co/block/${block.hash}`)
+			.setDescription(
+				`Block ${block.height} has been received by the Stacks network containing ${block.txs.length} transactions.`,
+			)
+			.setColor('#0099ff')
+			.setTimestamp();
+		client.channels.cache.get(channels.stacks.newblock).send({ embeds: [embed] });
 	});
+	// Get Transaction Details
+	// Filter for Collection
+	// MessageEmbed
+
 };
