@@ -4,10 +4,10 @@ module.exports = (message) => {
 	};
 	const collector = message.createReactionCollector(filter, { time: 60000 });
 	collector.on('collect', (reaction, user) => {
-		logger.log(`Collected ${reaction.emoji.name} from ${user.username}`);
+		logger.info(`Collected ${reaction.emoji.name} from ${user.username}`);
 	});
 	collector.on('end', collected => {
-		logger.log(`Collected ${collected.size} reqactions`);
+		logger.info(`Collected ${collected.size} reqactions`);
 		return collected;
 	});
 };

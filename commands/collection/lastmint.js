@@ -37,10 +37,10 @@ module.exports = {
 		message.channel.send({ embeds: [embed] });
 		// Logging
 		if (module.exports.args === false) {
-			logger.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name}`);
+			logger.info(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name}`);
 		}
 		else {
-			logger.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name} with the following arguments: ${args}`);
+			logger.info(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name} with the following arguments: ${args}`);
 		}
 	},
 };
