@@ -4,9 +4,9 @@ const config = require('../../../botConfig.json');
 const guildID = config.guildID;
 const botChannel = config.channels.stacks.microblock;
 
-module.exports = async function(client) {
+module.exports = async function(logger, client) {
 	const sc = await stacks.connectWebSocketClient();
-	console.log('Listening for new microblocks...');
+	logger.info('Listening for new microblocks...');
 	sc.subscribeMicroblocks(async (microblock) => {
 		const guild = await client.guilds.fetch(guildID);
 

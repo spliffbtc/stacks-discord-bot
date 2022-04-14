@@ -19,6 +19,34 @@ const clientID = config.clientID;
 const stacksIO = require('./util/stacksIO.js');
 const getContractDetails = require('./util/stacksAPI/smartContracts/get-contract-info.js');
 
+// Logging
+const logger = winston.createLogger({
+	level: 'info',
+	format: winston.format.combine(
+		winston.format.colorize(),
+		winston.format.json(),
+		winston.format.prettyPrint()
+	),
+	defaultMeta: { service: 'user-service' },
+	transports: [
+		//
+		// - Write all logs with importance level of `error` or less to `error.log`
+		// - Write all logs with importance level of `info` or less to `combined.log`
+		//
+		new winston.transports.File({ filename: 'error.log', level: 'error' }),
+		new winston.transports.File({ filename: 'combined.log' }),
+	],
+});
+
+//
+// If we're not in production then log to the `console` with the format:
+// `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
+//
+if (process.env.NODE_ENV !== 'production') {
+	logger.add(new winston.transports.Console({
+		format: winston.format.simple(),
+	}));
+}
 
 // Create Client
 const client = new Client({
@@ -30,11 +58,11 @@ const client = new Client({
 // eventually should be used instead of botConfig.json;
 getContractDetails()
 	.then((results) => {
-		console.log(`Contract Loaded: ${results.results.contract_id}`);
+		logger.info(`Contract Loaded: ${results.results.contract_id}`);
 		return results;
 	})
 	.catch((err) => {
-		console.log(err);
+		logger.error(err);
 	});
 
 
@@ -47,12 +75,12 @@ for (const folder of eventFolders) {
 	for (const file of eventFiles) {
 		const event = require(`./events/${folder}/${file}`);
 		if (event.once) {
-			client.once(event.name, (...args) => event.execute(...args, client));
+			client.once(event.name, (...args) => event.execute(...args, client, logger));
 		}
 		else {
 			client.on(
 				event.name,
-				async (...args) => await event.execute(...args, client),
+				async (...args) => await event.execute(...args, client, logger),
 			);
 		}
 	}
@@ -96,21 +124,21 @@ for (const module of slashCommands) {
 const rest = new REST({
 	version: '9',
 }).setToken(token);
-console.log('Fetching commands...');
+logger.info('Fetching commands...');
 const commandJsonData = [
 	...Array.from(client.slashCommands.values()).map((c) => c.data.toJSON()),
 	...Array.from(client.contextCommands.values()).map((c) => c.data),
 ];
 (async () => {
 	try {
-		console.log('Refreshing appl`ication (/) commands');
+		logger.info('Refreshing application (/) commands');
 		await rest.put(
 			Routes.applicationGuildCommands(clientID, guildID),
 			{
 				body: commandJsonData,
 			},
 		);
-		console.log('Successfully refreshed application (/) commands');
+		logger.info('Successfully refreshed application (/) commands');
 	}
 	catch (error) {
 		console.error(error);
@@ -131,32 +159,7 @@ for (const folder of triggerFolders) {
 
 
 // Listen for new blocks, microblocks, and transactions
-stacksIO(client);
+stacksIO(logger, client);
 
 // Log In Bot
 client.login(token);
-
-// Logging
-const logger = winston.createLogger({
-	level: 'info',
-	format: winston.format.json(),
-	defaultMeta: { service: 'user-service' },
-	transports: [
-		//
-		// - Write all logs with importance level of `error` or less to `error.log`
-		// - Write all logs with importance level of `info` or less to `combined.log`
-		//
-		new winston.transports.File({ filename: 'error.log', level: 'error' }),
-		new winston.transports.File({ filename: 'combined.log' }),
-	],
-});
-
-//
-// If we're not in production then log to the `console` with the format:
-// `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
-//
-if (process.env.NODE_ENV !== 'production') {
-	logger.add(new winston.transports.Console({
-		format: winston.format.simple(),
-	}));
-}

@@ -12,11 +12,11 @@ const getTx = require('../../util/stacksAPI/transactions/get-transaction.js');
 const contractID = `${collection.contract.contractAddress}.${collection.contract.contractName}`;
 
 
-module.exports = async (client) => {
+module.exports = async (logger, client) => {
 	const sc = connectWebSocketClient(socketUrl);
-	console.log('Listening for microblocks...');
+	logger.info('Listening for microblocks...');
 	(await sc).subscribeMicroblocks(async (microblock) => {
-		console.log('New microblock received!');
+		logger.info('New microblock received!');
 		if (!channel) return;
 		const embed = new MessageEmbed()
 			.setTitle('Microblock Received')

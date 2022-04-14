@@ -4,9 +4,9 @@ const botChannel = botConfig.channels.stacks.mempool;
 const collectionConfig = require('../../../collectionConfig.json');
 const contract = collectionConfig.contract;
 
-module.exports = async function(client) {
+module.exports = async function(logger, client) {
 	const sc = await stacks.connectWebSocketClient();
-	console.log('Listening for new mempool transactions...');
+	logger.info('Listening for new mempool transactions...');
 	sc.subscribeMempool(async (tx) => {
 		if (
 			tx.contract_call &&

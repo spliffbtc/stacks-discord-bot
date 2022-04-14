@@ -12,15 +12,15 @@ const getTx = require('../../util/stacksAPI/transactions/get-transaction.js');
 const contractID = `${collection.contract.contractAddress}.${collection.contract.contractName}`;
 
 
-module.exports = async (client) => {
+module.exports = async (logger, client) => {
 	const sc = connectWebSocketClient(socketUrl);
-	console.log('Listening for market transactions...');
+	logger.info('Listening for market transactions...');
 	(await sc).subscribeMempool(async (mempool) => {
 		if (
 			mempool.tx_type === 'contract_call' &&
 			mempool.contract_call.function_name.includes('market')
 		) {
-			console.log('New market transaction detected!');
+			logger.info('New market transaction detected!');
 			const tx_id = mempool.tx_id;
 			const contract = mempool.contract_call.contract_id;
 			const address = mempool.sender_address;

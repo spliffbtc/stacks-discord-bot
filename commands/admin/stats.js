@@ -12,8 +12,8 @@ module.exports = {
 	args: true,
 	adminOnly: true,
 
-	execute(client, message) {
-		const duration = durationFormatter.format(client.uptime);
+	execute(logger, client, message) {
+		const duration = durationFormatter.format(logger, client.uptime);
 		// const guild = client.guild;
 		// const users = guild.members.cache.filter(member => !member.user.bot).size;
 		// const channels = guild.channels.cache.size;
