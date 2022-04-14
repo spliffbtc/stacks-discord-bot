@@ -46,17 +46,17 @@ module.exports = async (logger, client) => {
 
 			switch (functionName) {
 			case 'list-asset':
-				client.channels.cache.get(channels.marketplace.listed).send({ embeds: [embed] }); break;
+				await client.channels.cache.get(channels.marketplace.listed).send({ embeds: [embed] }); break;
 			case 'unlist-asset':
-				client.channels.cache.get(channels.marketplace.listed).send({ embeds: [embed] }); break;
+				await client.channels.cache.get(channels.marketplace.listed).send({ embeds: [embed] }); break;
 			case 'list-item':
-				client.channels.cache.get(channels.marketplace.listed).send({ embeds: [embed] }); break;
+				await client.channels.cache.get(channels.marketplace.listed).send({ embeds: [embed] }); break;
 			case 'unlist-item':
-				client.channels.cache.get(channels.marketplace.listed).send({ embeds: [embed] }); break;
+				await client.channels.cache.get(channels.marketplace.listed).send({ embeds: [embed] }); break;
 			case 'buy-item':
-				client.channels.cache.get(channels.marketplace.sold).send({ embeds: [embed] }); break;
+				await client.channels.cache.get(channels.marketplace.sold).send({ embeds: [embed] }); break;
 			case 'purchase-asset':
-				client.channels.cache.get(channels.marketplace.sold).send({ embeds: [embed] }); break;
+				await client.channels.cache.get(channels.marketplace.sold).send({ embeds: [embed] }); break;
 			default:
 				break;
 			}

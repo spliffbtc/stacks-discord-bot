@@ -3,7 +3,7 @@ const { connectWebSocketClient } = require('@stacks/blockchain-api-client');
 const socketUrl = 'https://stacks-node-api.mainnet.stacks.co/';
 const config = require('../../botConfig.json');
 const channels = config.channels;
-let channel = '';
+const channel = '';
 const collection = require('../../collectionConfig.json');
 const getBNS = require('../../util/stacksAPI/names/get-bns.js');
 const getTx = require('../../util/stacksAPI/transactions/get-transaction.js');
@@ -24,7 +24,7 @@ module.exports = async (logger, client) => {
 			)
 			.setColor('#0099ff')
 			.setTimestamp();
-		client.channels.cache.get(channels.stacks.newblock).send({ embeds: [embed] });
+		await client.channels.cache.get(channels.stacks.newblock).send({ embeds: [embed] });
 	});
 	// Get Transaction Details
 	// Filter for Collection
