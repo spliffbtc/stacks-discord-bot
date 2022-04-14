@@ -16,7 +16,6 @@ module.exports = async (logger, client) => {
 	logger.info('Listening for blocks...');
 	(await sc).subscribeBlocks(async (block) => {
 		logger.info('New block received!');
-		if (!channel) return;
 		const embed = new MessageEmbed()
 			.setTitle('Block Received')
 			.setURL(`https://explorer.stacks.co/block/${block.hash}`)

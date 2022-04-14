@@ -17,7 +17,6 @@ module.exports = async (logger, client) => {
 	logger.info('Listening for microblocks...');
 	(await sc).subscribeMicroblocks(async (microblock) => {
 		logger.info('New microblock received!');
-		if (!channel) return;
 		const embed = new MessageEmbed()
 			.setTitle('Microblock Received')
 			.setColor('#0099ff')
