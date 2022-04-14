@@ -1,7 +1,7 @@
 const { Collection } = require('discord.js');
 const config = require('../../botConfig.json');
 const prefix = config.commandPrefix;
-const owner = config.ownerIDownerID;
+const owner = config.ownerID;
 const escapeRegex = (string) => {
 	return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 };
