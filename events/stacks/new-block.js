@@ -16,6 +16,7 @@ module.exports = async (logger, client) => {
 	logger.info('Listening for blocks...');
 	(await sc).subscribeBlocks(async (block) => {
 		logger.info('New block received!');
+		logger.info(block);
 		const embed = new MessageEmbed()
 			.setTitle('Block Received')
 			.setURL(`https://explorer.stacks.co/block/${block.hash}`)
@@ -25,9 +26,9 @@ module.exports = async (logger, client) => {
 			.setColor('#0099ff')
 			.setTimestamp();
 		await client.channels.cache.get(channels.stacks.newblock).send({ embeds: [embed] });
-	});
 	// Get Transaction Details
 	// Filter for Collection
 	// MessageEmbed
-
+	// Send Embed
+	});
 };
