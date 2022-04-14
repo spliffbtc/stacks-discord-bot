@@ -14,13 +14,13 @@
 		"@sapphire/time-utilities": "^1.7.4",
 		"@stacks/blockchain-api-client": "^3.0.2",
 		"axios": "^0.26.1",
-		"chalk": "^5.0.1",
 		"discord-api-types": "^0.22.0",
 		"discord.js": "^13.6.0",
 		"dotenv": "^16.0.0",
 		"mongoose": "^6.2.10",
 		"sharp": "^0.30.3",
-		"socket.io": "^4.4.1"
+		"socket.io": "^4.4.1",
+		"winston": "^3.7.2"
 	},
 	"devDependencies": {
 		"eslint": "^8.12.0",
