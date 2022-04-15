@@ -19,7 +19,6 @@ module.exports = async (logger, client, sc) => {
 		// Get Transaction Details
 		microblock.txs.forEach(async (tx_id) => {
 			const tx = await getTx(tx_id);
-			console.log(tx.data.tx_id);
 		});
 	});
 };
