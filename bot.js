@@ -58,7 +58,7 @@ const client = new Client({
 // eventually should be used instead of botConfig.json;
 getContractDetails()
 	.then((results) => {
-		console.log(`Contract Loaded: ${results.results.contract_id}`);
+		logger.info(`Contract Loaded: ${results.results.contract_id}`);
 		return results;
 	})
 	.catch((error) => {
