@@ -24,7 +24,7 @@ module.exports = async (logger, client, sc) => {
 				.setTitle('Mint Attempt Received')
 				.setColor('#0099ff')
 				.setURL(`https://explorer.stacks.co/txid/${tx_id}`)
-				.setDescription(`${BNS} attempted a mint with a fee of ${fee} STX.`)
+				.setDescription(`${BNS} \nis attempting to mint a new NFT \nwith a fee of ${fee} STX.`)
 				.setTimestamp();
 			await client.channels.cache.get(channels.stacks.mempool).send({ embeds: [embed] });
 		}

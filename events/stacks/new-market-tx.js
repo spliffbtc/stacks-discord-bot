@@ -25,6 +25,7 @@ module.exports = async (logger, client, sc) => {
 				.setTitle('Mempool: Marketplace Transaction')
 				.setColor('#0099ff')
 				.setURL(`https://explorer.stacks.co/txid/${tx_id}`)
+				.setDescription(`${BNS} \nis attempting to ${functionName} a new NFT.`)
 				.setFields(
 					{ name: 'Transaction ID', value: tx_id.toString() },
 					{ name: 'Contract', value: contract.toString() },
