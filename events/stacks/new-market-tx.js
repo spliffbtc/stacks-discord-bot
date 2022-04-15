@@ -1,13 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const config = require('../../botConfig.json');
 const channels = config.channels;
-const channel = '';
-const collection = require('../../collectionConfig.json');
 const getBNS = require('../../util/stacksAPI/names/get-bns.js');
-const getTx = require('../../util/stacksAPI/transactions/get-transaction.js');
-
-// Build Contract ID
-const contractID = `${collection.contract.contractAddress}.${collection.contract.contractName}`;
 
 
 module.exports = async (logger, client, sc) => {
@@ -22,7 +16,7 @@ module.exports = async (logger, client, sc) => {
 			const contract = mempool.contract_call.contract_id;
 			const address = mempool.sender_address;
 			const functionName = mempool.contract_call.function_name;
-			const functionArgs = mempool.contract_call.function_args;
+			// const functionArgs = mempool.contract_call.function_args;
 			const fee = mempool.fee_rate / (10 ** 6);
 			const nonce = mempool.nonce;
 			const BNS = await getBNS(address);

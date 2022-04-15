@@ -1,10 +1,8 @@
 const { MessageEmbed } = require('discord.js');
 const config = require('../../botConfig.json');
 const channels = config.channels;
-const channel = '';
 const collection = require('../../collectionConfig.json');
 const getBNS = require('../../util/stacksAPI/names/get-bns.js');
-const getTx = require('../../util/stacksAPI/transactions/get-transaction.js');
 
 // Build Contract ID
 const contractID = `${collection.contract.contractAddress}.${collection.contract.contractName}`;

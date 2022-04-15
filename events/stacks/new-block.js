@@ -1,11 +1,7 @@
 const { MessageEmbed } = require('discord.js');
-const { connectWebSocketClient } = require('@stacks/blockchain-api-client');
-const socketUrl = 'https://stacks-node-api.mainnet.stacks.co/';
 const config = require('../../botConfig.json');
 const channels = config.channels;
-const channel = '';
 const collection = require('../../collectionConfig.json');
-const getBNS = require('../../util/stacksAPI/names/get-bns.js');
 const getTx = require('../../util/stacksAPI/transactions/get-transaction.js');
 
 // Build Contract ID

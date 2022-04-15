@@ -29,6 +29,7 @@ module.exports = {
 			console.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name}`);
 		}
 		else {
+			const args = module.exports.args;
 			console.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name} with the following arguments: ${args}`);
 		}
 
