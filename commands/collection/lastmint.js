@@ -14,25 +14,14 @@ module.exports = {
 		const lastMinted = await getLastMint();
 		const embed = new MessageEmbed()
 			.setColor('#0099ff')
-			.setTitle('Last Minted: #' + lastMinted.nftID)
+			.setTitle('Last Minted')
 			.setImage(
 				`${collection.nftImage.prefix}${lastMinted.nftID}.${collection.nftImage.imageType}`,
 			)
 			.setURL(`${collection.links.website}/details/${lastMinted.nftID}`)
-			.addFields(
-				{
-					name: `${collection.collectionPrefix} #`,
-					value: `${lastMinted.nftID}`,
-				},
-				{
-					name: 'Minted By',
-					value: `${lastMinted.recipient}`,
-				},
-				{
-					name: 'Link',
-					value: `${collection.links.website}/details/${lastMinted.nftID}`,
-				},
-			);
+			.setDescription(
+				`[${collection.collectionPrefix}${lastMinted.nftID}](${collection.links.website}/details/${lastMinted.nftID}) by ${lastMinted.recipient}`)
+			.setTimestamp();
 		// Send Message
 		message.channel.send({ embeds: [embed] });
 		// Logging
