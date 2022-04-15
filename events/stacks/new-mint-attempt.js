@@ -14,10 +14,10 @@ const contractID = `${collection.contract.contractAddress}.${collection.contract
 
 module.exports = async (logger, client) => {
 	const sc = connectWebSocketClient(socketUrl);
-	logger.info('Listening for new mint attempts...');
+	console.log('Listening for new mint attempts...');
 	(await sc).subscribeMempool(async (mempool) => {
 		if (mempool.tx_type === 'contract_call' && mempool.contract_call.contract_id === contractID) {
-			logger.info('New mint attempt detected!');
+			console.log('New mint attempt detected!');
 			const tx_id = mempool.tx_id;
 			const contract = mempool.contract_call.contract_id;
 			const address = mempool.sender_address;

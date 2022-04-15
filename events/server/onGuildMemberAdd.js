@@ -13,7 +13,7 @@ module.exports = {
 			embed.setColor('#0099ff');
 			embed.setThumbnail(newMember.displayAvatarURL());
 			embed.setTimestamp();
-			logger.info(`${newMember.username} has joined the server.`);
+			console.log(`${newMember.username} has joined the server.`);
 			client.member.guild.channels.cache.get(welcomeChannel).send({ embeds: [embed] });
 		}
 		catch (error) {

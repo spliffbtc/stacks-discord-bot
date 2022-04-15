@@ -14,9 +14,9 @@ const contractID = `${collection.contract.contractAddress}.${collection.contract
 
 module.exports = async (logger, client) => {
 	const sc = connectWebSocketClient(socketUrl);
-	logger.info('Listening for microblocks...');
+	console.log('Listening for microblocks...');
 	(await sc).subscribeMicroblocks(async (microblock) => {
-		logger.info('New microblock received!');
+		console.log('New microblock received!');
 		const embed = new MessageEmbed()
 			.setTitle('Microblock Received')
 			.setColor('#0099ff')
@@ -27,9 +27,9 @@ module.exports = async (logger, client) => {
 			.setTimestamp();
 		await client.channels.cache.get(channels.stacks.microblock).send({ embeds: [embed] });
 		// Get Transaction Details
-		microblock.txs.forEach(async function(tx) {
-			const txDetail = await getTx(tx);
-			console.log('Tx: ' + txDetail.tx_id);
+		microblock.txs.forEach(async (tx_id) => {
+			const tx = await getTx(tx_id);
+			console.log(tx.data.tx_id);
 		});
 	});
 };

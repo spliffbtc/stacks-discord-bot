@@ -6,7 +6,7 @@ const botChannel = config.channels.stacks.microblock;
 
 module.exports = async function(logger, client) {
 	const sc = await stacks.connectWebSocketClient();
-	logger.info('Listening for new microblocks...');
+	console.log('Listening for new microblocks...');
 	sc.subscribeMicroblocks(async (microblock) => {
 		const guild = await client.guilds.fetch(guildID);
 

@@ -1,5 +1,5 @@
 module.exports = async (logger, client) => {
-	logger.info('Socket connected to Stacks API');
+	console.log('Socket connected to Stacks API');
 	const newBlock = require('../events/stacks/new-block.js');
 	const newMicroblock = require('../events/stacks/new-microblock.js');
 	const newMintAttempt = require('../events/stacks/new-mint-attempt.js');

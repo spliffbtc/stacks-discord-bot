@@ -6,7 +6,7 @@ const contract = collectionConfig.contract;
 
 module.exports = async function(logger, client) {
 	const sc = await stacks.connectWebSocketClient();
-	logger.info('Listening for new mempool transactions...');
+	console.log('Listening for new mempool transactions...');
 	sc.subscribeMempool(async (tx) => {
 		if (
 			tx.contract_call &&

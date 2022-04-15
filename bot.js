@@ -58,7 +58,7 @@ const client = new Client({
 // eventually should be used instead of botConfig.json;
 getContractDetails()
 	.then((results) => {
-		logger.info(`Contract Loaded: ${results.results.contract_id}`);
+		console.log(`Contract Loaded: ${results.results.contract_id}`);
 		return results;
 	})
 	.catch((err) => {
@@ -124,21 +124,21 @@ for (const module of slashCommands) {
 const rest = new REST({
 	version: '9',
 }).setToken(token);
-logger.info('Fetching commands...');
+console.log('Fetching commands...');
 const commandJsonData = [
 	...Array.from(client.slashCommands.values()).map((c) => c.data.toJSON()),
 	...Array.from(client.contextCommands.values()).map((c) => c.data),
 ];
 (async () => {
 	try {
-		logger.info('Refreshing application (/) commands');
+		console.log('Refreshing application (/) commands');
 		await rest.put(
 			Routes.applicationGuildCommands(clientID, guildID),
 			{
 				body: commandJsonData,
 			},
 		);
-		logger.info('Successfully refreshed application (/) commands');
+		console.log('Successfully refreshed application (/) commands');
 	}
 	catch (error) {
 		console.error(error);

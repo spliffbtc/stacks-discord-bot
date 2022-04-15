@@ -13,10 +13,10 @@ const contractID = `${collection.contract.contractAddress}.${collection.contract
 
 module.exports = async (logger, client) => {
 	const sc = connectWebSocketClient(socketUrl);
-	logger.info('Listening for blocks...');
+	console.log('Listening for blocks...');
 	(await sc).subscribeBlocks(async (block) => {
-		logger.info('New block received!');
-		logger.info(block);
+		console.log('New block received!');
+		console.log(block);
 		const embed = new MessageEmbed()
 			.setTitle('Block Received')
 			.setURL(`https://explorer.stacks.co/block/${block.hash}`)
@@ -26,13 +26,26 @@ module.exports = async (logger, client) => {
 			.setColor('#0099ff')
 			.setTimestamp();
 		await client.channels.cache.get(channels.stacks.newblock).send({ embeds: [embed] });
-		// Get Transaction Details
-		block.txs.forEach(async function(tx) {
-			console.log(tx);
-			const txDetail = await getTx(tx);
-			console.log('Tx: ' + txDetail.tx_id);
+
+		block.txs.forEach(async (tx_id) => {
+			// Get Transaction Details
+			const tx = await getTx(tx_id);
+			// Collection Contract
+			if (tx.data.tx_type === 'contract_call' && tx.data.contract_call.contract_id === contractID && tx.data.tx_status === 'success') {
+				console.log(tx.data);
+				// MessageEmbed: New Mint Transaction
+				const mintEmbed = new MessageEmbed()
+					.setTitle('New Mint!')
+					.setColor('#0099ff')
+					.setURL(`https://explorer.stacks.co/transaction/${tx.data.tx_id}`)
+					.setDescription(
+						`Successful mint of ${tx.data.tx_id} by ${tx.data.sender_address}`,
+					)
+					.setTimestamp();
+				// Send Embed
+				await client.channels.cache.get(channels.stacks.minted).send({ embeds: [mintEmbed] });
+			}
+			else {return;}
 		});
-	// MessageEmbed
-	// Send Embed
 	});
 };

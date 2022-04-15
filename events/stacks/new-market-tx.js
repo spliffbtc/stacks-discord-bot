@@ -14,13 +14,13 @@ const contractID = `${collection.contract.contractAddress}.${collection.contract
 
 module.exports = async (logger, client) => {
 	const sc = connectWebSocketClient(socketUrl);
-	logger.info('Listening for market transactions...');
+	console.log('Listening for market transactions...');
 	(await sc).subscribeMempool(async (mempool) => {
 		if (
 			mempool.tx_type === 'contract_call' &&
-			mempool.contract_call.function_name.includes('market')
+			mempool.contract_call.function_name.includes('market') === true
 		) {
-			logger.info('New market transaction detected!');
+			console.log('New market transaction detected!');
 			const tx_id = mempool.tx_id;
 			const contract = mempool.contract_call.contract_id;
 			const address = mempool.sender_address;
@@ -60,7 +60,6 @@ module.exports = async (logger, client) => {
 			default:
 				break;
 			}
-
 		}
 		else {
 			return;
