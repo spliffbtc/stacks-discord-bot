@@ -25,7 +25,7 @@ const logger = winston.createLogger({
 	format: winston.format.combine(
 		winston.format.colorize(),
 		winston.format.json(),
-		winston.format.prettyPrint()
+		winston.format.prettyPrint(),
 	),
 	defaultMeta: { service: 'user-service' },
 	transports: [
@@ -61,8 +61,8 @@ getContractDetails()
 		console.log(`Contract Loaded: ${results.results.contract_id}`);
 		return results;
 	})
-	.catch((err) => {
-		logger.error(err);
+	.catch((error) => {
+		console.error(error);
 	});
 
 

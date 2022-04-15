@@ -1,6 +1,4 @@
 const { MessageEmbed } = require('discord.js');
-const { connectWebSocketClient } = require('@stacks/blockchain-api-client');
-const socketUrl = 'https://stacks-node-api.mainnet.stacks.co/';
 const config = require('../../botConfig.json');
 const channels = config.channels;
 const channel = '';
@@ -12,9 +10,8 @@ const getTx = require('../../util/stacksAPI/transactions/get-transaction.js');
 const contractID = `${collection.contract.contractAddress}.${collection.contract.contractName}`;
 
 
-module.exports = async (logger, client) => {
-	const sc = connectWebSocketClient(socketUrl);
-	console.log('Listening for new mint attempts...');
+module.exports = async (logger, client, sc) => {
+	logger.info('Listening for new mint attempts...');
 	(await sc).subscribeMempool(async (mempool) => {
 		if (mempool.tx_type === 'contract_call' && mempool.contract_call.contract_id === contractID) {
 			console.log('New mint attempt detected!');

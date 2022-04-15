@@ -11,9 +11,8 @@ const getTx = require('../../util/stacksAPI/transactions/get-transaction.js');
 // Build Contract ID
 const contractID = `${collection.contract.contractAddress}.${collection.contract.contractName}`;
 
-module.exports = async (logger, client) => {
-	const sc = connectWebSocketClient(socketUrl);
-	console.log('Listening for blocks...');
+module.exports = async (logger, client, sc) => {
+	logger.info('Listening for blocks...');
 	(await sc).subscribeBlocks(async (block) => {
 		console.log('New block received!');
 		console.log(block);

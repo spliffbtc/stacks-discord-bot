@@ -12,8 +12,8 @@ module.exports = {
 			await command.execute(interaction);
 			return;
 		}
-		catch (err) {
-			console.error(err);
+		catch (error) {
+			console.error(error);
 			await interaction.reply({
 				content: 'There was an issue while executing that select menu option!',
 				ephemeral: true,
