@@ -26,8 +26,12 @@ module.exports = async (logger, client) => {
 			.setColor('#0099ff')
 			.setTimestamp();
 		await client.channels.cache.get(channels.stacks.newblock).send({ embeds: [embed] });
-	// Get Transaction Details
-	// Filter for Collection
+		// Get Transaction Details
+		block.txs.forEach(async function(tx) {
+			console.log(tx);
+			const txDetail = await getTx(tx);
+			console.log('Tx: ' + txDetail.tx_id);
+		});
 	// MessageEmbed
 	// Send Embed
 	});

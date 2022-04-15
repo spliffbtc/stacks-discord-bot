@@ -26,5 +26,10 @@ module.exports = async (logger, client) => {
 			)
 			.setTimestamp();
 		await client.channels.cache.get(channels.stacks.microblock).send({ embeds: [embed] });
+		// Get Transaction Details
+		microblock.txs.forEach(async function(tx) {
+			const txDetail = await getTx(tx);
+			console.log('Tx: ' + txDetail.tx_id);
+		});
 	});
 };
