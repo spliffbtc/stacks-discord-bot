@@ -11,7 +11,7 @@ module.exports = async (logger, client, sc) => {
 			mempool.tx_type === 'contract_call' &&
 			mempool.contract_call.function_name.includes('market') === true
 		) {
-			console.log('New market transaction detected!');
+			logger.info('New market transaction detected!');
 			const tx_id = mempool.tx_id;
 			const contract = mempool.contract_call.contract_id;
 			const address = mempool.sender_address;

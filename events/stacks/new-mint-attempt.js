@@ -12,7 +12,7 @@ module.exports = async (logger, client, sc) => {
 	logger.info('Listening for new mint attempts...');
 	(await sc).subscribeMempool(async (mempool) => {
 		if (mempool.tx_type === 'contract_call' && mempool.contract_call.contract_id === contractID) {
-			console.log('New mint attempt detected!');
+			logger.info('New mint attempt detected!');
 			const tx_id = mempool.tx_id;
 			const contract = mempool.contract_call.contract_id;
 			const address = mempool.sender_address;
@@ -21,17 +21,10 @@ module.exports = async (logger, client, sc) => {
 			const nonce = mempool.nonce;
 			const BNS = await getBNS(address);
 			const embed = new MessageEmbed()
-				.setTitle('Mempool: Collection Transaction')
+				.setTitle('Mint Attempt Received')
 				.setColor('#0099ff')
 				.setURL(`https://explorer.stacks.co/txid/${tx_id}`)
-				.setFields(
-					{ name: 'Transaction ID', value: tx_id.toString() },
-					{ name: 'Contract', value: contract.toString() },
-					{ name: 'Sender', value: BNS.toString() },
-					{ name: 'Function', value: functionName.toString() },
-					{ name: 'Fee', value: fee.toString() },
-					{ name: 'Nonce', value: nonce.toString() },
-				)
+				.setDescription(`${BNS} attempted a mint with a fee of ${fee} STX.`)
 				.setTimestamp();
 			await client.channels.cache.get(channels.stacks.mempool).send({ embeds: [embed] });
 		}

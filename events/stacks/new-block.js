@@ -10,7 +10,7 @@ const contractID = `${collection.contract.contractAddress}.${collection.contract
 module.exports = async (logger, client, sc) => {
 	logger.info('Listening for blocks...');
 	(await sc).subscribeBlocks(async (block) => {
-		console.log('New block received!');
+		logger.info('New block received!');
 		const embed = new MessageEmbed()
 			.setTitle('Block Received')
 			.setURL(`https://explorer.stacks.co/block/${block.hash}`)

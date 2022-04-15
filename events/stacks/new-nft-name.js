@@ -14,7 +14,6 @@ module.exports = async (logger, client, sc) => {
 		block.txs.forEach(async (tx_id) => {
 			// Get Transaction Details
 			const tx = await getTx(tx_id);
-
 			// Collection Contract
 			if (tx.data.tx_type === 'contract_call' && tx.data.contract_call.contract_id === contractID && tx.data.tx_status === 'success') {
 				console.log(tx.data);
@@ -37,12 +36,12 @@ module.exports = async (logger, client, sc) => {
 					.setColor('#0099ff')
 					.setURL(`https://explorer.stacks.co/transaction/${tx.data.tx_id}`)
 					.setDescription(
-						`${BNS} is renaming from ${namedCollection} for # ${namedNFT} with name ${nftName}`,
+						`${BNS} is renaming from ${namedCollection} for #${namedNFT} with name ${nftName}`,
 					)
 					.setTimestamp();
 				// Send Embed
-				await client.channels.cache.get(channels.stacks.minted).send({ embeds: [embed] });
-				console.log(embed);
+				// await client.channels.cache.get(channels.stacks.minted).send({ embeds: [embed] });
+				// console.log(embed);
 			}
 			else {return;}
 		});
