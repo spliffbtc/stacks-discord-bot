@@ -1,11 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const config = require('../../botConfig.json');
 const channels = config.channels;
-const collection = require('../../collectionConfig.json');
-const getTx = require('../../util/stacksAPI/transactions/get-transaction.js');
-
-// Build Contract ID
-const contractID = `${collection.contract.contractAddress}.${collection.contract.contractName}`;
 
 module.exports = async (logger, client, sc) => {
 	logger.info('Listening for blocks...');

@@ -18,20 +18,17 @@ module.exports = async (logger, client, sc) => {
 			if (tx.data.tx_type === 'contract_call' && tx.data.tx_status === 'success') {
 				if (tx.data.contract_call.contract_id === contractID) {
 					console.log(tx.data);
-					const tx_id = tx.data.tx_id;
+					const txID = tx.data.tx_id;
 					const BNS = await getBNS(tx.data.sender_address);
-					const functionName = tx.data.contract_call.functionName;
-					const contract = tx.data.contract_call.contract_id;
 					const resultRepr = tx.data.tx_result.repr;
 					const nftID = resultRepr.replace('(ok u', '').replace(')', '');
 					const fee = tx.data.fee_rate / (10 ** 6);
-					const nonce = tx.data.nonce;
 
 					// MessageEmbed: New Mint Transaction
 					const embed = new MessageEmbed()
 						.setTitle('New Mint Received')
 						.setColor('#0099ff')
-						.setURL(`https://explorer.stacks.co/transaction/${tx.data.tx_id}`)
+						.setURL(`https://explorer.stacks.co/txid/${txID}`)
 						.setDescription(
 							`Successful mint! \n${BNS} \nminted a new NFT with ID: ${nftID} \nwith a fee of ${fee} STX.`,
 						)

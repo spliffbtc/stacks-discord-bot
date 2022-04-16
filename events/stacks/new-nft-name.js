@@ -17,7 +17,7 @@ module.exports = async (logger, client, sc) => {
 			// Collection Contract
 			if (tx.data.tx_type === 'contract_call' && tx.data.contract_call.contract_id === contractID && tx.data.tx_status === 'success') {
 				console.log(tx.data);
-				const tx_id = tx.data.tx_id;
+				const txID = tx.data.tx_id;
 				const BNS = getBNS(tx.data.sender_address);
 				const functionName = tx.data.contract_call.functionName;
 				const contract = tx.data.contract_call.contract_id;
@@ -34,7 +34,7 @@ module.exports = async (logger, client, sc) => {
 				const embed = new MessageEmbed()
 					.setTitle('New Mint!')
 					.setColor('#0099ff')
-					.setURL(`https://explorer.stacks.co/transaction/${tx.data.tx_id}`)
+					.setURL(`https://explorer.stacks.co/txid/${txID}`)
 					.setDescription(
 						`${BNS} is renaming from ${namedCollection} for #${namedNFT} with name ${nftName}`,
 					)

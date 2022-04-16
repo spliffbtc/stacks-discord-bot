@@ -14,11 +14,8 @@ module.exports = async (logger, client, sc) => {
 		if (mempool.tx_type === 'contract_call' && mempool.contract_call.contract_id === contractID) {
 			logger.info('New mint attempt detected!');
 			const tx_id = mempool.tx_id;
-			const contract = mempool.contract_call.contract_id;
 			const address = mempool.sender_address;
-			const functionName = mempool.contract_call.function_name;
 			const fee = mempool.fee_rate / (10 ** 6);
-			const nonce = mempool.nonce;
 			const BNS = await getBNS(address);
 			const embed = new MessageEmbed()
 				.setTitle('Mint Attempt Received')

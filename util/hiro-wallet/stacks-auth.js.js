@@ -25,8 +25,9 @@ module.exports = function(logger, client) {
 	openContractCall({
 		// openContractCall
 		onFinish: (data) => {
+			const txID = data.txId;
 			console.log('Stacks Transaction:', data.stacksTransaction);
-			const explorerTransactionUrl = `https://explorer.stacks.co/txid/${data.txId}`;
+			const explorerTransactionUrl = `https://explorer.stacks.co/txid/${txID}`;
 			console.log('Transaction ID:', data.txId);
 			console.log('Raw transaction:', data.txRaw);
 			console.log(explorerTransactionUrl);
