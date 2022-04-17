@@ -4,8 +4,8 @@
 	"version": "0.1.0",
 	"main": "bot/bot.js",
 	"scripts": {
-		"start": "node ./bot/bot.js",
-		"dev": "nodemon ./bot/bot.js",
+		"start": "node ./bot.js",
+		"dev": "nodemon ./bot.js",
 		"lint": "eslint --fix --ext .js ."
 	},
 	"repository": {
