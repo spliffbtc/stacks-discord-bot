@@ -2,10 +2,10 @@
 	"name": "freepunks-bot",
 	"description": "A simple open source discord bot for the Stacks community and ecosystem.",
 	"version": "0.1.0",
-	"main": "bot.js",
+	"main": "bot/bot.js",
 	"scripts": {
-		"start": "node bot.js",
-		"dev": "nodemon bot.js",
+		"start": "node ./bot/bot.js",
+		"dev": "nodemon ./bot/bot.js",
 		"lint": "eslint --fix --ext .js ."
 	},
 	"repository": {
