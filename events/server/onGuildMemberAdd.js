@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed , Client} = require('discord.js');
 const config = require('../../botConfig.json');
 const welcomeChannel = config.channels.welcome;
 
@@ -14,7 +14,7 @@ module.exports = {
 			embed.setThumbnail(newMember.displayAvatarURL());
 			embed.setTimestamp();
 			console.log(`${newMember.username} has joined the server.`);
-			client.member.guild.channels.cache.get(welcomeChannel).send({ embeds: [embed] });
+			client.guilds.channels.cache.get(welcomeChannel).send({ embeds: [embed] });
 		}
 		catch (error) {
 			console.error(error);
