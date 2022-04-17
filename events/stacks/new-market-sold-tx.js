@@ -19,7 +19,7 @@ module.exports = async (logger, client, sc) => {
 			if (tx.contract_call.contract_id.includes('market')) {
 				if (
 					// Type is Sold / Purchased
-					tx.contract_call.function_name.includes('sold' || 'purchased') === true
+					tx.contract_call.function_name.includes('sold' || 'purchased' || 'purchases' || 'buy' || 'sell' || 'bought' ) === true
 				) {
 					if (tx.contract_call.function_args[0].repr === contractID) {
 						const txID = tx.tx_id;
