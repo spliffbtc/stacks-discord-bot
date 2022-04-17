@@ -4,9 +4,9 @@ const welcomeChannel = config.channels.welcome;
 
 module.exports = {
 	name: 'guildMemberAdd',
-	execute(logger, client) {
+	async execute(client) {
 		try {
-			const newMember = client.guilds.cache.get(config.guildID).members.cache.get(client.user.id);
+			const newMember = await client.guilds.cache.get(config.guildID).members.cache.get(client.user.id);
 			const embed = new MessageEmbed();
 			embed.setTitle('Welcome');
 			embed.setDescription(`Welcome to the server, ${newMember}!`);
