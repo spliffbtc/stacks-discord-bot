@@ -16,11 +16,11 @@ module.exports = {
 			.addFields(
 				{
 					name: 'STXNFT',
-					value: `View at stxnft.com: \n ${collection.marketplaceWebsite.stxnft}`,
+					value: `View at stxnft.com: \n${collection.marketplaceWebsite.stxnft}`,
 				},
 				{
 					name: 'BYZANTION',
-					value: `View at byzantion.xyz: \n ${collection.marketplaceWebsite.byzantion}`,
+					value: `View at byzantion.xyz: \n${collection.marketplaceWebsite.byzantion}`,
 				},
 			)
 			.setImage(`${collection.collectionBanner}`)

@@ -22,15 +22,15 @@ module.exports = {
 				.addFields(
 					{
 						name: 'Official Website',
-						value: `View at the official website: \n ${collection.links.website}/details/${nftID}`,
+						value: `View at the official website: \n${collection.links.website}/details/${nftID}`,
 					},
 					{
 						name: 'STXNFT',
-						value: `View at stxnft.com: \n ${collection.links.marketplace.stxnft}/${nftID}`,
+						value: `View at stxnft.com: \n${collection.links.marketplace.stxnft}/${nftID}`,
 					},
 					{
 						name: 'BYZANTION',
-						value: `View at byzantion.xyz: \n ${collection.links.marketplace.byzantion}/${nftID}`,
+						value: `View at byzantion.xyz: \n${collection.links.marketplace.byzantion}/${nftID}`,
 					},
 				);
 			// Send Message

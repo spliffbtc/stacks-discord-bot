@@ -9,7 +9,7 @@ const getBNS = require('../../util/stacksAPI/names/get-bns');
 const contractID = `${collection.contract.contractAddress}.${collection.contract.contractName}`;
 
 module.exports = async (logger, client, sc) => {
-	logger.info('Listening for new sales txs...');
+	logger.info('Listening for new unlisting txs...');
 	(await sc).subscribeMempool(async (mempool) => {
 		// Get Transaction Details
 		const tx = mempool;
@@ -18,8 +18,8 @@ module.exports = async (logger, client, sc) => {
 			// Contract Call is Market Contract
 			if (tx.contract_call.contract_id.includes('market')) {
 				if (
-					// Type is Sold / Purchased
-					tx.contract_call.function_name.includes('sold' || 'purchased' || 'purchases' || 'buy' || 'sell' || 'bought') === true
+					// Type is Unlisted
+					tx.contract_call.function_name.includes('unlist' || 'unlisted') === true
 				) {
 					if (tx.contract_call.function_args[0].repr === contractID) {
 						const txID = tx.tx_id;
@@ -28,14 +28,14 @@ module.exports = async (logger, client, sc) => {
 
 						// MessageEmbed: New Market Tx Transaction
 						const embed = new MessageEmbed()
-							.setTitle('NFT Sold')
+							.setTitle('NFT Unlisted')
 							.setColor('#0099ff')
 							.setURL(`https://explorer.stacks.co/txid/${txID}`)
-							.setDescription(`${BNS} \nhas purchased a new NFT.`)
+							.setDescription(`${BNS} \nhas unlisted a NFT.`)
 							.setTimestamp();
 						// Send Embed
 						await client.channels.cache
-							.get(channels.marketplace.sold)
+							.get(channels.marketplace.listed)
 							.send({ embeds: [embed] });
 						console.log(tx);
 					}

@@ -18,8 +18,8 @@ module.exports = async (logger, client, sc) => {
 			// Contract Call is Market Contract
 			if (tx.contract_call.contract_id.includes('market')) {
 				if (
-					// Type is Listed / Unlisted
-					tx.contract_call.function_name.includes('list' || 'listed' || 'unlist' || 'unlisted') === true
+					// Type is Listed
+					tx.contract_call.function_name.includes('list' || 'listed') === true
 				) {
 					if (tx.contract_call.function_args[0].repr === contractID) {
 						const txID = tx.tx_id;
@@ -28,19 +28,16 @@ module.exports = async (logger, client, sc) => {
 
 						// MessageEmbed: New Market Tx Transaction
 						const embed = new MessageEmbed()
-							.setTitle('NFT Listed / Unlisted')
+							.setTitle('NFT Listed')
 							.setColor('#0099ff')
 							.setURL(`https://explorer.stacks.co/txid/${txID}`)
-							.setDescription(`${BNS} \nis attempting to list a new NFT.`)
-							.addFields(
-								{ name: 'Address', value: `${BNS}` },
-								{ name: 'Fee', value: `${fee} STX` },
-							)
+							.setDescription(`${BNS} \nhas listed a NFT.`)
 							.setTimestamp();
 						// Send Embed
 						await client.channels.cache
 							.get(channels.marketplace.listed)
 							.send({ embeds: [embed] });
+						console.log(tx);
 					}
 					else {
 						return;

@@ -13,28 +13,23 @@ module.exports = async (logger, client, sc) => {
 	(await sc).subscribeBlocks(async (block) => {
 		block.txs.forEach(async (tx_id) => {
 			// Get Transaction Details
-			const tx = await getTx(tx_id);
+			const resp = await getTx(tx_id);
+			const tx = resp.data;
 			// Collection Contract
-			if (tx.data.tx_type === 'contract_call' && tx.data.tx_status === 'success') {
-				if (tx.data.contract_call.contract_id === contractID) {
-					const txID = tx.data.tx_id;
-					const BNS = await getBNS(tx.data.sender_address);
-					const resultRepr = tx.data.tx_result.repr;
+			if (tx.tx_type === 'contract_call' && tx.tx_status === 'success') {
+				if (tx.contract_call.contract_id === contractID) {
+					const txID = tx.tx_id;
+					const BNS = await getBNS(tx.sender_address);
+					const resultRepr = tx.tx_result.repr;
 					const nftID = resultRepr.replace('(ok u', '').replace(')', '');
-					const fee = tx.data.fee_rate / (10 ** 6);
+					const fee = tx.fee_rate / (10 ** 6);
 
 					// MessageEmbed: New Mint Transaction
 					const embed = new MessageEmbed()
 						.setTitle('New Mint Received')
 						.setColor('#0099ff')
 						.setURL(`https://explorer.stacks.co/txid/${txID}`)
-						.setDescription(
-							`Successful mint! \n${BNS} \nminted a new NFT with ID: ${nftID} \nwith a fee of ${fee} STX.`,
-						)
-						.addFields(
-							{ name: 'Address', value: `${BNS}` },
-							{ name: 'nftID', value: `${nftID}` },
-							{ name: 'Fee', value: `${fee} STX` },
+						.setDescription(`${BNS} \nminted ${collection.collectionPrefix} ${nftID} \nwith a fee of ${fee} STX.`,
 						)
 						.setTimestamp();
 					// Send Embed
