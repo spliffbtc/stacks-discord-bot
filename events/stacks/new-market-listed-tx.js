@@ -13,17 +13,18 @@ module.exports = async (logger, client, sc) => {
 	(await sc).subscribeMempool(async (mempool) => {
 		// Get Transaction Details
 		const tx = mempool;
-		// Collection Contract
+		// Is a Contract Call
 		if (tx.tx_type === 'contract_call') {
-			if (tx.contract_call.contract_id.includes('market') === true) {
-				console.log('Contract ID' + tx);
-				if (tx.contract_call.function_name.includes('list' || 'listed') === true) {
-					console.log('Function Name' + tx);
+			// Contract Call is Market Contract
+			if (tx.contract_call.contract_id.includes('market')) {
+				if (
+					// Type is Listed / Unlisted
+					tx.contract_call.function_name.includes('list' || 'listed' || 'unlist' || 'unlisted') === true
+				) {
 					if (tx.contract_call.function_args[0].repr === contractID) {
-						console.log('OK' + tx);
 						const txID = tx.tx_id;
 						const BNS = await getBNS(tx.sender_address);
-						const fee = tx.fee_rate / (10 ** 6);
+						const fee = tx.fee_rate / 10 ** 6;
 
 						// MessageEmbed: New Market Tx Transaction
 						const embed = new MessageEmbed()
@@ -36,17 +37,25 @@ module.exports = async (logger, client, sc) => {
 								{ name: 'Fee', value: `${fee} STX` },
 							)
 							.setTimestamp();
-							// Send Embed
-						await client.channels.cache.get(channels.marketplace.listed).send({ embeds: [embed] });
-						console.log(embed);
+						// Send Embed
+						await client.channels.cache
+							.get(channels.marketplace.listed)
+							.send({ embeds: [embed] });
 					}
-					else {return;}
+					else {
+						return;
+					}
 				}
-				else {return;}
+				else {
+					return;
+				}
 			}
-			else {return;}
+			else {
+				return;
+			}
 		}
-		else {return;}
+		else {
+			return;
+		}
 	});
-
 };

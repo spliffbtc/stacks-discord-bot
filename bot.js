@@ -124,21 +124,21 @@ for (const module of slashCommands) {
 const rest = new REST({
 	version: '9',
 }).setToken(token);
-console.log('Fetching commands...');
+logger.info('Fetching commands...');
 const commandJsonData = [
 	...Array.from(client.slashCommands.values()).map((c) => c.data.toJSON()),
 	...Array.from(client.contextCommands.values()).map((c) => c.data),
 ];
 (async () => {
 	try {
-		console.log('Refreshing application (/) commands');
+		logger.info('Refreshing application (/) commands');
 		await rest.put(
 			Routes.applicationGuildCommands(clientID, guildID),
 			{
 				body: commandJsonData,
 			},
 		);
-		console.log('Successfully refreshed application (/) commands');
+		logger.info('Successfully refreshed application (/) commands');
 	}
 	catch (error) {
 		console.error(error);

@@ -17,7 +17,6 @@ module.exports = async (logger, client, sc) => {
 			// Collection Contract
 			if (tx.data.tx_type === 'contract_call' && tx.data.tx_status === 'success') {
 				if (tx.data.contract_call.contract_id === contractID) {
-					console.log(tx.data);
 					const txID = tx.data.tx_id;
 					const BNS = await getBNS(tx.data.sender_address);
 					const resultRepr = tx.data.tx_result.repr;
@@ -40,7 +39,6 @@ module.exports = async (logger, client, sc) => {
 						.setTimestamp();
 					// Send Embed
 					await client.channels.cache.get(channels.stacks.minted).send({ embeds: [embed] });
-					console.log(embed);
 				}
 				else {return;}
 			}
