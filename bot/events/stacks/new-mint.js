@@ -17,7 +17,7 @@ module.exports = async (logger, client, sc) => {
 			const tx = resp.data;
 			// Collection Contract
 			if (tx.tx_type === 'contract_call' && tx.tx_status === 'success') {
-				if (tx.contract_call.contract_id === contractID) {
+				if (tx.contract_call.contract_id === contractID && tx.contract_call.function_name === 'mint') {
 					const txID = tx.tx_id;
 					const BNS = await getBNS(tx.sender_address);
 					const resultRepr = tx.tx_result.repr;

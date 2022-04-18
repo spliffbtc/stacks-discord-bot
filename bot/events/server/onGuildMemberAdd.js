@@ -1,4 +1,4 @@
-const { MessageEmbed , Client} = require('discord.js');
+const { MessageEmbed, Client } = require('discord.js');
 const config = require('../../../botConfig.json');
 const welcomeChannel = config.channels.welcome;
 
