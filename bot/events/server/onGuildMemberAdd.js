@@ -1,23 +1,25 @@
-const { MessageEmbed, Client } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const config = require('../../../botConfig.json');
-const welcomeChannel = config.channels.welcome;
 
 module.exports = {
 	name: 'guildMemberAdd',
 	async execute(client) {
 		try {
-			const newMember = await client.guilds.cache.get(config.guildID).members.cache.get(client.user.id);
-			const embed = new MessageEmbed();
-			embed.setTitle('Welcome');
-			embed.setDescription(`Welcome to the server, ${newMember}!`);
-			embed.setColor('#0099ff');
-			embed.setThumbnail(newMember.displayAvatarURL());
-			embed.setTimestamp();
-			console.log(`${newMember.username} has joined the server.`);
-			client.guilds.channels.cache.get(welcomeChannel).send({ embeds: [embed] });
+			const newMember = await client.guild.channels.cache.get(config.guildID).members.cache.get(client.user.id);
+			const welcomeChannel = config.channels.welcome;
+			console.log(newMember);
+			console.log(welcomeChannel);
+			const embed = new MessageEmbed()
+				.setTitle('Welcome')
+				.setDescription(`Welcome to the server, ${newMember}!`)
+				.setColor('#0099ff')
+				.setThumbnail(newMember.displayAvatarURL())
+				.setTimestamp();
+			console.log({ embed });
+			client.channels.cache.get(welcomeChannel).send({ embed });
 		}
 		catch (error) {
-			console.error(error);
+			console.log(error);
 		}
 	},
 };
