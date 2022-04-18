@@ -25,13 +25,14 @@ module.exports = async (logger, client, sc) => {
 						const txID = tx.tx_id;
 						const BNS = await getBNS(tx.sender_address);
 						const fee = tx.fee_rate / 10 ** 6;
+						const nftID = tx.contract_call.function_args[2].repr;
 
 						// MessageEmbed: New Market Tx Transaction
 						const embed = new MessageEmbed()
 							.setTitle('NFT Sold')
 							.setColor('#0099ff')
 							.setURL(`https://explorer.stacks.co/txid/${txID}`)
-							.setDescription(`${BNS} \nhas purchased a new NFT.`)
+							.setDescription(`${BNS} \nhas purchased a new NFT: ${nftID}.`)
 							.setTimestamp();
 						// Send Embed
 						await client.channels.cache
