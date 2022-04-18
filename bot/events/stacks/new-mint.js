@@ -29,6 +29,9 @@ module.exports = async (logger, client, sc) => {
 						.setTitle('New Mint Received')
 						.setColor('#0099ff')
 						.setURL(`https://explorer.stacks.co/txid/${txID}`)
+						.setImage(
+							`${collection.nftImage.prefix}${nftID}.${collection.nftImage.imageType}`,
+						)
 						.setDescription(`${BNS} \nminted ${collection.collectionPrefix} ${nftID} \nwith a fee of ${fee} STX.`,
 						)
 						.setTimestamp();
