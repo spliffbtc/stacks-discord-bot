@@ -4,13 +4,17 @@ const ObjectId = Schema.ObjectId;
 
 const Bot = new Schema({
 	id: ObjectId,
-	guildID: String,
-	ownerID: String,
-	botID: String,
-	botSettings: {
-		botOn: Boolean,
-		commandPrefix: String,
-		defaultChannelID: String,
+	guild_id: String,
+	owner_id: String,
+	bot_id: String,
+	settings: {
+		bot_on: Boolean,
+		command_prefix: String,
+		channels: {
+			default_channel_id: String,
+			welcome_channel_id: String,
+			events_channel_id: String,
+		},
 	},
 });
 

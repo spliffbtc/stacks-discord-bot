@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
-const User = new Schema({
+const Contract = new Schema({
 	id: ObjectId,
-	discord_id: String,
-	wallet_address: String,
-	server_role: String,
+	tx_id: String,
+	contract_name: String,
+	contract_address: String,
 });
 
-module.exports = User;
+module.exports = Contract;
