@@ -1,112 +1,61 @@
-const { MessageEmbed } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const pollEmbed = require('../../../util/misc/poll-embed');
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('poll')
 		.setDescription('Create a poll.')
 		.setDefaultPermission(true)
-		.addStringOption((option) =>
 
+		// Add Inputs: Title
+		.addStringOption((option) =>
 			option
-				.setName('question')
+				.setName('title')
 				.setDescription('The question of the poll.')
 				.setRequired(true),
 		)
+		// Add Inputs: Timeout
+		.addNumberOption((option) =>
+			option
+				.setName('timeout')
+				.setDescription('The time in seconds for the poll to end.')
+				.setRequired(true),
+		)
+		// Add Inputs: Option 1
 		.addStringOption((option) =>
-
 			option
 				.setName('option1')
 				.setDescription('The first option of the poll.')
 				.setRequired(true),
 		)
+		// Add Inputs: Option 2
 		.addStringOption((option) =>
-
 			option
 				.setName('option2')
 				.setDescription('The second option of the poll.')
 				.setRequired(true),
 		)
+		// Add Inputs: Option 3
 		.addStringOption((option) =>
-
 			option
 				.setName('option3')
 				.setDescription('The third option of the poll.'),
-		)
-		.addStringOption((option) =>
-
-			option
-				.setName('option4')
-				.setDescription('The fourth option of the poll.'),
-		)
-		.addStringOption((option) =>
-
-			option
-				.setName('option5')
-				.setDescription('The fifth option of the poll.'),
-		)
-		.addStringOption((option) =>
-
-			option
-				.setName('option6')
-				.setDescription('The sixth option of the poll.'),
-		)
-		.addStringOption((option) =>
-
-			option
-				.setName('option7')
-				.setDescription('The seventh option of the poll.'),
-		)
-		.addStringOption((option) =>
-
-			option
-				.setName('option8')
-				.setDescription('The eighth option of the poll.'),
-		)
-		.addStringOption((option) =>
-
-			option
-				.setName('option9')
-				.setDescription('The ninth option of the poll.'),
-		)
-		.addStringOption((option) =>
-
-			option
-				.setName('option10')
-				.setDescription('The tenth option of the poll.'),
 		),
 	async execute(interaction, message, args) {
-		const commands = interaction.client.slashCommands;
-		let name = interaction.options.getString('command');
-		const embed = new MessageEmbed()
-			.setColor(0x4286f4);
-		if (name) {
-			name = name.toLowerCase();
-			embed.setTitle(`Poll for \`${name}\` command`);
-			if (commands.has(name)) {
-				const command = commands.get(name).data;
-				if (command.description) embed.setDescription(command.description + '\n\n**Parameters:**');
-				command.options.forEach(option => {
-					let content = option.description;
-					if (option.choices) {
-						let choices = '\nChoices: ';
-						option.choices.forEach(choice => choices += choice + ', ');
-						choices = choices.slice(0, -2);
-						content += choices;
-					}
-					if (!option.required) content += '\n*Optional*';
-					embed.addField(option.name, content.trim(), true);
-				});
-			}
-			else {
-				embed.setDescription(`No slash command with the name \`${name}\` found.`).setColor('YELLOW');
-			}
-		}
-		else {
-			embed.setDescription('No command name provided.').setColor('YELLOW');
-		}
+		// Set Variables
+		const title = interaction.getOption('title');
+		const options = [interaction.getOption('option1'), interaction.getOption('option2'), interaction.getOption('option3')];
+		const timeout = interaction.getOption('timeout');
+
+
+		// Create Embed
+		const embed = pollEmbed(message, title, options, timeout);
+
+
 		// Send Message
 		await interaction.message.channel.send({ embeds: [embed] });
+
+
 		// Logging
 		if (module.exports.args === false) {
 			console.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name}`);

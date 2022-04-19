@@ -2,16 +2,20 @@ const { MessageEmbed } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { AppConfig, UserSession, showConnect } = require ('@stacks/connect');
 const config = require('../../../../botConfig.json');
+const guildID = config.guildID;
+const defaultChannel = config.channels.general;
 
 const appConfig = new AppConfig();
 const userSession = new UserSession({ appConfig });
+
 async function authenticate() {
 	showConnect({ appDetails: {
 		name: 'stacks-discord-bot',
 		description: 'Stacks Discord Bot',
 		icon: 'https://stacks.network/images/stacks-icon-128.png',
 	},
-	redirectTo: `https://discordapp.com/channels/${config.guildID}/${config.channels.general}`,
+	// Return to Default Channel
+	redirectTo: `https://discordapp.com/channels/${guildID}/${defaultChannel}`,
 	onCancel: () => {console.log('Something went wrong.');},
 	onFinish: () => {console.log('Something went right.');}, userSession });
 }
@@ -36,6 +40,6 @@ module.exports = {
 			)
 			.setTimestamp();
 		// await interaction.reply({ embeds: [embed] });
-		await interaction.reply('Still working on it... :thinking:');
+		await interaction.reply('Still working on this feature... :thinking:');
 	},
 };
