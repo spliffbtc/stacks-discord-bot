@@ -36,7 +36,10 @@ module.exports = async (logger, client, sc) => {
 				.setTitle('Mint Attempt Received')
 				.setColor('#0099ff')
 				.setURL(`https://explorer.stacks.co/txid/${tx_id}`)
-				.setDescription(`${BNS} \nhas sent a mint attempt \nwith a fee of ${fee} STX.`)
+				.addFields(
+					{ name: 'Address / BNS', value: BNS },
+					{ name: 'Fee', value: `${fee} STX` },
+				)
 				.setTimestamp();
 
 

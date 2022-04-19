@@ -33,6 +33,7 @@ module.exports = async (logger, client, sc) => {
 				const resultRepr = tx.tx_result.repr;
 				const nftID = resultRepr.replace('(ok u', '').replace(')', '');
 				const fee = tx.fee_rate / (10 ** 6);
+				const imageURL = `${collection.nftImage.prefix}${nftID}.${collection.nftImage.imageType}`;
 
 
 				// Create Embed
@@ -41,9 +42,12 @@ module.exports = async (logger, client, sc) => {
 					.setColor('#0099ff')
 					.setURL(`https://explorer.stacks.co/txid/${txID}`)
 					.setImage(
-						`${collection.nftImage.prefix}${nftID}.${collection.nftImage.imageType}`,
+						`${imageURL}`,
 					)
-					.setDescription(`${BNS} \nminted ${collection.collectionPrefix} ${nftID} \nwith a fee of ${fee} STX.`,
+					.setFields(
+						{ name: 'Address / BNS', value: BNS },
+						{ name: 'NFT ID#', value: nftID },
+						{ name: 'Fee', value: `${fee} STX` },
 					)
 					.setTimestamp();
 

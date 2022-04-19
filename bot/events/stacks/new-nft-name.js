@@ -15,9 +15,13 @@ module.exports = async (logger, client, sc) => {
 			// Get Transaction Details
 			const resp = await getTx(tx_id);
 			const tx = resp.data;
-			// Collection Contract
+
+
+			// Conditionals
 			if (tx.tx_type === 'contract_call' && tx.contract_call.contract_id === contractID && tx.tx_status === 'success') {
-				console.log(tx);
+
+
+				// Set Variables
 				const txID = tx.tx_id;
 				const BNS = getBNS(tx.sender_address);
 				const functionName = tx.contract_call.functionName;
@@ -28,10 +32,8 @@ module.exports = async (logger, client, sc) => {
 				const nftName = contractCall.args[2];
 				const fee = tx.fee_rate / (10 ** 6);
 				const nonce = tx.nonce;
-				console.log(`${BNS} is renaming from ${namedCollection} for # ${namedNFT} with name ${nftName}`);
-				console.log(contractCall);
 
-				// MessageEmbed: New NFT Name Transaction
+				// Create Embed
 				const embed = new MessageEmbed()
 					.setTitle('New Mint!')
 					.setColor('#0099ff')
@@ -40,9 +42,10 @@ module.exports = async (logger, client, sc) => {
 						`${BNS} is renaming from ${namedCollection} for #${namedNFT} with name ${nftName}`,
 					)
 					.setTimestamp();
+
+
 				// Send Message
 				// await client.channels.cache.get(channels.stacks.minted).send({ embeds: [embed] });
-				// console.log(embed);
 			}
 			else {return;}
 		});

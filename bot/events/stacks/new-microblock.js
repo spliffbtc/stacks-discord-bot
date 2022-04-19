@@ -8,13 +8,18 @@ module.exports = async (logger, client, sc) => {
 		// Logging
 		logger.info('New microblock received!');
 
+		// Set Variables
+		const microblockHash = microblock.microblock_hash;
+		const microblockHeight = microblock.block_height;
+		const txCount = microblock.txs.length;
+
 		// Create Message
 		const embed = new MessageEmbed()
 			.setTitle('Microblock Received')
 			.setColor('#0099ff')
-			.setURL(`https://explorer.stacks.co/microblock/${microblock.microblock_hash}`)
+			.setURL(`https://explorer.stacks.co/microblock/${microblockHash}`)
 			.setDescription(
-				`Microblock ${microblock.block_height} has been received by the Stacks network containing ${microblock.txs.length} transactions.`,
+				`Microblock ${microblockHeight} has been received by the Stacks network containing ${txCount} transactions.`,
 			)
 			.setTimestamp();
 

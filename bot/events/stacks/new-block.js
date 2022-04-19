@@ -16,9 +16,9 @@ module.exports = async (logger, client, sc) => {
 		// Create Embed
 		const embed = new MessageEmbed()
 			.setTitle('Block Received')
-			.setURL(`https://explorer.stacks.co/block/${blockHeight}`)
+			.setURL(`https://explorer.stacks.co/block/${blockHash}`)
 			.setDescription(
-				`Block ${blockHash} has been received by the Stacks network containing ${txCount} transactions.`,
+				`Block ${blockHeight} has been received by the Stacks network containing ${txCount} transactions.`,
 			)
 			.setColor('#0099ff')
 			.setTimestamp();
