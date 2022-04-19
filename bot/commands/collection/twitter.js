@@ -11,17 +11,20 @@ module.exports = {
 
 	execute(message) {
 		// Set Variables
+		const collectionName = collection.collectionName;
+		const collectionBanner = collection.collectionBanner;
+		const twitterURL = collection.twitterURL;
 
 
 		// Create Embed
 		const embed = new MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle('Twitter')
-			.setURL(collection.collectionTwitter)
+			.setURL(twitterURL)
 			.setDescription(
-				`Check out the ${collection.collectionName} twitter! ${collection.collectionTwitter}`,
+				`Check out the ${collectionName} twitter! ${twitterURL}`,
 			)
-			.setImage(collection.collectionBanner)
+			.setImage(collectionBanner)
 			.setTimestamp();
 
 

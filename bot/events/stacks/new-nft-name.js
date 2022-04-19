@@ -40,7 +40,7 @@ module.exports = async (logger, client, sc) => {
 						`${BNS} is renaming from ${namedCollection} for #${namedNFT} with name ${nftName}`,
 					)
 					.setTimestamp();
-				// Send Embed
+				// Send Message
 				// await client.channels.cache.get(channels.stacks.minted).send({ embeds: [embed] });
 				// console.log(embed);
 			}

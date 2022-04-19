@@ -11,17 +11,20 @@ module.exports = {
 
 	execute(message) {
 		// Set Variables
+		const collectionName = collection.collectionName;
+		const collectionBanner = collection.collectionBanner;
+		const websiteURL = collection.websiteURL;
 
 
 		// Create Embed
 		const embed = new MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle('Website')
-			.setURL(collection.collectionWebsite)
+			.setURL(websiteURL)
 			.setDescription(
-				`Check out the ${collection.collectionName} website! ${collection.collectionWebsite}`,
+				`Check out the ${collectionName} website! ${websiteURL}`,
 			)
-			.setImage(collection.collectionBanner)
+			.setImage(collectionBanner)
 			.setTimestamp();
 
 

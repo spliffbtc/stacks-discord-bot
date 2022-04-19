@@ -12,31 +12,38 @@ module.exports = {
 	async execute(message, args) {
 		// Set Variables
 		const nftID = args[0];
+		const collectionPrefix = collection.collectionPrefix;
+		const websiteURL = `${collection.links.website}/details/${nftID}`;
+		const stxnftURL = `${collection.links.marketplace.stxnft}/${nftID}`;
+		const byzantionURL = `${collection.links.marketplace.byzantion}/${nftID}`;
+		const imageURL = `${collection.nftImage.prefix}${nftID}.${collection.nftImage.imageType}`;
+
+		// Conditionals
 		if (args[0] > 0 && args[0] < 9999) {
 
 
 			// Create Embed
 			const embed = new MessageEmbed()
 				.setColor('#0099ff')
-				.setTitle(`${collection.collectionPrefix}${nftID}`)
-				.setURL(`${collection.links.website}/details/${nftID}`)
-				.setImage(
-					`${collection.nftImage.prefix}${nftID}.${collection.nftImage.imageType}`,
-				)
+				.setTitle(`${collectionPrefix}${nftID}`)
 				.addFields(
 					{
 						name: 'Official Website',
-						value: `View at the official website: \n${collection.links.website}/details/${nftID}`,
+						value: `View at the official website: \n${websiteURL}`,
 					},
 					{
 						name: 'STXNFT',
-						value: `View at stxnft.com: \n${collection.links.marketplace.stxnft}/${nftID}`,
+						value: `View at stxnft.com: \n${stxnftURL}`,
 					},
 					{
 						name: 'BYZANTION',
-						value: `View at byzantion.xyz: \n${collection.links.marketplace.byzantion}/${nftID}`,
-					},
-				);
+						value: `View at byzantion.xyz: \n${byzantionURL}`,
+					})
+				.setImage(
+					`${imageURL}`,
+				)
+				.setURL(`${websiteURL}`)
+				.setTimestamp();
 
 
 			// Send Message

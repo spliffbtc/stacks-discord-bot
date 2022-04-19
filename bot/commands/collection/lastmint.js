@@ -13,6 +13,11 @@ module.exports = {
 	async execute(message) {
 		// Set Variables
 		const lastMinted = await getLastMint();
+		const nftID = lastMinted.nftID;
+		const recipient = lastMinted.recipient;
+		const collectionPrefix = collection.collectionPrefix;
+		const websiteURL = `${collection.links.website}/details/${nftID}`;
+		const imageURL = `${collection.nftImage.prefix}${lastMinted.nftID}.${collection.nftImage.imageType}`;
 
 
 		// Create Embed
@@ -20,11 +25,11 @@ module.exports = {
 			.setColor('#0099ff')
 			.setTitle('Last Minted')
 			.setImage(
-				`${collection.nftImage.prefix}${lastMinted.nftID}.${collection.nftImage.imageType}`,
+				`${imageURL}`,
 			)
-			.setURL(`${collection.links.website}/details/${lastMinted.nftID}`)
+			.setURL(`${websiteURL}`)
 			.setDescription(
-				`[${collection.collectionPrefix}${lastMinted.nftID}](${collection.links.website}/details/${lastMinted.nftID}) by ${lastMinted.recipient}`)
+				`[${collectionPrefix}${nftID}](${websiteURL}) by ${recipient}`)
 			.setTimestamp();
 
 

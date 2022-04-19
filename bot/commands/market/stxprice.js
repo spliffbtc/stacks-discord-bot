@@ -18,8 +18,11 @@ module.exports = {
 		const embed = new MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle('STX Price')
-			.setURL('https://www.coingecko.com/en/coins/stacks')
 			.setDescription(`The current price of STX in USD is: **$${STXUSD}**`)
+			.setThumbnail(
+				'https://assets.coingecko.com/coins/images/2069/small/Stacks_logo_full.png',
+			)
+			.setURL('https://www.coingecko.com/en/coins/stacks')
 			.setTimestamp();
 
 

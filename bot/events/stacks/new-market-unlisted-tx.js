@@ -13,47 +13,35 @@ module.exports = async (logger, client, sc) => {
 	(await sc).subscribeMempool(async (mempool) => {
 		// Get Transaction Details
 		const tx = mempool;
-		// Is a Contract Call
-		if (tx.tx_type === 'contract_call') {
-			// Contract Call is Market Contract
-			if (tx.contract_call.contract_id.includes('market')) {
-				if (
-					// Type is Unlisted
-					tx.contract_call.function_name.includes('unlist' || 'unlisted') === true
-				) {
-					if (tx.contract_call.function_args[0].repr === contractID) {
-						const txID = tx.tx_id;
-						const BNS = await getBNS(tx.sender_address);
-						const fee = tx.fee_rate / 10 ** 6;
-						const nftID = tx.contract_call.function_args[2].repr;
 
-						// MessageEmbed: New Market Tx Transaction
-						const embed = new MessageEmbed()
-							.setTitle('NFT Unlisted')
-							.setColor('#0099ff')
-							.setURL(`https://explorer.stacks.co/txid/${txID}`)
-							.setDescription(`${BNS} \nhas unlisted a NFT: ${nftID}.`)
-							.setTimestamp();
-						// Send Embed
-						await client.channels.cache
-							.get(channels.marketplace.listed)
-							.send({ embeds: [embed] });
-						console.log(tx);
-					}
-					else {
-						return;
-					}
-				}
-				else {
-					return;
-				}
-			}
-			else {
-				return;
-			}
+
+		// Conditionals
+		if (tx.tx_type === 'contract_call' &&
+			tx.contract_call.contract_id.includes('market') &&
+			tx.contract_call.function_name.includes('unlist' || 'unlisted') === true &&
+			tx.contract_call.function_args[0].repr === contractID) {
+
+
+			// Set Variables
+			const txID = tx.tx_id;
+			const BNS = await getBNS(tx.sender_address);
+			const fee = tx.fee_rate / 10 ** 6;
+			const nftID = tx.contract_call.function_args[2].repr;
+
+			// Create Embed
+			const embed = new MessageEmbed()
+				.setTitle('NFT Unlisted')
+				.setColor('#0099ff')
+				.setURL(`https://explorer.stacks.co/txid/${txID}`)
+				.setDescription(`${BNS} \nhas unlisted a NFT: ${nftID}.`)
+				.setTimestamp();
+
+
+			// Send Message
+			await client.channels.cache
+				.get(channels.marketplace.listed)
+				.send({ embeds: [embed] });
 		}
-		else {
-			return;
-		}
+		else { return; }
 	});
 };

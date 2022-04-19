@@ -12,7 +12,10 @@ module.exports = {
 
 	async execute(message) {
 		// Set Variables
-
+		const contractName = contract.contractName;
+		const contractAddress = contract.contractAddress;
+		const txID = contract.txID;
+		const blockHeight = contract.blockHeight;
 
 		// Create Embed
 		const embed = new MessageEmbed()
@@ -22,18 +25,18 @@ module.exports = {
 			.addFields(
 				{
 					name: 'Contract Name',
-					value: `${contract.contractName}`,
+					value: `${contractName}`,
 				},
 				{
 					name: 'Contract Address',
-					value: `${contract.contractAddress}`,
+					value: `${contractAddress}`,
 				},				{
 					name: 'Transaction ID',
-					value: `${contract.txID}`,
+					value: `${txID}`,
 				},
 				{
 					name: 'Block Height',
-					value: `${contract.blockHeight}` },
+					value: `${blockHeight}` },
 			);
 
 
