@@ -13,7 +13,9 @@ module.exports = {
 	execute(message, args) {
 		const { commands } = message.client;
 		if (!args.length) {
-			const helpEmbed = new MessageEmbed()
+
+			// Create Embed
+			const embed = new MessageEmbed()
 				.setColor(0x4286f4)
 				.setURL(process.env.URL)
 				.setTitle('List of all my commands')
@@ -25,7 +27,7 @@ module.exports = {
 					`\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`,
 				);
 			return message.author
-				.send({ embeds: [helpEmbed] })
+				.send({ embeds: [embed] })
 				.then(() => {
 					if (message.channel.type === 'dm') return;
 					message.reply({
@@ -63,8 +65,12 @@ module.exports = {
 				true,
 			);
 		}
+
+
 		// Send Message
 		message.channel.send({ embeds: [embed] });
+
+
 		// Logging
 		if (module.exports.args === false) {
 			console.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name}`);

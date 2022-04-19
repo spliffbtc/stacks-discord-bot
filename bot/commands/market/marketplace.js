@@ -10,23 +10,33 @@ module.exports = {
 	args: false,
 
 	execute(message) {
+		// Set Variables
+		const stxnftURL = collection.links.marketplace.stxnft;
+		const byzantionURL = collection.links.marketplace.byzantion;
+		const collectionBanner = collection.collectionBanner;
+
+		// Create Embed
 		const embed = new MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle('Marketplace')
 			.addFields(
 				{
 					name: 'STXNFT',
-					value: `View at stxnft.com: \n${collection.marketplaceWebsite.stxnft}`,
+					value: `View at stxnft.com: \n${stxnftURL}`,
 				},
 				{
 					name: 'BYZANTION',
-					value: `View at byzantion.xyz: \n${collection.marketplaceWebsite.byzantion}`,
+					value: `View at byzantion.xyz: \n${byzantionURL}`,
 				},
 			)
-			.setImage(`${collection.collectionBanner}`)
+			.setImage(`${collectionBanner}`)
 			.setTimestamp();
+
+
 		// Send Message
 		message.channel.send({ embeds: [embed] });
+
+
 		// Logging
 		if (module.exports.args === false) {
 			console.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name}`);

@@ -11,7 +11,11 @@ module.exports = {
 	args: false,
 
 	async execute(message) {
+		// Set Variables
 		const lastMinted = await getLastMint();
+
+
+		// Create Embed
 		const embed = new MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle('Last Minted')
@@ -22,8 +26,12 @@ module.exports = {
 			.setDescription(
 				`[${collection.collectionPrefix}${lastMinted.nftID}](${collection.links.website}/details/${lastMinted.nftID}) by ${lastMinted.recipient}`)
 			.setTimestamp();
+
+
 		// Send Message
 		message.channel.send({ embeds: [embed] });
+
+
 		// Logging
 		if (module.exports.args === false) {
 			console.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name}`);

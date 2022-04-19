@@ -10,8 +10,12 @@ module.exports = {
 	args: true,
 
 	async execute(message, args) {
+		// Set Variables
 		const nftID = args[0];
 		if (args[0] > 0 && args[0] < 9999) {
+
+
+			// Create Embed
 			const embed = new MessageEmbed()
 				.setColor('#0099ff')
 				.setTitle(`${collection.collectionPrefix}${nftID}`)
@@ -33,8 +37,12 @@ module.exports = {
 						value: `View at byzantion.xyz: \n${collection.links.marketplace.byzantion}/${nftID}`,
 					},
 				);
+
+
 			// Send Message
 			message.channel.send({ embeds: [embed] });
+
+
 			// Logging
 			if (module.exports.args === false) {
 				console.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name}`);

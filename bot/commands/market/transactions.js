@@ -10,8 +10,11 @@ module.exports = {
 	args: false,
 
 	async execute(message) {
+		// Set Variables
 		const response = await getTransactions();
 		const transactions = response[0].transactions;
+
+		// Create Embed
 		const embed = new MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle(`Transactions per Day: ${transactions}`)
@@ -21,8 +24,12 @@ module.exports = {
 			)
 			.setURL('')
 			.setTimestamp();
+
+
 		// Send Message
 		message.channel.send({ embeds: [embed] });
+
+
 		// Logging
 		if (module.exports.args === false) {
 			console.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name}`);

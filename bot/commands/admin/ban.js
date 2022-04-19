@@ -8,6 +8,7 @@ module.exports = {
 	adminOnly: true,
 
 	execute(message) {
+		// Send Message
 		message.channel.send({ content: 'in dev' });
 	},
 };

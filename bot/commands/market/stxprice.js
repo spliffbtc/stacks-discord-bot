@@ -10,16 +10,23 @@ module.exports = {
 	args: false,
 
 	async execute(message) {
+		// Set Variables
 		const STXUSD = await getSTXUSD();
-		const embed = new MessageEmbed()
 
+
+		// Create Embed
+		const embed = new MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle('STX Price')
 			.setURL('https://www.coingecko.com/en/coins/stacks')
 			.setDescription(`The current price of STX in USD is: **$${STXUSD}**`)
 			.setTimestamp();
+
+
 		// Send Message
 		message.channel.send({ embeds: [embed] });
+
+
 		// Logging
 		if (module.exports.args === false) {
 			console.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name}`);

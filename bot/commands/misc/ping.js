@@ -7,6 +7,7 @@ module.exports = {
 	args: false,
 
 	execute(message) {
+		// Send Message
 		message.channel.send({ content: 'Pong.' });
 	},
 };

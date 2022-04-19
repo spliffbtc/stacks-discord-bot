@@ -10,6 +10,10 @@ module.exports = {
 	args: false,
 
 	execute(message) {
+		// Set Variables
+
+
+		// Create Embed
 		const embed = new MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle('Website')
@@ -19,8 +23,12 @@ module.exports = {
 			)
 			.setImage(collection.collectionBanner)
 			.setTimestamp();
+
+
 		// Send Message
 		message.channel.send({ embeds: [embed] });
+
+
 		// Logging
 		if (module.exports.args === false) {
 			console.log(`${message.author.tag} used the ${module.exports.name} command on ${message.guild.name}`);
